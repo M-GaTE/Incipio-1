@@ -1,3 +1,5 @@
+{% import 'FrontBundle:Macro:alerts.html.twig' as alerts %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,24 +29,16 @@
     <div class="container" id="body">
 
         {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
-                {{ flashMessage }}
-            </div>
+            {{ alerts.alert_message(flashMessage, 'success') }}
         {% endfor %}
         {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div class="alert alert-info">
-                {{ flashMessage }}
-            </div>
+            {{ alerts.alert_message(flashMessage, 'info') }}
         {% endfor %}
         {% for flashMessage in app.session.flashbag.get('warning') %}
-            <div class="alert alert-warning">
-                {{ flashMessage }}
-            </div>
+            {{ alerts.alert_message(flashMessage, 'warning') }}
         {% endfor %}
         {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="alert alert-danger">
-                {{ flashMessage }}
-            </div>
+            {{ alerts.alert_message(flashMessage, 'danger') }}
         {% endfor %}
 
         {% block body %}
