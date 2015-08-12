@@ -11,8 +11,7 @@
 
 namespace ApiBundle\EventListener;
 
-use ApiBundle\Doctrine\ORM\Manager\JobManager;
-use ApiBundle\Entity\Job;
+use ApiBundle\Doctrine\ORM\Manager\EntityManagerChain;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 
@@ -21,16 +20,19 @@ use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobManagerListener
+class EntityManagersListener
 {
     /**
-     * @var JobManager
+     * @var EntityManagerChain
      */
-    private $jobManager;
+    private $entityManagerChain;
 
-    public function __construct(JobManager $jobManager)
+    /**
+     * @param EntityManagerChain $entityManagerChain
+     */
+    public function __construct(EntityManagerChain $entityManagerChain)
     {
-        $this->jobManager = $jobManager;
+        $this->entityManagerChain = $entityManagerChain;
     }
 
     /**
@@ -40,17 +42,17 @@ class JobManagerListener
      */
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
-        $job = $event->getControllerResult();
-
-        if (false === $job instanceof Job) {
-            return $job;
-        }
+        $controllerResult = $event->getControllerResult();
 
         switch ($event->getRequest()->getMethod()) {
 
             case Request::METHOD_POST:
             case Request::METHOD_PUT:
-                $this->jobManager->updateAbbreviation($job);
+                $this->entityManagerChain->update($controllerResult);
+                break;
+
+            case Request::METHOD_DELETE:
+                $this->entityManagerChain->delete($controllerResult);
                 break;
         }
     }

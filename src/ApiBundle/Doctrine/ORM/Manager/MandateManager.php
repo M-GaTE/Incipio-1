@@ -17,8 +17,43 @@ use Doctrine\ORM\Decorator\EntityManagerDecorator;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class MandateManager extends EntityManagerDecorator
+class MandateManager extends EntityManagerDecorator implements EntityManagerInterface
 {
+    /**
+     * Deletes the entity.
+     *
+     * @param Mandate $entity
+     */
+    public function delete($entity)
+    {
+        /** @var Mandate $entity */
+        foreach ($entity->getJobs() as $job) {
+            $job->setMandate(null);
+        }
+    }
+
+    /**
+     * Updates the entity.
+     *
+     * @param Mandate $entity
+     */
+    public function update($entity)
+    {
+        $this->updateName($entity);
+    }
+
+    /**
+     * Checks whether the given class is supported by this manager.
+     *
+     * @param $entity
+     *
+     * @return bool
+     */
+    public function supports($entity)
+    {
+        return $entity instanceof Mandate;
+    }
+
     /**
      * Updates Mandate name: if there is no name, one is generated.
      *

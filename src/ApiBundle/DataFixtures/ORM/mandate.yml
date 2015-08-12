@@ -3,7 +3,6 @@ ApiBundle\Entity\Mandate:
         startAt:       <dateTimeThisDecade()>
         endAt:         <endMandateDateTime($startAt)>
         jobs (unique): <numberBetween(0, 12)>x @job__*
-        name:          <nameFromDates($startAt, $endAt)>
 
     mandate_2005 (extends mandate):
         startAt: <startMandateDateTime(2005)>

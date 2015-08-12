@@ -44,27 +44,6 @@ class MandateProvider extends DateTimeProvider
     }
 
     /**
-     * Generate a name for the mandate from its period.
-     *
-     * @example
-     *  mandate of two different years: "Mandate startYear/endYear"
-     *  mandate of the same year: "Mandate startMonth Year"
-     *
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
-     *
-     * @return string
-     */
-    public function nameFromDates(\DateTime $startDate, \DateTime $endDate = null)
-    {
-        if (null !== $endDate && $startDate->format('Y') !== $endDate->format('Y')) {
-            return sprintf('Mandate %s/%s', $startDate->format('Y'), $endDate->format('Y'));
-        }
-
-        return sprintf('Mandate %s %s', $startDate->format('m'), $startDate->format('Y'));
-    }
-
-    /**
      * Generate a datetime from the year given.
      *
      * @example

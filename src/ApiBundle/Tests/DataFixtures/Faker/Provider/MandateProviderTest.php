@@ -102,40 +102,6 @@ class MandateProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @testdox Test MandateProvider::nameFromDates()
-     *
-     * @covers ::nameFromDates
-     */
-    public function testNameFromDates()
-    {
-        // With two dates of different years
-        $startDate = new \DateTime();
-        $startDate->setDate(2000, 01, 01);
-
-        $endDate = new \DateTime();
-        $endDate->setDate(2001, 01, 01);
-
-        $this->assertEquals(
-            'Mandate 2000/2001',
-            $this->provider->nameFromDates($startDate, $endDate),
-            'Expected a name with the mask \'Mandate startYear/endYear\''
-        );
-
-        // With two dates of the same year years
-        $startDate = new \DateTime();
-        $startDate->setDate(2000, 01, 01);
-
-        $endDate = new \DateTime();
-        $endDate->setDate(2000, 05, 01);
-
-        $this->assertEquals(
-            'Mandate 01 2000',
-            $this->provider->nameFromDates($startDate, $endDate),
-            'Expected a name with the mask \'Mandate startMonth Year\''
-        );
-    }
-
-    /**
      * @return array Invalid inputs for MandateProvider::startMandateDateTime().
      */
     public function invalidStartMandateDateTimeInputProvider()

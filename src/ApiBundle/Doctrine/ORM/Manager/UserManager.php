@@ -18,8 +18,41 @@ use FOS\UserBundle\Model\UserInterface;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class UserManager extends BaseUserManager
+class UserManager extends BaseUserManager implements EntityManagerInterface
 {
+    /**
+     * Deletes the entity.
+     *
+     * @param UserInterface $entity
+     */
+    public function delete($entity)
+    {
+        $this->deleteUser($entity);
+    }
+
+    /**
+     * Updates the entity.
+     *
+     * @param UserInterface $entity
+     */
+    public function update($entity)
+    {
+        $this->updateUser($entity, false);
+    }
+
+    /**
+     * Checks whether the given class is supported by this manager.
+     *
+     * @param $entity
+     *
+     * @return bool
+     */
+    public function supports($entity)
+    {
+        return $entity instanceof UserInterface;
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -32,8 +65,6 @@ class UserManager extends BaseUserManager
                 $job->removeUser($user);
             }
         }
-
-        parent::deleteUser($user);
     }
 
     /**
