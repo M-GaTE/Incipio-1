@@ -17,8 +17,39 @@ use Doctrine\ORM\Decorator\EntityManagerDecorator;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobManager extends EntityManagerDecorator
+class JobManager extends EntityManagerDecorator implements EntityManagerInterface
 {
+    /**
+     * Deletes the entity.
+     *
+     * @param Job $entity
+     */
+    public function delete($entity)
+    {
+    }
+
+    /**
+     * Updates the entity.
+     *
+     * @param Job $entity
+     */
+    public function update($entity)
+    {
+        $this->updateAbbreviation($entity);
+    }
+
+    /**
+     * Checks whether the given class is supported by this manager.
+     *
+     * @param $entity
+     *
+     * @return bool
+     */
+    public function supports($entity)
+    {
+        return $entity instanceof Job;
+    }
+
     /**
      * Updates Job abbreviation: if there is no abbreviation, one is created from the title.
      *

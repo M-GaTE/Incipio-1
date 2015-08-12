@@ -1,10 +1,16 @@
-#parameters:
-#    doctrine.orm.entity_manager.class: ApiBundle\Doctrine\ORM\Manager\EntityManager
-
 services:
     api.user.roles:
         class:     ApiBundle\Utils\UserRoles
         arguments: [ %security.role_hierarchy.roles% ]
+
+    #
+    # Alice processors
+    #
+    alice.processor.entity_managers:
+        class:     ApiBundle\DataFixtures\Processor\EntityManagersProcessor
+        arguments: [ @api.entity_manager_chain]
+        tags:      [ { name: hautelook_alice.processor } ]
+
 
     #
     # Native filters
@@ -19,18 +25,9 @@ services:
     #
     # Event Listeners
     #
-    event_listener.job_manager:
-        class:          ApiBundle\EventListener\JobManagerListener
-        arguments:      [ @api.entity_manager.job_manager ]
-        tags:
-            - name:     kernel.event_listener
-              event:    kernel.view
-              method:   onKernelView
-              priority: 11
-
-    event_listener.mandate_manager:
-        class:          ApiBundle\EventListener\MandateManagerListener
-        arguments:      [ @api.entity_manager.mandate_manager ]
+    event_listener.entity_managers:
+        class:          ApiBundle\EventListener\EntityManagersListener
+        arguments:      [ @api.entity_manager_chain ]
         tags:
             - name:     kernel.event_listener
               event:    kernel.view
@@ -64,18 +61,20 @@ services:
     #
     # Entity Managers
     #
-    api.entity_manager.default:
-        class:     ApiBundle\Doctrine\ORM\Manager\EntityManager
-        decorates: doctrine.orm.default_entity_manager
-        arguments: [ @api.entity_manager.default.inner ]
+    api.entity_manager_chain:
+        class: ApiBundle\Doctrine\ORM\Manager\EntityManagerChain
+        lazy:  true
+        # The argument is passed in the compiler pass, see ApiBundle\DependencyInjection\Compiler\EntityManagerPass
 
     api.entity_manager.job_manager:
         class:     ApiBundle\Doctrine\ORM\Manager\JobManager
         arguments: [ @doctrine.orm.default_entity_manager ]
+        tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.mandate_manager:
         class:     ApiBundle\Doctrine\ORM\Manager\MandateManager
         arguments: [ @doctrine.orm.default_entity_manager ]
+        tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.user_manager:
         class: ApiBundle\Doctrine\ORM\Manager\UserManager
@@ -85,6 +84,7 @@ services:
             -  @fos_user.util.email_canonicalizer
             -  @fos_user.entity_manager
             -  %fos_user.model.user.class%
+        tags:  [ { name: api.entity_manager } ]
 
 
     #

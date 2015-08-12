@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobManagerListener
+class EntityManagersListener
 {
     /**
      * @var JobManager
