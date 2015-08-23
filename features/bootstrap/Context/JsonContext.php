@@ -218,20 +218,6 @@ class JsonContext extends SampiJsonContext implements Context
         );
     }
 
-    /*
-     * content => [
-     *  prop1
-     *  prop2
-     *  obj {
-     *      pr1
-     *      pr2
-     *  }
-     *  arr [
-     *      0 => {aze}
-     *  ]
-     * ]
-     */
-
     private function getNumberOfNodes($content)
     {
         $count = 0;

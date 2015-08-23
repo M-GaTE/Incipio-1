@@ -6,12 +6,12 @@
 
 # ApiBundle
 api:
-    resource: "@ApiBundle/Resources/config/routing.yml"
+    resource: @ApiBundle/Resources/config/routing.yml
     prefix:   /api
 
 # FrontBundle
 front:
-    resource: "@FrontBundle/Resources/config/routing.yml"
+    resource: @FrontBundle/Resources/config/routing.yml
     prefix:   /
 
 #
