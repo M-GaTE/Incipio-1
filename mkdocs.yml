@@ -1,0 +1,24 @@
+site_name: Incipio Docs
+site_url: http://in6pio.github.io/Incipio
+repo_url: https://github.com/in6pio/Incipio.git
+repo_name: GitHub
+copyright: Copyright &#169 2015 in6pio.
+docs_dir: docs
+site_dir: gh-pages
+
+theme: flatly
+
+pages:
+    - Accueil: index.md
+    - Guide utilisateur:
+        - Installation:               user-guide/install.md
+        - Premières Utiliations:      user-guide/first-use.md
+        - Module gestion Associative: user-guide/user-management.md
+    - Guide développeur:
+        - Git workflow:               dev-guide/git-workflow.md
+        - VM for dev:                 dev-guide/dev-environment.md
+        - Configure your environment: dev-guide/dev-tools.md
+        - Coding guidelines:          dev-guide/coding-guidelines.md
+        - API Documentation:          dev-guide/api.md
+        - Document your work:         dev-guide/documentation.md
+    - About: about.md
