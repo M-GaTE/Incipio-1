@@ -125,7 +125,9 @@ class MandateController extends BaseController
                 'mandate'     => $mandate,
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -167,7 +169,9 @@ class MandateController extends BaseController
                 'edit_form' => $this->createEditForm($mandate)->createView(),
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -225,7 +229,9 @@ class MandateController extends BaseController
                 return $this->redirectToRoute('mandates_show', ['id' => $id]);
             }
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -271,7 +277,9 @@ class MandateController extends BaseController
                 );
                 $this->addFlash('success', 'Le mandat a bien été supprimé.');
             } catch (ClientRequestException $exception) {
-                if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+                if (null !== $exception->getResponse()
+                    && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+                ) {
                     throw $this->createNotFoundException('Unable to find Mandate entity.');
                 }
 

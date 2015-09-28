@@ -45,7 +45,7 @@ doctrine:
 dunglas_api:
     title:           %api_name%
     description:     %api_description%
-    enable_fos_user: true
+    enable_fos_user: false # Does not need the bridge as our own manager and listener already do the work
 
 # CsaGuzzleBundle
 csa_guzzle:

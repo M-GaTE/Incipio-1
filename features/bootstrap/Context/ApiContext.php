@@ -148,7 +148,7 @@ class ApiContext extends RawMinkContext implements Context, SnippetAcceptingCont
     /**
      * Is a debug helper, should not be left used in Behat features.
      *
-     * @Then print the response
+     * @Then print the last response
      */
     public function printTheResponse()
     {

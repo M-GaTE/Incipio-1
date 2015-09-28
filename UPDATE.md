@@ -107,6 +107,10 @@ File names are prefixed by `_`, which is a convention in SASS to tell that this 
 
 ## JavaScript
 
+Waiting for Gulp/Grunt:
+
+  node_modules/.bin/browserify src/FrontBundle/Resources/assets/scripts/app.js -o web/assets/app.js
+
 ### Architecture
 
 ```

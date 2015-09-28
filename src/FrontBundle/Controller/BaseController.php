@@ -13,6 +13,7 @@ namespace FrontBundle\Controller;
 
 use FrontBundle\Client\ApiClientInterface;
 use FrontBundle\Utils\IriHelper;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Message\RequestInterface;
@@ -120,39 +121,44 @@ class BaseController extends SymfonyController implements ApiControllerInterface
     {
         $message = null;
 
-        if ($exception instanceof RequestException) {
-            $response = $exception->getResponse();
+        switch (true) {
+            case $exception instanceof ConnectException:
+                // Get exception message
+                break;
 
-            switch ($response->getHeader('Content-Type')) {
+            case $exception instanceof RequestException:
+                $response = $exception->getResponse();
+                switch ($response->getHeader('Content-Type')) {
 
-                case 'application/ld+json':
-                    $body = $this->decode($response->getBody());
-                    $type = $body['@type'];
-                    switch ($type) {
-                        case 'Error':
-                            $message = sprintf(
-                                '%s: %s',
-                                $body['hydra:title'],
-                                $body['hydra:description']
-                            );
-                            break;
-
-                        case 'ConstraintViolationList':
-                            foreach ($body['violations'] as $violation) {
-                                $this->addFlash(
-                                    'error',
-                                    sprintf('%s: %s', $violation['propertyPath'], $violation['message'])
+                    case 'application/ld+json':
+                        $body = $this->decode($response->getBody());
+                        $type = $body['@type'];
+                        switch ($type) {
+                            case 'Error':
+                                $message = sprintf(
+                                    '%s: %s',
+                                    $body['hydra:title'],
+                                    $body['hydra:description']
                                 );
-                            }
+                                break;
 
-                            return;
-                    }
-                    break;
+                            case 'ConstraintViolationList':
+                                foreach ($body['violations'] as $violation) {
+                                    $this->addFlash(
+                                        'error',
+                                        sprintf('%s: %s', $violation['propertyPath'], $violation['message'])
+                                    );
+                                }
 
-                case 'application/json':
-                    $message = $this->decode($response->getBody());
-                    break;
-            }
+                                return;
+                        }
+                        break;
+
+                    case 'application/json':
+                        $message = $this->decode($response->getBody());
+                        break;
+                }
+                break;
         }
 
         // Other

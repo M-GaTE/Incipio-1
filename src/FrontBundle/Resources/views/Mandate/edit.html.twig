@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="col-md-6">
-            {{ form_start(edit_form) }}
+            {{ form_start(edit_form, { 'attr': { 'id': 'test' }  }) }}
                 {{ form_widget(edit_form) }}
                 {{ macros.button_link(path('mandates_show', { 'id': mandateId }), 'Annuler', 'btn-default pull-left') }}
                 <input type="submit" value="Enregistrer" class="btn btn-primary pull-right" />

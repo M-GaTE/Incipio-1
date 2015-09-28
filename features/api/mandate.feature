@@ -9,6 +9,106 @@ Feature: Mandates management
   New jobs are created for the current mandate.
   A user may have one or several mandate, with or without a job.
 
+  Background:
+    Given I authenticate myself as admin
+
+
+  Scenario: Get a collection
+    When I send a GET request to "/api/mandates"
+    Then the response status code should be 200
+    And I should get a paged collection with the context "/api/contexts/Mandate"
+
+
+  Scenario: Get a resource
+    When I send a GET request to "/api/mandates/1"
+    Then the response status code should be 200
+    And the JSON node "jobs" should have 2 element
+    Then the JSON response should should have the following nodes:
+      | node     | value                     | type  |
+      | @context | /api/contexts/Mandate     |       |
+      | @id      | /api/mandates/1           |       |
+      | @type    | Mandate                   |       |
+      | endAt    | 2007-03-18T10:25:58+00:00 |       |
+      | jobs     |                           | array |
+      | jobs[0]  | /api/jobs/4               |       |
+      | jobs[1]  | /api/jobs/51              |       |
+      | name     | Mandate 2005/2007         |       |
+      | startAt  | 2005-11-27T17:41:35+00:00 |       |
+
+
+  Scenario: Create a new resource
+    # With valid data
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+      "name": "Dummy date",
+      "endAt": "2010-01-21T23:00:00+00:00",
+      "startAt": "2009-01-26T23:00:00+00:00"
+    }
+    """
+    Then the response status code should be 201
+    And the JSON node "jobs" should have 0 element
+    Then the JSON response should should have the following nodes:
+      | node     | value                     | type    |
+      | @context | /api/contexts/Mandate     |         |
+      | @id      | /api/mandates/13          |         |
+      | @type    | Mandate                   |         |
+      | endAt    | 2010-01-21T23:00:00+00:00 | string  |
+      | jobs     |                           | array   |
+      | name     | Dummy date                |         |
+      | startAt  | 2009-01-26T23:00:00+00:00 | string  |
+
+    # Check if the resource has been properly persisted
+    When I send a GET request to "/api/mandates/13"
+    Then the response status code should be 200
+    And the JSON node "jobs" should have 0 element
+    Then the JSON response should should have the following nodes:
+      | node     | value                     | type  |
+      | @context | /api/contexts/Mandate     |       |
+      | @id      | /api/mandates/1           |       |
+      | @type    | Mandate                   |       |
+      | endAt    | 2007-03-18T10:25:58+00:00 |       |
+      | jobs     |                           | array |
+      | name     | Mandate 2005/2007         |       |
+      | startAt  | 2005-11-27T17:41:35+00:00 |       |
+
+    # Post again with some other valid values but no name
+    # Expect to have a name generated
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+      "endAt": "2051-01-21",
+      "startAt": "2050-01-26"
+    }
+    """
+    Then the response status code should be 200
+    And I should get a resource page with the context "/api/contexts/Mandate"
+    And the JSON node "name" should be equal to "Mandate 2050/2051"
+
+    # Test validation rules
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+    }
+    """
+    Then the response status code should be 400
+    And the JSON node "violations" should have 2 element
+    Then the JSON response should should have the following nodes:
+      | node                        | value                                 | type   |
+      | @context                    | /api/contexts/ConstraintViolationList |        |
+      | @type                       | ConstraintViolationList               |        |
+      | hydra:title                 |                                       |        |
+      | hydra:description           |                                       | array  |
+      | violations                  |                                       | array  |
+      | violations[0]               |                                       | object |
+      | violations[0]->propertyPath | endAt                                 |        |
+      | violations[0]->message      | Cette valeur ne doit pas être nulle.  |        |
+      | violations[1]               |                                       | object |
+      | violations[1]->propertyPath | startAt                               |        |
+      | violations[1]->message      | Cette valeur ne doit pas être nulle.  |        |
+
+
+
 #  Scenario: If one list all the mandates, there it at least one mandate: the current one.
 #    #TODO
 #

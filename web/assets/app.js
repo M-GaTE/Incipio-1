@@ -1,6 +1,52 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var datatables_options = require('./modules/datatables.js');
+
+var dt_tables = [
+    require('./modules/datatables-mandates.js'),
+    require('./modules/datatables-users.js'),
+];
+
+$.extend($.fn.dataTable.defaults, datatables_options);
+
+dt_tables.forEach(
+    function(element, index, array) {
+        element.init();
+    }
+);
+
+},{"./modules/datatables-mandates.js":2,"./modules/datatables-users.js":3,"./modules/datatables.js":4}],2:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    config: {
+        columnDefs: [
+            {
+                orderable: false,
+                searchable: false,
+                targets: -1
+            },
+            {
+                type: 'string',
+                targets: 2
+            },
+            {
+                type: 'string',
+                targets: 3
+            }
+        ],
+        order: [[3, 'desc'], [3, 'desc']]
+    },
+    init: function() {
+        $('#mandates-index-table').DataTable(this.config);
+    }
+};
+
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
 module.exports = {
     config: {
         columnDefs: [
@@ -18,7 +64,7 @@ module.exports = {
 };
 
 
-},{}],2:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -47,17 +93,4 @@ module.exports = {
 };
 
 
-},{}],3:[function(require,module,exports){
-'use strict';
-
-var datatables_options = require('./modules/datatables.js');
-var dt_users = require('./modules/datatables-users.js');
-
-$.extend($.fn.dataTable.defaults, datatables_options);
-
-dt_users.init();
-
-},{"./modules/datatables-users.js":1,"./modules/datatables.js":2}]},{},[3])
-
-
-//# sourceMappingURL=app.js.map
+},{}]},{},[1]);

@@ -159,7 +159,9 @@ class UserController extends BaseController
                 'user'        => $user,
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -201,7 +203,9 @@ class UserController extends BaseController
                 'edit_form' => $this->createEditForm($user)->createView(),
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -259,7 +263,9 @@ class UserController extends BaseController
                 return $this->redirectToRoute('users_show', ['id' => $id]);
             }
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -302,7 +308,9 @@ class UserController extends BaseController
                 );
                 $this->addFlash('success', 'L\'utilisateur a bien été supprimé.');
             } catch (ClientRequestException $exception) {
-                if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+                if (null !== $exception->getResponse()
+                    && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+                ) {
                     throw $this->createNotFoundException('Unable to find User entity.');
                 }
 

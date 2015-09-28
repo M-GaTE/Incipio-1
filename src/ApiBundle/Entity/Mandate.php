@@ -51,8 +51,6 @@ class Mandate
      * @var ArrayCollection|Job[] List of jobs attached to this mandate.
      *
      * @ORM\OneToMany(targetEntity="Job", mappedBy="mandate", cascade={"all"})
-     *
-     * TODO: validation: may have no jobs but a job requires at least one mandate
      */
     private $jobs;
 
