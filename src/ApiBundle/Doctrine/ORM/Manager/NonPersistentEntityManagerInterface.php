@@ -24,7 +24,7 @@ interface NonPersistentEntityManagerInterface
      *
      * @param object $entity
      */
-    public function delete($entity);
+    public function remove($entity);
 
     /**
      * Updates the entity.

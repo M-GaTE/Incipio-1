@@ -23,7 +23,7 @@ class JobNonPersistentManager implements NonPersistentEntityManagerInterface
      *
      * @param Job $entity
      */
-    public function delete($entity)
+    public function remove($entity)
     {
     }
 

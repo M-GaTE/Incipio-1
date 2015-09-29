@@ -30,7 +30,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::delete
+     * @covers ::remove
      * @covers ::deleteUser
      */
     public function testDelete()
@@ -75,8 +75,8 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
         $userWithoutJobs = new User();
 
-        $userManager->delete($userWithJobs);
-        $userManager->delete($userWithoutJobs);
+        $userManager->remove($userWithJobs);
+        $userManager->remove($userWithoutJobs);
     }
 
     /**

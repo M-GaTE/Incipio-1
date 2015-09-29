@@ -72,7 +72,7 @@ class JobListenerTest extends \PHPUnit_Framework_TestCase
 
         $manager = $this->prophesize(NonPersistentEntityManagerInterface::class);
         $manager->supports(Job::class)->willReturn(true);
-        $manager->delete($job)->shouldBeCalledTimes(1);
+        $manager->remove($job)->shouldBeCalledTimes(1);
 
         $listener = new JobListener($manager->reveal());
 

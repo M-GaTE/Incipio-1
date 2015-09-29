@@ -25,7 +25,7 @@ class UserManager extends BaseUserManager implements NonPersistentEntityManagerI
      *
      * @param UserInterface $entity
      */
-    public function delete($entity)
+    public function remove($entity)
     {
         $this->deleteUser($entity);
     }

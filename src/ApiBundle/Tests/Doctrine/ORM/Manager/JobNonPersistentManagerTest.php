@@ -27,7 +27,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::delete
+     * @covers ::remove
      * @dataProvider jobProvider
      */
     public function testDelete(Job $job)
@@ -35,7 +35,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $jobManager = new JobNonPersistentManager();
         $jobBefore = clone $job;
 
-        $jobManager->delete($job);
+        $jobManager->remove($job);
 
         $this->assertEquals($jobBefore, $job);
     }

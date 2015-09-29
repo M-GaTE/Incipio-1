@@ -49,6 +49,6 @@ class MandateListener
 
     public function preRemove(Mandate $mandate, LifecycleEventArgs $event)
     {
-        $this->manager->delete($mandate);
+        $this->manager->remove($mandate);
     }
 }

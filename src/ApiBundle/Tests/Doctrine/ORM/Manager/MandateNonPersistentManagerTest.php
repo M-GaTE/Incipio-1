@@ -29,7 +29,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::delete
+     * @covers ::remove
      */
     public function testDelete()
     {
@@ -51,8 +51,8 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
 
         $mandateWithoutJobs = new Mandate();
 
-        $mandateManager->delete($mandateWithJobs);
-        $mandateManager->delete($mandateWithoutJobs);
+        $mandateManager->remove($mandateWithJobs);
+        $mandateManager->remove($mandateWithoutJobs);
     }
 
     /**

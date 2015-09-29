@@ -23,7 +23,7 @@ class MandateNonPersistentManager implements NonPersistentEntityManagerInterface
      *
      * @param Mandate $entity
      */
-    public function delete($entity)
+    public function remove($entity)
     {
         foreach ($entity->getJobs() as $job) {
             $job->setMandate(null);

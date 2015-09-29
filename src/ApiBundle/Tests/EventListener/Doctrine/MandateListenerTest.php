@@ -72,7 +72,7 @@ class MandateListenerTest extends \PHPUnit_Framework_TestCase
 
         $manager = $this->prophesize(NonPersistentEntityManagerInterface::class);
         $manager->supports(Mandate::class)->willReturn(true);
-        $manager->delete($mandate)->shouldBeCalledTimes(1);
+        $manager->remove($mandate)->shouldBeCalledTimes(1);
 
         $listener = new MandateListener($manager->reveal());
 

@@ -49,6 +49,6 @@ class JobListener
 
     public function preRemove(Job $job, LifecycleEventArgs $event)
     {
-        $this->manager->delete($job);
+        $this->manager->remove($job);
     }
 }
