@@ -12,30 +12,31 @@
 namespace ApiBundle\Doctrine\ORM\Manager;
 
 /**
- * Interface for custom entity managers.
+ * Interface for custom entity managers. This interface is not responsible for methods relative to the persistence
+ * usually set in a Doctrine entity manager.
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-interface EntityManagerInterface
+interface NonPersistentEntityManagerInterface
 {
     /**
      * Deletes the entity.
      *
-     * @param $entity
+     * @param object $entity
      */
     public function delete($entity);
 
     /**
      * Updates the entity.
      *
-     * @param $entity
+     * @param object $entity
      */
     public function update($entity);
 
     /**
      * Checks whether the given class is supported by this manager.
      *
-     * @param $entity
+     * @param object|string $entity Entity object of its FQCN.
      *
      * @return bool
      */

@@ -12,15 +12,14 @@
 namespace ApiBundle\Doctrine\ORM\Manager;
 
 use ApiBundle\Entity\Job;
-use Doctrine\ORM\Decorator\EntityManagerDecorator;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobManager extends EntityManagerDecorator implements EntityManagerInterface
+class JobNonPersistentManager implements NonPersistentEntityManagerInterface
 {
     /**
-     * Deletes the entity.
+     * {@inheritdoc}
      *
      * @param Job $entity
      */
@@ -29,7 +28,7 @@ class JobManager extends EntityManagerDecorator implements EntityManagerInterfac
     }
 
     /**
-     * Updates the entity.
+     * {@inheritdoc}
      *
      * @param Job $entity
      */
@@ -39,19 +38,19 @@ class JobManager extends EntityManagerDecorator implements EntityManagerInterfac
     }
 
     /**
-     * Checks whether the given class is supported by this manager.
-     *
-     * @param $entity
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function supports($entity)
     {
+        if (is_string($entity)) {
+            return Job::class === $entity;
+        }
+
         return $entity instanceof Job;
     }
 
     /**
-     * Updates Job abbreviation: if there is no abbreviation, one is created from the title.
+     * Updates Job abbreviation by creating one from the title if no abbreviation exists.
      *
      * @param Job $job
      */

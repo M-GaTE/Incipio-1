@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table
  * @ORM\Entity
+ * @ORM\EntityListeners({"ApiBundle\EventListener\Doctrine\MandateListener"})
  * @UniqueEntity("name")
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>

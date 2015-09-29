@@ -58,9 +58,11 @@ csa_guzzle:
 
 # FOSUserBundle
 fos_user:
-    db_driver:     orm
-    firewall_name: api
-    user_class:    ApiBundle\Entity\User
+    db_driver:        orm
+    firewall_name:    api
+    service:
+        user_manager: api.entity_manager.user_manager
+    user_class:       ApiBundle\Entity\User
 
 # AliceBundle
 hautelook_alice:

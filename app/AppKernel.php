@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Fidry\LoopBackApiBundle\LoopBackApiBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
 //            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -33,8 +32,8 @@ class AppKernel extends Kernel
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

@@ -18,10 +18,10 @@ use FOS\UserBundle\Model\UserInterface;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class UserManager extends BaseUserManager implements EntityManagerInterface
+class UserManager extends BaseUserManager implements NonPersistentEntityManagerInterface
 {
     /**
-     * Deletes the entity.
+     * {@inheritdoc}
      *
      * @param UserInterface $entity
      */
@@ -31,7 +31,7 @@ class UserManager extends BaseUserManager implements EntityManagerInterface
     }
 
     /**
-     * Updates the entity.
+     * {@inheritdoc}
      *
      * @param UserInterface $entity
      */
@@ -41,14 +41,16 @@ class UserManager extends BaseUserManager implements EntityManagerInterface
     }
 
     /**
-     * Checks whether the given class is supported by this manager.
-     *
-     * @param $entity
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function supports($entity)
     {
+        if (is_string($entity)) {
+            $reflectionClass = new \ReflectionClass($entity);
+
+            return $reflectionClass->implementsInterface(UserInterface::class);
+        }
+
         return $entity instanceof UserInterface;
     }
 

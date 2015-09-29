@@ -25,14 +25,15 @@ services:
     #
     # Event Listeners
     #
-    event_listener.entity_managers:
-        class:          ApiBundle\EventListener\EntityManagersListener
-        arguments:      [ @api.entity_manager_chain ]
-        tags:
-            - name:     kernel.event_listener
-              event:    kernel.view
-              method:   onKernelView
-              priority: 11
+    event_lister.doctrine.entity_listener.job_listener:
+        class:          ApiBundle\EventListener\Doctrine\JobListener
+        arguments:      [ @api.entity_manager.job_manager ]
+        tags:           [ { name: doctrine.orm.entity_listener } ]
+
+    event_lister.doctrine.entity_listener.mandate_listener:
+        class:          ApiBundle\EventListener\Doctrine\MandateListener
+        arguments:      [ @api.entity_manager.mandate_manager ]
+        tags:           [ { name: doctrine.orm.entity_listener } ]
 
 
     #
@@ -67,13 +68,11 @@ services:
         # The argument is passed in the compiler pass, see ApiBundle\DependencyInjection\Compiler\EntityManagerPass
 
     api.entity_manager.job_manager:
-        class:     ApiBundle\Doctrine\ORM\Manager\JobManager
-        arguments: [ @doctrine.orm.default_entity_manager ]
+        class:     ApiBundle\Doctrine\ORM\Manager\JobNonPersistentManager
         tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.mandate_manager:
-        class:     ApiBundle\Doctrine\ORM\Manager\MandateManager
-        arguments: [ @doctrine.orm.default_entity_manager ]
+        class:     ApiBundle\Doctrine\ORM\Manager\MandateNonPersistentManager
         tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.user_manager:
