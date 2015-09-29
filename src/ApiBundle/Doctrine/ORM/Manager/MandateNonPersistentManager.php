@@ -12,28 +12,26 @@
 namespace ApiBundle\Doctrine\ORM\Manager;
 
 use ApiBundle\Entity\Mandate;
-use Doctrine\ORM\Decorator\EntityManagerDecorator;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class MandateManager extends EntityManagerDecorator implements EntityManagerInterface
+class MandateNonPersistentManager implements NonPersistentEntityManagerInterface
 {
     /**
-     * Deletes the entity.
+     * {@inheritdoc}
      *
      * @param Mandate $entity
      */
-    public function delete($entity)
+    public function remove($entity)
     {
-        /** @var Mandate $entity */
         foreach ($entity->getJobs() as $job) {
             $job->setMandate(null);
         }
     }
 
     /**
-     * Updates the entity.
+     * {@inheritdoc}
      *
      * @param Mandate $entity
      */
@@ -43,14 +41,14 @@ class MandateManager extends EntityManagerDecorator implements EntityManagerInte
     }
 
     /**
-     * Checks whether the given class is supported by this manager.
-     *
-     * @param $entity
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function supports($entity)
     {
+        if (is_string($entity)) {
+            return Mandate::class === $entity;
+        }
+
         return $entity instanceof Mandate;
     }
 
@@ -65,7 +63,9 @@ class MandateManager extends EntityManagerDecorator implements EntityManagerInte
             return;
         }
 
-        if (null !== $mandate->getEndAt() && $mandate->getStartAt()->format('Y') !== $mandate->getEndAt()->format('Y')) {
+        if (null !== $mandate->getEndAt()
+            && $mandate->getStartAt()->format('Y') !== $mandate->getEndAt()->format('Y')
+        ) {
             $name = sprintf('Mandate %s/%s', $mandate->getStartAt()->format('Y'), $mandate->getEndAt()->format('Y'));
         } else {
             $name = sprintf('Mandate %s %s', $mandate->getStartAt()->format('m'), $mandate->getStartAt()->format('Y'));
