@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ec9e088c0d03d715359df8298fd4727b",
-    "content-hash": "98b87ca1b647456c11d53bee9bc25d50",
+    "hash": "27a116ba4beeaa12b8094641ee56fa07",
+    "content-hash": "eccf00fbf445d49801d508b8743b5c0e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3914,7 +3914,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Symfony2Extension/zipball/8263a4760c02ab6b6e29751c5fb8a28f44796d52",
+                "url": "https://api.github.com/repos/Behat/Symfony2Extension/zipball/516d27dd9119a1d99a27244cd3dca1712e76d2c6",
                 "reference": "8263a4760c02ab6b6e29751c5fb8a28f44796d52",
                 "shasum": ""
             },
@@ -4183,7 +4183,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/f6c3fa91e4182f197dc008862aecd24698cb2822",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/59ed377ef822e1224e198ab17adaf86d015de685",
                 "reference": "f6c3fa91e4182f197dc008862aecd24698cb2822",
                 "shasum": ""
             },
@@ -5552,7 +5552,6 @@
         "behatch/contexts": 20,
         "fabpot/php-cs-fixer": 20,
         "hautelook/alice-bundle": 10,
-        "symfony/phpunit-bridge": 10,
         "vipsoft/doctrine-data-fixtures-extension": 20
     },
     "prefer-stable": false,
