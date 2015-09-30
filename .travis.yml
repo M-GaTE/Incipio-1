@@ -24,10 +24,8 @@ matrix:
 before_install:
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - composer global require phpunit/phpunit --no-update
 
 install:
-  - composer global update --prefer-dist
   - composer install --prefer-dist
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test

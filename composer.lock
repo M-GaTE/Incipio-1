@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "27a116ba4beeaa12b8094641ee56fa07",
-    "content-hash": "eccf00fbf445d49801d508b8743b5c0e",
+    "hash": "2739e8cd1d15e38a98fe56a467616696",
+    "content-hash": "d6a0816e8d7aa9305c527e0cd59ff06b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1071,16 +1071,16 @@
         },
         {
             "name": "friendsofsymfony/http-cache-bundle",
-            "version": "1.3.3",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSHttpCacheBundle.git",
-                "reference": "aa20b2a5e87612fae153ac3d34444cd1524950ab"
+                "reference": "a28853add01d8af5011fe9b9055da5175f99cd5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSHttpCacheBundle/zipball/aa20b2a5e87612fae153ac3d34444cd1524950ab",
-                "reference": "aa20b2a5e87612fae153ac3d34444cd1524950ab",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSHttpCacheBundle/zipball/a28853add01d8af5011fe9b9055da5175f99cd5c",
+                "reference": "a28853add01d8af5011fe9b9055da5175f99cd5c",
                 "shasum": ""
             },
             "require": {
@@ -1144,7 +1144,7 @@
                 "purge",
                 "varnish"
             ],
-            "time": "2015-08-20 07:02:00"
+            "time": "2015-09-30 06:39:09"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -2868,34 +2868,34 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.7.1",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "9320b6863404c70ebe111e9040dab96f251de7ac"
+                "reference": "78883d8c1cfa523ac3a28a482b7793036b243f7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/9320b6863404c70ebe111e9040dab96f251de7ac",
-                "reference": "9320b6863404c70ebe111e9040dab96f251de7ac",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/78883d8c1cfa523ac3a28a482b7793036b243f7d",
+                "reference": "78883d8c1cfa523ac3a28a482b7793036b243f7d",
                 "shasum": ""
             },
             "require": {
                 "monolog/monolog": "~1.8",
                 "php": ">=5.3.2",
-                "symfony/config": "~2.3",
-                "symfony/dependency-injection": "~2.3",
-                "symfony/http-kernel": "~2.3",
-                "symfony/monolog-bridge": "~2.3"
+                "symfony/config": "~2.3|3.*",
+                "symfony/dependency-injection": "~2.3|3.*",
+                "symfony/http-kernel": "~2.3|3.*",
+                "symfony/monolog-bridge": "~2.3|3.*"
             },
             "require-dev": {
-                "symfony/console": "~2.3",
+                "symfony/console": "~2.3|3.*",
                 "symfony/yaml": "~2.3"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7.x-dev"
+                    "dev-master": "2.8.x-dev"
                 }
             },
             "autoload": {
@@ -2923,7 +2923,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-01-04 20:21:17"
+            "time": "2015-09-29 17:13:11"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -3106,16 +3106,16 @@
         },
         {
             "name": "theofidry/loopback-api-bundle",
-            "version": "dev-master",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theofidry/LoopBackApiBundle.git",
-                "reference": "08959470c7f4d4daafe97dc096c8af1f7f38a47e"
+                "reference": "a025bc373043c2be607933c111f3c3bd6d2ebabf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/LoopBackApiBundle/zipball/08959470c7f4d4daafe97dc096c8af1f7f38a47e",
-                "reference": "08959470c7f4d4daafe97dc096c8af1f7f38a47e",
+                "url": "https://api.github.com/repos/theofidry/LoopBackApiBundle/zipball/a025bc373043c2be607933c111f3c3bd6d2ebabf",
+                "reference": "a025bc373043c2be607933c111f3c3bd6d2ebabf",
                 "shasum": ""
             },
             "require": {
@@ -3129,14 +3129,18 @@
                 "behat/mink-extension": "~2.0",
                 "behat/symfony2-extension": "~2.0",
                 "behatch/contexts": "dev-master#eef7ab39ca896796bf3ba25a0fa5a95f15276eb7",
-                "hautelook/alice-bundle": "~1.0@beta",
-                "symfony/symfony": "~2.7",
-                "theofidry/alice-bundle-extension": "~1.0@beta"
+                "phpunit/phpunit": "~4.7",
+                "symfony/symfony": "~2.7"
             },
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Fidry\\LoopBackApiBundle\\": "src"
+                    "Fidry\\LoopBackApiBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3159,7 +3163,7 @@
                 "json",
                 "rest"
             ],
-            "time": "2015-09-17 21:32:32"
+            "time": "2015-08-05 22:54:39"
         },
         {
             "name": "twig/extensions",
@@ -3620,16 +3624,16 @@
         },
         {
             "name": "behat/gherkin",
-            "version": "v4.3.0",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "43777c51058b77bcd84a8775b7a6ad05e986b5db"
+                "reference": "6b3f8cf3560dc4909c4cddd4f1af3e1f6e9d80af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/43777c51058b77bcd84a8775b7a6ad05e986b5db",
-                "reference": "43777c51058b77bcd84a8775b7a6ad05e986b5db",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/6b3f8cf3560dc4909c4cddd4f1af3e1f6e9d80af",
+                "reference": "6b3f8cf3560dc4909c4cddd4f1af3e1f6e9d80af",
                 "shasum": ""
             },
             "require": {
@@ -3645,7 +3649,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -3674,7 +3678,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2014-06-06 01:24:32"
+            "time": "2015-09-29 13:41:19"
         },
         {
             "name": "behat/mink",
@@ -3792,16 +3796,16 @@
         },
         {
             "name": "behat/mink-extension",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkExtension.git",
-                "reference": "06a4cb56614b047d8d15ea5cd392d19fd3d856e8"
+                "reference": "06e2b99d92e175719d7e841d5be16b7df1a233c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/06a4cb56614b047d8d15ea5cd392d19fd3d856e8",
-                "reference": "06a4cb56614b047d8d15ea5cd392d19fd3d856e8",
+                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/06e2b99d92e175719d7e841d5be16b7df1a233c5",
+                "reference": "06e2b99d92e175719d7e841d5be16b7df1a233c5",
                 "shasum": ""
             },
             "require": {
@@ -3811,13 +3815,13 @@
                 "symfony/config": "~2.2"
             },
             "require-dev": {
-                "behat/mink-goutte-driver": "~1.0",
+                "behat/mink-goutte-driver": "~1.1",
                 "phpspec/phpspec": "~2.0"
             },
             "type": "behat-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -3847,7 +3851,7 @@
                 "test",
                 "web"
             ],
-            "time": "2014-09-23 10:59:27"
+            "time": "2015-09-29 17:42:41"
         },
         {
             "name": "behat/mink-goutte-driver",
@@ -3910,12 +3914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Symfony2Extension.git",
-                "reference": "8263a4760c02ab6b6e29751c5fb8a28f44796d52"
+                "reference": "516d27dd9119a1d99a27244cd3dca1712e76d2c6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Behat/Symfony2Extension/zipball/516d27dd9119a1d99a27244cd3dca1712e76d2c6",
-                "reference": "8263a4760c02ab6b6e29751c5fb8a28f44796d52",
+                "reference": "516d27dd9119a1d99a27244cd3dca1712e76d2c6",
                 "shasum": ""
             },
             "require": {
@@ -3925,7 +3929,7 @@
             },
             "require-dev": {
                 "behat/mink-browserkit-driver": "~1.0",
-                "behat/mink-extension": "~2.0@dev",
+                "behat/mink-extension": "~2.0",
                 "phpspec/phpspec": "~2.0",
                 "phpunit/phpunit": "~4.0",
                 "symfony/symfony": "~2.1"
@@ -3933,7 +3937,7 @@
             "type": "behat-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -3962,7 +3966,7 @@
                 "framework",
                 "symfony"
             ],
-            "time": "2015-03-17 08:57:17"
+            "time": "2015-09-29 15:54:16"
         },
         {
             "name": "behatch/contexts",
@@ -4179,12 +4183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "f6c3fa91e4182f197dc008862aecd24698cb2822"
+                "reference": "59ed377ef822e1224e198ab17adaf86d015de685"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/59ed377ef822e1224e198ab17adaf86d015de685",
-                "reference": "f6c3fa91e4182f197dc008862aecd24698cb2822",
+                "reference": "59ed377ef822e1224e198ab17adaf86d015de685",
                 "shasum": ""
             },
             "require": {
@@ -4230,7 +4234,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2015-09-27 13:34:13"
+            "time": "2015-09-29 18:01:06"
         },
         {
             "name": "fzaninotto/faker",
@@ -4431,16 +4435,16 @@
         },
         {
             "name": "matthiasnoback/symfony-config-test",
-            "version": "v1.2.3",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasnoback/SymfonyConfigTest.git",
-                "reference": "f8fa058a4643b17a21a7853587b94bc6d3e84334"
+                "reference": "a8c5ade19db8f84e810e58f850da0535169a3554"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasnoback/SymfonyConfigTest/zipball/f8fa058a4643b17a21a7853587b94bc6d3e84334",
-                "reference": "f8fa058a4643b17a21a7853587b94bc6d3e84334",
+                "url": "https://api.github.com/repos/matthiasnoback/SymfonyConfigTest/zipball/a8c5ade19db8f84e810e58f850da0535169a3554",
+                "reference": "a8c5ade19db8f84e810e58f850da0535169a3554",
                 "shasum": ""
             },
             "require": {
@@ -4471,7 +4475,7 @@
                 "phpunit",
                 "symfony"
             ],
-            "time": "2015-09-24 06:32:51"
+            "time": "2015-09-29 18:18:59"
         },
         {
             "name": "matthiasnoback/symfony-dependency-injection-test",
@@ -5480,44 +5484,41 @@
             "time": "2015-06-30 08:16:45"
         },
         {
-            "name": "vipsoft/doctrine-data-fixtures-extension",
-            "version": "dev-master",
+            "name": "theofidry/alice-bundle-extension",
+            "version": "v1.0.0-beta.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vipsoft/DoctrineDataFixturesExtension.git",
-                "reference": "c4d661e38e0a96a4279bca19575656d7a6fd64f6"
+                "url": "https://github.com/theofidry/AliceBundleExtension.git",
+                "reference": "f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vipsoft/DoctrineDataFixturesExtension/zipball/c4d661e38e0a96a4279bca19575656d7a6fd64f6",
-                "reference": "c4d661e38e0a96a4279bca19575656d7a6fd64f6",
+                "url": "https://api.github.com/repos/theofidry/AliceBundleExtension/zipball/f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9",
+                "reference": "f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9",
                 "shasum": ""
             },
             "require": {
-                "behat/behat": "~3.0.6",
-                "behat/symfony2-extension": "2.0.x-dev",
-                "doctrine/data-fixtures": "~1.0",
-                "php": ">=5.3.6"
+                "behat/behat": "~3.0",
+                "behat/symfony2-extension": "^2.0",
+                "hautelook/alice-bundle": "~1.0@beta",
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "~1.2",
-                "doctrine/orm": "~2.2,>=2.2.3",
-                "phpspec/phpspec": "2.1.x-dev",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "suggest": {
-                "doctrine/migrations": "Uses DBAL to load versioned database schema and migration classes"
+                "doctrine/doctrine-fixtures-bundle": "~2.2",
+                "doctrine/orm": "~2.4",
+                "fabpot/php-cs-fixer": "~2.0@dev",
+                "phpunit/phpunit": "^4.8",
+                "symfony/console": "~2.1",
+                "symfony/expression-language": "^2.7",
+                "symfony/framework-bundle": "~2.1",
+                "symfony/yaml": "~2.1",
+                "theofidry/psysh-bundle": "~1.1"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev",
-                    "dev-2.5": "2.5.x-dev"
-                }
-            },
             "autoload": {
-                "psr-0": {
-                    "VIPSoft\\DoctrineDataFixturesExtension": "src/"
+                "psr-4": {
+                    "Fidry\\AliceBundleExtension\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5526,20 +5527,23 @@
             ],
             "authors": [
                 {
-                    "name": "Anthon Pang",
-                    "email": "apang@softwaredevelopment.ca",
-                    "role": "developer"
+                    "name": "Théo FIDRY",
+                    "email": "theo.fidry@gmail.com",
+                    "homepage": "https://github.com/theofidry"
                 }
             ],
-            "description": "Doctrine data fixtures extension for Behat",
-            "homepage": "http://github.com/vipsoft/",
+            "description": "Extension to load fixtures files with HautelookAliceBundle.",
             "keywords": [
-                "BDD",
                 "Behat",
-                "Data fixtures",
-                "doctrine"
+                "Context",
+                "Fixture",
+                "alice",
+                "extension",
+                "faker",
+                "orm",
+                "symfony"
             ],
-            "time": "2015-01-13 18:31:33"
+            "time": "2015-09-15 10:09:46"
         }
     ],
     "aliases": [],
@@ -5547,12 +5551,11 @@
     "stability-flags": {
         "dunglas/api-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
-        "theofidry/loopback-api-bundle": 20,
         "behat/symfony2-extension": 20,
         "behatch/contexts": 20,
         "fabpot/php-cs-fixer": 20,
         "hautelook/alice-bundle": 10,
-        "vipsoft/doctrine-data-fixtures-extension": 20
+        "theofidry/alice-bundle-extension": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
