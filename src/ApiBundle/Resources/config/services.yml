@@ -3,14 +3,6 @@ services:
         class:     ApiBundle\Utils\UserRoles
         arguments: [ %security.role_hierarchy.roles% ]
 
-    #
-    # Alice processors
-    #
-    alice.processor.entity_managers:
-        class:     ApiBundle\DataFixtures\Processor\EntityManagersProcessor
-        arguments: [ @api.entity_manager_chain]
-        tags:      [ { name: hautelook_alice.processor } ]
-
 
     #
     # Native filters
@@ -62,18 +54,11 @@ services:
     #
     # Entity Managers
     #
-    api.entity_manager_chain:
-        class: ApiBundle\Doctrine\ORM\Manager\EntityManagerChain
-        lazy:  true
-        # The argument is passed in the compiler pass, see ApiBundle\DependencyInjection\Compiler\EntityManagerPass
-
     api.entity_manager.job_manager:
         class:     ApiBundle\Doctrine\ORM\Manager\JobNonPersistentManager
-        tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.mandate_manager:
         class:     ApiBundle\Doctrine\ORM\Manager\MandateNonPersistentManager
-        tags:      [ { name: api.entity_manager } ]
 
     api.entity_manager.user_manager:
         class: ApiBundle\Doctrine\ORM\Manager\UserManager

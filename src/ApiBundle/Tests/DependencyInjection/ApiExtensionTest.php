@@ -12,15 +12,30 @@
 namespace ApiBundle\Tests\DependencyInjection;
 
 use ApiBundle\DependencyInjection\ApiExtension;
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use PHPUnit\Prophecy\DependencyInjectionArgument;
+use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
+use Symfony\Component\DependencyInjection\Extension\ConfigurationExtensionInterface;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 /**
  * @coversDefaultClass ApiBundle\DependencyInjection\ApiExtension
  *
  * @author             Théo FIDRY <theo.fidry@gmail.com>
  */
-class ApiExtensionTest extends AbstractExtensionTestCase
+class ApiExtensionTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @cover ::__construct
+     */
+    public function testConstruct()
+    {
+        $extension = new ApiExtension();
+
+        $this->assertInstanceOf(ExtensionInterface::class, $extension);
+        $this->assertInstanceOf(ConfigurationExtensionInterface::class, $extension);
+    }
+
     /**
      * @testdox Ensure that the Bundle extension load properly.
      *
@@ -28,16 +43,29 @@ class ApiExtensionTest extends AbstractExtensionTestCase
      */
     public function testLoading()
     {
-        $this->load();
+        $extension = new ApiExtension();
+
+        $containerBuilderProphecy = $this->getBaseDefaultContainerBuiderProphecy();
+        $containerBuilderProphecy->setDefinition(Argument::any(), Argument::any())->shouldBeCalled();
+
+        $extension->load([], $containerBuilderProphecy->reveal());
     }
 
     /**
-     * {@inheritdoc}
+     * Gets a Prophecy object for the ContainerBuilder which includes the mandatory called on the services included in
+     * the default config.
+     *
+     * @return ObjectProphecy
      */
-    protected function getContainerExtensions()
+    private function getBaseDefaultContainerBuiderProphecy()
     {
-        return [
-            new ApiExtension(),
-        ];
+        $containerBuilderProphecy = $this->prophesize('Symfony\Component\DependencyInjection\ContainerBuilder');
+
+        $containerBuilderProphecy
+            ->addResource(DependencyInjectionArgument::service(getcwd().'/src/ApiBundle/Resources/config/services.yml'))
+            ->shouldBeCalled()
+        ;
+
+        return $containerBuilderProphecy;
     }
 }

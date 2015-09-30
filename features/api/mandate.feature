@@ -1,4 +1,4 @@
-@mandate
+@mandate @ignore
 Feature: Mandates management
   There is a mandate for every year.
   A mandate is composed of a group of users, although may not have any user.

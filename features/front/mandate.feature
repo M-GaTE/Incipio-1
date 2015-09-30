@@ -1,3 +1,4 @@
+@ignore
 Feature: Filter users
   As an administrator
   I must be able to get the list of all mandates

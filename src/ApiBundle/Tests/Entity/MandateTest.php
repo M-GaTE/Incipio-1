@@ -87,7 +87,7 @@ class MandateTest extends AbstractEntityTestCase
         $this->doctrineManager->flush();
 
         $this->assertNull($mandate->getEndAt());
-        $this->assertNull($mandate->getName());
+        $this->assertNotNull($mandate->getName(), 'Name should not have be reset as is determined by ::startAt');
 
         // Test job relationship
         $this->assertEquals(0, count($mandate->getJobs()));

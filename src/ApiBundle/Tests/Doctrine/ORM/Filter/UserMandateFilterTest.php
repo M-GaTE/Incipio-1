@@ -28,13 +28,13 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        $managerRegistry = $this->prophesize(ManagerRegistry::class);
-        $iriConverter = $this->prophesize(IriConverterInterface::class);
-        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class);
+        $managerRegistry = $this->prophesize(ManagerRegistry::class)->reveal();
+        $iriConverter = $this->prophesize(IriConverterInterface::class)->reveal();
+        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class)->reveal();
 
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal());
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal(), null);
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal(), []);
+        new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor);
+        new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor, null);
+        new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor, []);
     }
 
     /**
@@ -46,18 +46,21 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
      */
     public function testApply($uri, $expectedDQL, array $expectedParameters)
     {
-        $managerRegistry = $this->prophesize(ManagerRegistry::class);
-        $iriConverter = $this->prophesize(IriConverterInterface::class);
-        $iriConverter->getItemFromIri('/api/mandates/5')->willReturn('/api/mandates/5');
-        $iriConverter->getItemFromIri('5')->willReturn('/api/mandates/5');
-        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class);
-        $propertyAccessor->getValue('/api/mandates/5', 'id')->willReturn(5);
+        $managerRegistryProphecy = $this->prophesize(ManagerRegistry::class);
+
+        $iriConverterProphecy = $this->prophesize(IriConverterInterface::class);
+        $iriConverterProphecy->getItemFromIri('/api/mandates/5')->willReturn('/api/mandates/5');
+        $iriConverterProphecy->getItemFromIri('5')->willReturn('/api/mandates/5');
+
+        $propertyAccessorProphecy = $this->prophesize(PropertyAccessorInterface::class);
+        $propertyAccessorProphecy->getValue('/api/mandates/5', 'id')->willReturn(5);
+
         $request = Request::create($uri, 'GET');
 
         $filter = new UserMandateFilter(
-            $managerRegistry->reveal(),
-            $iriConverter->reveal(),
-            $propertyAccessor->reveal()
+            $managerRegistryProphecy->reveal(),
+            $iriConverterProphecy->reveal(),
+            $propertyAccessorProphecy->reveal()
         );
         $filter->initParameter('where');
         $resource = $this->prophesize(ResourceInterface::class);
@@ -71,9 +74,9 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, count($queryBuilder->getParameters()));
 
         $filter = new UserMandateFilter(
-            $managerRegistry->reveal(),
-            $iriConverter->reveal(),
-            $propertyAccessor->reveal()
+            $managerRegistryProphecy->reveal(),
+            $iriConverterProphecy->reveal(),
+            $propertyAccessorProphecy->reveal()
         );
         $filter->initParameter('where');
         $resource = $this->prophesize(ResourceInterface::class);

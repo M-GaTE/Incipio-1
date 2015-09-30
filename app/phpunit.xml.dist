@@ -40,7 +40,8 @@
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
                 <directory>../src/*/Bundle/*Bundle/DataFixtures/ORM</directory>
-                <directory>../features/bootstrap/Context</directory>
+                <directory>../src/PHPUnit</directory>
+                <directory>../features</directory>
             </exclude>
         </whitelist>
     </filter>

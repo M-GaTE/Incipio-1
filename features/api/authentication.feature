@@ -3,6 +3,10 @@ Feature: Authenticate users
   The authentication system should work application wide.
   It should be possible to authenticate from the API.
 
+  Scenario: Feature fixtures
+    Given the database is empty
+    Then the fixtures file "authentication.yml" is loaded
+
   Scenario: Authenticate to the API with valid credentials gives back a JWT Token.
     When I send a "POST" request to "/api/login_check" with parameters:
       | key      | value |

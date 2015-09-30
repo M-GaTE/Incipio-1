@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2739e8cd1d15e38a98fe56a467616696",
-    "content-hash": "d6a0816e8d7aa9305c527e0cd59ff06b",
+    "hash": "bee2bbad2e3b68b3517a1f5d1d4b38a4",
+    "content-hash": "8764cecdcf7a01eb73a24a4f85be81df",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -868,16 +868,16 @@
         },
         {
             "name": "dunglas/api-bundle",
-            "version": "dev-master",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dunglas/DunglasApiBundle.git",
-                "reference": "b30de689f94410c7dc0e449f2ecc15cfa8e70f54"
+                "reference": "d9dfe60e8bb1cf2effd55fb3c3203c633b7e4377"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dunglas/DunglasApiBundle/zipball/b30de689f94410c7dc0e449f2ecc15cfa8e70f54",
-                "reference": "b30de689f94410c7dc0e449f2ecc15cfa8e70f54",
+                "url": "https://api.github.com/repos/dunglas/DunglasApiBundle/zipball/d9dfe60e8bb1cf2effd55fb3c3203c633b7e4377",
+                "reference": "d9dfe60e8bb1cf2effd55fb3c3203c633b7e4377",
                 "shasum": ""
             },
             "require": {
@@ -891,8 +891,7 @@
                 "symfony/framework-bundle": "~2.6|~3.0",
                 "symfony/proxy-manager-bridge": "~2.3",
                 "symfony/serializer": "^2.7.2|~3.0",
-                "symfony/validator": "~2.5|~3.0",
-                "willdurand/negotiation": "~1.4"
+                "symfony/validator": "~2.5|~3.0"
             },
             "require-dev": {
                 "behat/behat": "~3.0",
@@ -900,11 +899,10 @@
                 "behat/mink-browserkit-driver": "~1.1",
                 "behat/mink-extension": "~2.0",
                 "behat/symfony2-extension": "~2.0",
-                "behatch/contexts": "dev-master",
+                "behatch/contexts": "dev-master#eef7ab39ca896796bf3ba25a0fa5a95f15276eb7",
                 "friendsofsymfony/user-bundle": "~1.3",
                 "phpunit/phpunit": "~4.6",
-                "symfony/finder": "~2.3",
-                "symfony/security": "~2.7.2|~3.0"
+                "symfony/finder": "~2.3"
             },
             "suggest": {
                 "friendsofsymfony/user-bundle": "To use the FOSUserBundle bridge."
@@ -940,7 +938,7 @@
                 "json",
                 "rest"
             ],
-            "time": "2015-09-23 13:09:28"
+            "time": "2015-09-17 13:20:09"
         },
         {
             "name": "dunglas/php-property-info",
@@ -3106,20 +3104,20 @@
         },
         {
             "name": "theofidry/loopback-api-bundle",
-            "version": "v0.3.0",
+            "version": "v0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theofidry/LoopBackApiBundle.git",
-                "reference": "a025bc373043c2be607933c111f3c3bd6d2ebabf"
+                "reference": "60cc68ec10432061777b9f0d89f175155073b5d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/LoopBackApiBundle/zipball/a025bc373043c2be607933c111f3c3bd6d2ebabf",
-                "reference": "a025bc373043c2be607933c111f3c3bd6d2ebabf",
+                "url": "https://api.github.com/repos/theofidry/LoopBackApiBundle/zipball/60cc68ec10432061777b9f0d89f175155073b5d2",
+                "reference": "60cc68ec10432061777b9f0d89f175155073b5d2",
                 "shasum": ""
             },
             "require": {
-                "dunglas/api-bundle": "dev-master",
+                "dunglas/api-bundle": "~1.0",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -3163,7 +3161,7 @@
                 "json",
                 "rest"
             ],
-            "time": "2015-08-05 22:54:39"
+            "time": "2015-10-01 22:52:58"
         },
         {
             "name": "twig/extensions",
@@ -3277,55 +3275,6 @@
                 "templating"
             ],
             "time": "2015-09-22 13:59:32"
-        },
-        {
-            "name": "willdurand/negotiation",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "8a84c5956e765f432542fc52a8c6e9aff4508eb3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/8a84c5956e765f432542fc52a8c6e9aff4508eb3",
-                "reference": "8a84c5956e765f432542fc52a8c6e9aff4508eb3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Negotiation\\": "src/Negotiation"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "William Durand",
-                    "email": "william.durand1@gmail.com"
-                }
-            ],
-            "description": "Content Negotiation tools for PHP provided as a standalone library.",
-            "homepage": "http://williamdurand.fr/Negotiation/",
-            "keywords": [
-                "accept",
-                "content",
-                "format",
-                "header",
-                "negotiation"
-            ],
-            "time": "2015-07-28 13:10:50"
         },
         {
             "name": "zendframework/zend-code",
@@ -4434,97 +4383,46 @@
             "time": "2015-09-08 22:28:04"
         },
         {
-            "name": "matthiasnoback/symfony-config-test",
-            "version": "v1.3.0",
+            "name": "myclabs/deep-copy",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/matthiasnoback/SymfonyConfigTest.git",
-                "reference": "a8c5ade19db8f84e810e58f850da0535169a3554"
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "95d662954e06000cdf63ec9c9f0a6c598d9c5eb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasnoback/SymfonyConfigTest/zipball/a8c5ade19db8f84e810e58f850da0535169a3554",
-                "reference": "a8c5ade19db8f84e810e58f850da0535169a3554",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/95d662954e06000cdf63ec9c9f0a6c598d9c5eb9",
+                "reference": "95d662954e06000cdf63ec9c9f0a6c598d9c5eb9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3",
-                "symfony/config": "2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Matthias\\SymfonyConfigTest\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthias Noback",
-                    "email": "matthiasnoback@gmail.com",
-                    "homepage": "http://php-and-symfony.matthiasnoback.nl"
-                }
-            ],
-            "description": "Library for testing user classes related to the Symfony Config Component",
-            "homepage": "https://github.com/matthiasnoback/SymfonyConfigTest",
-            "keywords": [
-                "config",
-                "phpunit",
-                "symfony"
-            ],
-            "time": "2015-09-29 18:18:59"
-        },
-        {
-            "name": "matthiasnoback/symfony-dependency-injection-test",
-            "version": "v0.7.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matthiasnoback/SymfonyDependencyInjectionTest.git",
-                "reference": "c085618e167ed7cf41eba602f88eae31216438c8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matthiasnoback/SymfonyDependencyInjectionTest/zipball/c085618e167ed7cf41eba602f88eae31216438c8",
-                "reference": "c085618e167ed7cf41eba602f88eae31216438c8",
-                "shasum": ""
-            },
-            "require": {
-                "matthiasnoback/symfony-config-test": "0.*|~1.0",
-                "sebastian/exporter": "~1",
-                "symfony/config": "^2.0.5",
-                "symfony/dependency-injection": "^2.0.5"
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3"
+                "doctrine/collections": "1.*",
+                "phpunit/phpunit": "~4.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Matthias\\SymfonyDependencyInjectionTest\\": ""
+                    "DeepCopy\\": "src/DeepCopy/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Matthias Noback",
-                    "email": "matthiasnoback@gmail.com",
-                    "homepage": "http://php-and-symfony.matthiasnoback.nl"
-                }
-            ],
-            "description": "Library for testing user classes related to the Symfony Dependency Injection Component",
-            "homepage": "http://github.com/matthiasnoback/SymfonyDependencyInjectionTest",
+            "description": "Create deep copies (clones) of your objects",
+            "homepage": "https://github.com/myclabs/DeepCopy",
             "keywords": [
-                "Symfony2",
-                "dependency injection",
-                "phpunit"
+                "clone",
+                "copy",
+                "duplicate",
+                "object",
+                "object graph"
             ],
-            "time": "2015-06-20 08:13:27"
+            "time": "2015-07-19 19:57:13"
         },
         {
             "name": "nelmio/alice",
@@ -4646,20 +4544,20 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.2.3",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ef1ca6835468857944d5c3b48fa503d5554cff2f"
+                "reference": "86e0dafb0e6c5165cce7b3b6892807d07504baa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef1ca6835468857944d5c3b48fa503d5554cff2f",
-                "reference": "ef1ca6835468857944d5c3b48fa503d5554cff2f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/86e0dafb0e6c5165cce7b3b6892807d07504baa0",
+                "reference": "86e0dafb0e6c5165cce7b3b6892807d07504baa0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
+                "php": ">=5.6",
                 "phpunit/php-file-iterator": "~1.3",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-token-stream": "~1.3",
@@ -4668,7 +4566,7 @@
             },
             "require-dev": {
                 "ext-xdebug": ">=2.1.4",
-                "phpunit/phpunit": "~4"
+                "phpunit/phpunit": "~5"
             },
             "suggest": {
                 "ext-dom": "*",
@@ -4678,7 +4576,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -4704,7 +4602,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-14 06:51:16"
+            "time": "2015-10-01 06:48:20"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4886,16 +4784,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.9",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b"
+                "reference": "56895e8b573dca5596373ea6aa7c165ea596d0ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/73fad41adb5b7bc3a494bb930d90648df1d5e74b",
-                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/56895e8b573dca5596373ea6aa7c165ea596d0ec",
+                "reference": "56895e8b573dca5596373ea6aa7c165ea596d0ec",
                 "shasum": ""
             },
             "require": {
@@ -4904,18 +4802,20 @@
                 "ext-pcre": "*",
                 "ext-reflection": "*",
                 "ext-spl": "*",
-                "php": ">=5.3.3",
+                "myclabs/deep-copy": "~1.3",
+                "php": ">=5.6",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "~2.1",
+                "phpunit/php-code-coverage": "~3.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": ">=1.0.6",
-                "phpunit/phpunit-mock-objects": "~2.3",
+                "phpunit/phpunit-mock-objects": ">=3.0",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
                 "sebastian/environment": "~1.3",
                 "sebastian/exporter": "~1.2",
                 "sebastian/global-state": "~1.0",
+                "sebastian/resource-operations": "~1.0",
                 "sebastian/version": "~1.0",
                 "symfony/yaml": "~2.1|~3.0"
             },
@@ -4928,7 +4828,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.8.x-dev"
+                    "dev-master": "5.0.x-dev"
                 }
             },
             "autoload": {
@@ -4954,30 +4854,30 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-20 12:56:44"
+            "time": "2015-10-02 07:21:02"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.7",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
+                "reference": "b66bfd55201aa33e8096d8c9bcb762361521c301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
-                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/b66bfd55201aa33e8096d8c9bcb762361521c301",
+                "reference": "b66bfd55201aa33e8096d8c9bcb762361521c301",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
-                "php": ">=5.3.3",
+                "php": ">=5.6",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.4"
+                "phpunit/phpunit": "~5"
             },
             "suggest": {
                 "ext-soap": "*"
@@ -4985,7 +4885,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -5010,7 +4910,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-08-19 09:14:08"
+            "time": "2015-10-01 06:43:55"
         },
         {
             "name": "sebastian/comparator",
@@ -5349,6 +5249,48 @@
             "time": "2015-06-21 08:04:50"
         },
         {
+            "name": "sebastian/resource-operations",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/resource-operations.git",
+                "reference": "ce990bb21759f94aeafd30209e8cfcdfa8bc3f52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/resource-operations/zipball/ce990bb21759f94aeafd30209e8cfcdfa8bc3f52",
+                "reference": "ce990bb21759f94aeafd30209e8cfcdfa8bc3f52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Provides a list of PHP built-in functions that operate on resources",
+            "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
+            "time": "2015-07-28 20:34:47"
+        },
+        {
             "name": "sebastian/version",
             "version": "1.0.6",
             "source": {
@@ -5549,7 +5491,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dunglas/api-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "behat/symfony2-extension": 20,
         "behatch/contexts": 20,

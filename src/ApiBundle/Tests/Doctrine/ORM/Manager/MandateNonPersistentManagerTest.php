@@ -249,6 +249,16 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     'message' => 'Expected a name with the mask \'Mandate startMonth Year\'',
                 ]
             ],
+
+            // Empty mandate
+            [
+                new Mandate()
+                ,
+                [
+                    'value'   => null,
+                    'message' => 'Expected mandate not to have a name',
+                ]
+            ],
         ];
     }
 }

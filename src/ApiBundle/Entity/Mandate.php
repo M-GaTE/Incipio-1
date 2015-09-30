@@ -95,7 +95,7 @@ class Mandate
      *
      * @return $this
      */
-    public function setEndAt(\DateTime $endAt)
+    public function setEndAt(\DateTime $endAt = null)
     {
         $this->endAt = $endAt;
 

@@ -28,7 +28,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  *
  * @author             Théo FIDRY <theo.fidry@gmail.com>
  *
- * TODO: set more tests for the authorization token part, somes errors have been noted while refactoring with the tests passing.
+ * TODO: set more tests for the authorization token part, some errors have been noted while refactoring with the tests passing.
  */
 class ApiClientTest extends KernelTestCase
 {

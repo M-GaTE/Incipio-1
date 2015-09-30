@@ -59,7 +59,9 @@ class MandateNonPersistentManager implements NonPersistentEntityManagerInterface
      */
     public function updateName(Mandate $mandate)
     {
-        if (false === empty($mandate->getName())) {
+        if (false === empty($mandate->getName())
+            || true === empty($mandate->getStartAt())
+        ) {
             return;
         }
 
