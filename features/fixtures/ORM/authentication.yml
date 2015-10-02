@@ -1,0 +1,28 @@
+ApiBundle\Entity\User:
+    admin_user:
+        username:          admin
+        fullname:          Admin NIMDA
+        email:             admin@incipio.fr
+        enabled:           true
+        plainPassword:     admin
+        enabled:           true
+        superadmin:        true
+        types:             <userTypes('member')>
+
+    ca_user:
+        username:          ca
+        fullname:          Ca AC
+        email:             ca-member@incipio.fr
+        plainPassword:     ca
+        enabled:           true
+        roles:             [ ROLE_ADMIN ]
+        types:             <userTypes('member')>
+
+    guest_user:
+        username:          guest
+        fullname:          Guest TSEUG
+        email:             guest@incipio.fr
+        plainPassword:     guest
+        enabled:           true
+        roles:             [ ROLE_USER ]
+        types:             <userTypes('member')>

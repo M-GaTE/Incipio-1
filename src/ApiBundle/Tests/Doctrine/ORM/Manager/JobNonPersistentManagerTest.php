@@ -117,6 +117,16 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                 ,
                 'DA'
             ],
+            [
+                (new Job())
+                    ->setTitle('')
+                ,
+                null
+            ],
+            [
+                new Job(),
+                null
+            ],
         ];
     }
 }

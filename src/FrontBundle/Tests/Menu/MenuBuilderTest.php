@@ -62,7 +62,7 @@ class MenuBuilderTest extends \PHPUnit_Framework_TestCase
 
         // Check organisation management tree
         $organisationManagement = $menu->getChild('organisation-management');
-        $this->assertEquals(1, count($organisationManagement->getChildren()));
+        $this->assertEquals(3, count($organisationManagement->getChildren()));
         $this->assertTrue($organisationManagement->hasChildren('users'));
         $this->assertEquals(0, count($organisationManagement->getChild('users')->getChildren()));
     }

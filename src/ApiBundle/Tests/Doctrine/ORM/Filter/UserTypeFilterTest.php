@@ -11,7 +11,6 @@
 
 namespace ApiBundle\Tests\Doctrine\ORM\Filter;
 
-use ApiBundle\Doctrine\ORM\Filter\User\UserMandateFilter;
 use ApiBundle\Doctrine\ORM\Filter\User\UserTypeFilter;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Dunglas\ApiBundle\Api\IriConverterInterface;
@@ -29,13 +28,13 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        $managerRegistry = $this->prophesize(ManagerRegistry::class);
-        $iriConverter = $this->prophesize(IriConverterInterface::class);
-        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class);
+        $managerRegistry = $this->prophesize(ManagerRegistry::class)->reveal();
+        $iriConverter = $this->prophesize(IriConverterInterface::class)->reveal();
+        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class)->reveal();
 
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal());
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal(), null);
-        new UserMandateFilter($managerRegistry->reveal(), $iriConverter->reveal(), $propertyAccessor->reveal(), []);
+        new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor);
+        new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor, null);
+        new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor, []);
     }
 
     /**
@@ -47,16 +46,12 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
      */
     public function testApply($uri, $expectedDQL, array $expectedParameters)
     {
-        $managerRegistry = $this->prophesize(ManagerRegistry::class);
-        $iriConverter = $this->prophesize(IriConverterInterface::class);
-        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class);
+        $managerRegistry = $this->prophesize(ManagerRegistry::class)->reveal();
+        $iriConverter = $this->prophesize(IriConverterInterface::class)->reveal();
+        $propertyAccessor = $this->prophesize(PropertyAccessorInterface::class)->reveal();
         $request = Request::create($uri, 'GET');
 
-        $filter = new UserTypeFilter(
-            $managerRegistry->reveal(),
-            $iriConverter->reveal(),
-            $propertyAccessor->reveal()
-        );
+        $filter = new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor);
         $filter->initParameter('where');
         $resource = $this->prophesize(ResourceInterface::class);
         $resource->getEntityClass()->willReturn('ApiBundle\Entity\Dummy');
@@ -68,11 +63,8 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(strtolower('SELECT o FROM ApiBundle\Entity\User o'), $actualDQL);
         $this->assertEquals(0, count($queryBuilder->getParameters()));
 
-        $filter = new UserTypeFilter(
-            $managerRegistry->reveal(),
-            $iriConverter->reveal(),
-            $propertyAccessor->reveal()
-        );
+        $filter = new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor);
+
         $filter->initParameter('where');
         $resource = $this->prophesize(ResourceInterface::class);
         $resource->getEntityClass()->willReturn('ApiBundle\Entity\User');

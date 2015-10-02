@@ -1,4 +1,4 @@
-@user
+@user @ignore
 Feature: User management
   As an administrator, I should be able to manage users.
 

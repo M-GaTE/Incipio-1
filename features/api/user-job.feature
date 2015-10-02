@@ -1,4 +1,4 @@
-@user @job
+@user @job @ignore
 Feature: Jobs related user management
   There is a mandate for every year.
   A mandate is composed of a group of users, although may not have any user.

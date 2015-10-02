@@ -50,13 +50,16 @@ class JobNonPersistentManager implements NonPersistentEntityManagerInterface
     }
 
     /**
-     * Updates Job abbreviation by creating one from the title if no abbreviation exists.
+     * Updates Job abbreviation by creating one from the title if no abbreviation exists (provided Job has already a
+     * title).
      *
      * @param Job $job
      */
     public function updateAbbreviation(Job $job)
     {
-        if (false === empty($job->getAbbreviation())) {
+        if (false === empty($job->getAbbreviation())
+            || true === empty($job->getTitle())
+        ) {
             return;
         }
 

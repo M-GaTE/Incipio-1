@@ -2,6 +2,10 @@ Feature: Authenticate users
   The authentication system should work application wide.
   It should be possible to authenticate the login form.
 
+  Scenario: Feature fixtures
+    Given the database is empty
+    Then the fixtures file "authentication.yml" is loaded
+
   Scenario Outline: Authenticate via the login page should redirect to the home page.
   Once logged in, the login page is inaccessible.
   It should be possible to log out.

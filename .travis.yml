@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.5
   - 5.6
   - 7.0
   - nightly
@@ -17,6 +16,7 @@ cache:
 
 matrix:
   allow_failures:
+    - php: 7.0
     - php: nightly
     - php: hhvm
   fast_finish: true
@@ -34,5 +34,5 @@ script:
   - composer test:db
   - composer test:security
   - composer test:phpunit
-  - bin/behat --suite=api_features --strict --colors
-  - bin/behat --suite=front_features --strict --colors
+  - bin/behat --suite=api_features --strict --colors --tags ~@ignore
+  - bin/behat --suite=front_features --strict --colors --tags ~@ignore

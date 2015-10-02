@@ -1,4 +1,4 @@
-@job
+@job @ignore
 Feature: Jobs management
   The job of a user is the job he has occupied for a given mandate.
   A job must belong to a mandate.

@@ -1,3 +1,4 @@
+@ignore
 Feature: Filter users
   As an administrator
   I must be able to list all users and filter them
