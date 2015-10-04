@@ -9,12 +9,17 @@ php:
 env:
   global:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
+    # GH_TOKEN
+    secure: cBXo6EWL5cGnTlDeroIE0C7nQQkXyB+kXE0vz4f8gP6XIH2KFWSDqt0VIo0mrNMAklr6vWBOYukCzDlt3svscM7/7c7nJpnlnfn01oMOt5gzK7iugEg66d1IjU1Hh1MIkAx+DHE/DF7nnM0PW5N5ATXJmk4G4QclMKCpfAb5AEU=
 
 cache:
   directories:
     - $HOME/.composer/cache/files
 
 matrix:
+  include:
+    - php: 5.6
+      env: GH_PAGES="true"
   allow_failures:
     - php: 7.0
     - php: nightly
@@ -36,3 +41,8 @@ script:
   - composer test:phpunit
   - bin/behat --suite=api_features --strict --colors --tags ~@ignore
   - bin/behat --suite=front_features --strict --colors --tags ~@ignore
+
+after_success:
+  - if [ "false" = "$TRAVIS_PULL_REQUEST" ] && [ "master" = "$TRAVIS_BRANCH" ] && [ "true" = "$GH_PAGES" ]; then \
+        ./scripts/gh-pages.sh
+    fi;
