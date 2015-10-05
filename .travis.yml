@@ -58,5 +58,5 @@ after_success:
       phpmetrics --report-html=dist/reports/phpmetrics/app.html src;
       phpmetrics --report-html=dist/reports/phpmetrics/api-bundle.html src/ApiBundle;
       phpmetrics --report-html=dist/reports/phpmetrics/front-bundle.html src/FrontBundle;
-      ./scripts/gh-pages.sh;
+      bash -e scripts/gh-pages.sh;
     fi;
