@@ -142,7 +142,7 @@ extract () {
 # edit aliases configuration
 alias config='${EDITOR} ~/.bashrc'
 alias reload='source ~/.bashrc'
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove && sudo composer self-update'
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove && sudo composer self-update && composer global update && sudo pip install --upgrade pip'
 
 # Symfony2
 APP_DIR='/var/www/{{ symfony_src_dir }}/app'

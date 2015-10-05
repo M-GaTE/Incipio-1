@@ -12,7 +12,7 @@ The purpose of this environment is to ease the development process. We preconfig
 ## Install
 
 * Install the requirements
-* Install the Vagrant box: `vagrant box add jessie http://static.gender-api.com/debian-8-jessie-rc2-x64-slim.box --provider virtualbox`
+* Clone the project and go inside the project folder with your console
 * Start the Vagrant VM: `vagrant up`
 
 If the provision fails, you can try to run ad hoc Ansible commands with a greater verbosity:

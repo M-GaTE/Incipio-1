@@ -9,6 +9,8 @@
 
 Incipio est un projet qui vise à bâtir un [ERP](http://fr.wikipedia.org/wiki/Progiciel_de_gestion_int%C3%A9gr%C3%A9) communautaire et libre pour l’ensemble des structures de type Junior-Entreprise, faisant partie ou non de la [CNJE](http://www.junior-entreprises.com/).
 
+**Note :** Cette version est actuellement en développement. Pour voir la dernière version stable d'Incipio, cliquez [ici](https://github.com/in6pio/Incipio/tree/1.X).
+
 ## Documentation
 
 [Documentation](https://github.com/in6pio/Incipio/wiki)

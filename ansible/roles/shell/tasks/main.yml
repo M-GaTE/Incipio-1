@@ -2,6 +2,9 @@
 - name:     Configure vagrant user shell prompt
   template: src=bashrc.j2 dest=/home/vagrant/.bashrc
 
+- name: Install Mkdocs
+  shell: sudo pip install mkdocs
+
 - name: Install Vim
   sudo: yes
   apt:  pkg=vim state=present
