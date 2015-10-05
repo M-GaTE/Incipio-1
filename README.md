@@ -22,6 +22,8 @@ Reports:
 * [PhpMetrics ApiBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/api-bundle)
 * [PhpMetrics FrontBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/front-bundle)
 
+[Application API documentation](http://in6pio.github.io/Incipio/api-doc)
+
 # Contributeurs
 
 * [Florian LEFÈVRE](https://github.com/flef)

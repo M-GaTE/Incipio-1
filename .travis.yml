@@ -38,6 +38,7 @@ before_install:
     fi;
   - if [ "true" = "$GH_PAGES" ]; then
       composer global require halleck45/phpmetrics --no-update;
+      composer global require apigen/apigen --no-update;
     fi;
 
 install:
@@ -55,8 +56,14 @@ script:
 
 after_success:
   - if [ "true" = "$GH_PAGES" ]; then
+      echo -en "\n\e[34mGenerates PhpMetrics reports (x3)\e[0m\n";
       phpmetrics --report-html=dist/reports/phpmetrics/app.html src;
       phpmetrics --report-html=dist/reports/phpmetrics/api-bundle.html src/ApiBundle;
       phpmetrics --report-html=dist/reports/phpmetrics/front-bundle.html src/FrontBundle;
+
+      echo -en "\n\e[34mGenerates PHPDoc\e[0m\n";
+      apigen generate --source src --destination dist/api-doc;
+
+      echo -en "\n\e[34mPublish artefacts to GitHub Pages\e[0m\n";
       bash -e scripts/gh-pages.sh;
     fi;
