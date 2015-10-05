@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.6
   - 7.0
   - nightly
   - hhvm
@@ -10,7 +9,7 @@ env:
   global:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
     # GH_TOKEN
-    secure: cBXo6EWL5cGnTlDeroIE0C7nQQkXyB+kXE0vz4f8gP6XIH2KFWSDqt0VIo0mrNMAklr6vWBOYukCzDlt3svscM7/7c7nJpnlnfn01oMOt5gzK7iugEg66d1IjU1Hh1MIkAx+DHE/DF7nnM0PW5N5ATXJmk4G4QclMKCpfAb5AEU=
+    - secure: cBXo6EWL5cGnTlDeroIE0C7nQQkXyB+kXE0vz4f8gP6XIH2KFWSDqt0VIo0mrNMAklr6vWBOYukCzDlt3svscM7/7c7nJpnlnfn01oMOt5gzK7iugEg66d1IjU1Hh1MIkAx+DHE/DF7nnM0PW5N5ATXJmk4G4QclMKCpfAb5AEU=
 
 cache:
   directories:
@@ -29,11 +28,12 @@ matrix:
 before_install:
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - if [ "true" = "$GH_PAGES" ] && ([ "false" != "$TRAVIS_PULL_REQUEST" ] || [ "master" != "$TRAVIS_BRANCH" ]); then \
-      export GH_PAGES="false"
+  - composer global require phpunit/phpunit --no-update
+  - if [ "true" = "$GH_PAGES" ] && ([ "false" != "$TRAVIS_PULL_REQUEST" ] || [ "master" != "$TRAVIS_BRANCH" ]); then
+      export GH_PAGES="false";
     fi;
-  - if [ "true" = "$GH_PAGES" ]; then \
-      composer global require halleck45/phpmetrics --no-update
+  - if [ "true" = "$GH_PAGES" ]; then
+      composer global require halleck45/phpmetrics --no-update;
     fi;
 
 install:
@@ -50,9 +50,9 @@ script:
   - bin/behat --suite=front_features --strict --colors --tags ~@ignore
 
 after_success:
-  - if [ "true" = "$GH_PAGES" ]; then \
-      phpmetrics --report-html=dist/reports/app-phpmetrics.html src
-      phpmetrics --report-html=dist/reports/api-phpmetrics.html src/ApiBundle
-      phpmetrics --report-html=dist/reports/front-phpmetrics.html src/FrontBundle
-      ./scripts/gh-pages.sh
+  - if [ "true" = "$GH_PAGES" ]; then
+      phpmetrics --report-html=dist/reports/app-phpmetrics.html src;
+      phpmetrics --report-html=dist/reports/api-phpmetrics.html src/ApiBundle;
+      phpmetrics --report-html=dist/reports/front-phpmetrics.html src/FrontBundle;
+      ./scripts/gh-pages.sh;
     fi;
