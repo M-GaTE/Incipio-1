@@ -86,7 +86,7 @@ class Job
      */
     private $users;
 
-    function __construct()
+    public function __construct()
     {
         $this->users = new ArrayCollection();
     }

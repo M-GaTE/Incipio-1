@@ -135,7 +135,8 @@ class UserTest extends AbstractEntityTestCase
         try {
             $user->setCreatedAt(null);
             $this->assertFalse(true, 'Expected resetting User::createdAt date to throw an error.');
-        } catch (\Exception $exception) {}
+        } catch (\Exception $exception) {
+        }
         foreach ($data['jobs'] as $job) {
             $user->removeJob($job);
         }
