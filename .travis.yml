@@ -58,8 +58,8 @@ script:
   - composer test:db
   - composer test:security
   - composer test:phpunit
-  - bin/behat --suite=api_features --strict --colors --tags ~@ignore
-  - bin/behat --suite=front_features --strict --colors --tags ~@ignore
+  - composer test:behat:api
+  - composer test:behat:front
 
 after_success:
   - if [ "true" = "$GH_PAGES" ]; then

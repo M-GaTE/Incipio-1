@@ -38,12 +38,12 @@
         "behat/mink-browserkit-driver": "~1.1",
         "behat/mink-extension": "~2.0",
         "behat/mink-goutte-driver": "~1.1",
-        "behat/symfony2-extension": "~2.0@dev",
+        "behat/symfony2-extension": "~2.0",
         "behatch/contexts": "dev-master#eef7ab39ca896796bf3ba25a0fa5a95f15276eb7",
         "bit3/faker-cli": "~1.3",
         "doctrine/data-fixtures": "^1.1",
-        "fabpot/php-cs-fixer": "dev-master",
-        "hautelook/alice-bundle": "~1.0@beta",
+        "fabpot/php-cs-fixer": "~2.0@dev",
+        "hautelook/alice-bundle": "~1.0",
         "phpunit/phpunit": "^5.0",
         "sensio/generator-bundle": "~2.3",
         "symfony/phpunit-bridge": "~2.7",
@@ -55,8 +55,10 @@
         "test": "composer test:db && composer test:phpunit && composer test:behat && composer test:security",
         "test:db": "php app/console d:s:v --ansi",
         "test:security": "php bin/security-checker security:check",
-        "test:phpunit": "php bin/phpunit -c app/phpunit_travis.xml --colors=always",
-        "test:behat": "php bin/behat --colors -vvv --strict",
+        "test:phpunit": "php bin/phpunit -c phpunit_travis.xml --colors=always",
+        "test:behat": "composer behat:api && composer behat:front",
+        "test:behat:api": "php bin/behat --suite=api_features --strict --colors --tags ~@ignore",
+        "test:behat:front": "php bin/behat --suite=front_features --strict --colors --tags ~@ignore",
         "db": "composer db:drop && composer db:create && composer db:seed",
         "db:create": "php app/console d:s:c --ansi",
         "db:drop": "php app/console d:s:d --force --ansi",
@@ -98,9 +100,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.7-beta"
         }
     }
 }
