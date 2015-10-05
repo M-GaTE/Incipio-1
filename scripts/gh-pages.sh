@@ -15,5 +15,5 @@ else
 fi
 
 git add .
-git commit -m "Rebuild pages at ${rev}"
+git commit -m -q "Rebuild pages at ${rev}"
 git push --force --quiet origin HEAD:gh-pages

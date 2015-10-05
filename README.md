@@ -15,6 +15,13 @@ Incipio est un projet qui vise à bâtir un [ERP](http://fr.wikipedia.org/wiki/P
 
 [Documentation](https://github.com/in6pio/Incipio/wiki)
 
+Reports:
+
+* [PHPunit report](http://in6pio.github.io/Incipio/reports/phpunit/dashboard)
+* [PhpMetrics App report](http://in6pio.github.io/Incipio/reports/phpmetrics/app)
+* [PhpMetrics ApiBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/api)
+* [PhpMetrics FrontBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/front)
+
 # Contributeurs
 
 * [Florian LEFÈVRE](https://github.com/flef)
