@@ -29,8 +29,15 @@ matrix:
 before_install:
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
+  - if [ "true" = "$GH_PAGES" ] && ([ "false" != "$TRAVIS_PULL_REQUEST" ] || [ "master" != "$TRAVIS_BRANCH" ]); then \
+      export GH_PAGES="false"
+    fi;
+  - if [ "true" = "$GH_PAGES" ]; then \
+      composer global require halleck45/phpmetrics --no-update
+    fi;
 
 install:
+  - composer global update --prefer-dist
   - composer install --prefer-dist
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
@@ -43,6 +50,9 @@ script:
   - bin/behat --suite=front_features --strict --colors --tags ~@ignore
 
 after_success:
-  - if [ "false" = "$TRAVIS_PULL_REQUEST" ] && [ "master" = "$TRAVIS_BRANCH" ] && [ "true" = "$GH_PAGES" ]; then \
-        ./scripts/gh-pages.sh
+  - if [ "true" = "$GH_PAGES" ]; then \
+      phpmetrics --report-html=dist/reports/app-phpmetrics.html src
+      phpmetrics --report-html=dist/reports/api-phpmetrics.html src/ApiBundle
+      phpmetrics --report-html=dist/reports/front-phpmetrics.html src/FrontBundle
+      ./scripts/gh-pages.sh
     fi;
