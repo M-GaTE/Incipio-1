@@ -19,6 +19,6 @@ rm -rf reports
 mv ../dist/reports .
 git add --all
 git commit --message "${GH_COMMIT_MESSAGE}" --quiet
-git push --force --quiet origin gh-pages
+git push --force origin gh-pages
 
 echo -en "\e[1;32mArtefacts published.\e[0m"

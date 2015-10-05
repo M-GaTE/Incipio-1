@@ -19,8 +19,8 @@ Reports:
 
 * [PHPunit report](http://in6pio.github.io/Incipio/reports/phpunit/dashboard)
 * [PhpMetrics App report](http://in6pio.github.io/Incipio/reports/phpmetrics/app)
-* [PhpMetrics ApiBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/api)
-* [PhpMetrics FrontBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/front)
+* [PhpMetrics ApiBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/api-bundle)
+* [PhpMetrics FrontBundle report](http://in6pio.github.io/Incipio/reports/phpmetrics/front-bundle)
 
 # Contributeurs
 
