@@ -15,6 +15,7 @@
     - build-essential
     - curl
     - python-software-properties
+    - python-pip
     - telnet
     - unzip
     - wget

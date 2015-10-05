@@ -1,6 +1,6 @@
-# Git Workflow: triangular workflow
+# Git Workflow
 
-You do not have the rights to directly write on the project. Hence if you wish to push some code, the best thing to do is to **fork** the project. Once done, you will have a copy of the the repository [in6pio/Incipio](https://github.com/in6pio/Incipio) to your own namespace, with write access.
+The Git process being used is commonly called triangular workflow. You do not have the rights to directly write on the project. Hence if you wish to push some code, the best thing to do is to **fork** the project. Once done, you will have a copy of the the repository [in6pio/Incipio](https://github.com/in6pio/Incipio) to your own namespace, with write access.
 
 On your fork, you can develop and do changes as you wish. We recommend you to do your modifications in separate branches so that you can keep the original branches up to date with the original repository.
 
