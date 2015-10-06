@@ -56,5 +56,5 @@
   ignore_errors: true
 
 - name:  Reload fixtures
-  shell: php /var/www/{{ symfony_src_dir }}/app/console doctrine:fixtures:load -n
+  shell: php /var/www/{{ symfony_src_dir }}/app/console hautelook:doctrine:fixtures:load -n
   ignore_errors: true
