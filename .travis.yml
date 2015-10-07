@@ -71,12 +71,15 @@ after_success:
       echo -en "\n\e[34mGenerates PHPDoc\e[0m\n";
       apigen generate --source src --destination dist/api-doc;
 
+      echo -en "\n\e[34mRetrieve GitHub Pages website\e[0m\n";
+      git clone ${GH_REMOTE}" gh-pages --branch=gh-pages --single-branch;
+
       echo -en "\n\e[34mBuild GitHub Pages website\e[0m\n";
       mkdocs build --clean
 
       echo -en "\n\e[34mPublish artefacts to GitHub Pages\e[0m\n";
-      mv dist/api-doc gh-pages;
-      mv dist/reports gh-pages;
+      mv -f dist/api-doc gh-pages;
+      mv -f dist/reports gh-pages;
 
       ghp-import -m "${GH_COMMIT_MESSAGE}" -r "${GH_REMOTE}" -p gh-pages;
 
