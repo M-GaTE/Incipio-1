@@ -75,7 +75,7 @@ after_success:
       git clone ${GH_REMOTE}" gh-pages --branch=gh-pages --single-branch;
 
       echo -en "\n\e[34mBuild GitHub Pages website\e[0m\n";
-      mkdocs build --clean
+      mkdocs build --clean;
 
       echo -en "\n\e[34mPublish artefacts to GitHub Pages\e[0m\n";
       mv -f dist/api-doc gh-pages;
