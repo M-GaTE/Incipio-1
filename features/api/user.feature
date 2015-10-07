@@ -18,7 +18,7 @@ Feature: User management
     And the JSON node "jobs" should have 1 element
     And the JSON node "types" should have 1 element
     And the JSON node "roles" should have 2 elements
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node                               | value                                   | type    |
       | @context                           | /api/contexts/User                      |         |
       | @id                                | /api/users/1                            |         |

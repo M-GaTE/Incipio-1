@@ -1,0 +1,4 @@
+ApiBundle\Entity\Mandate:
+    mandate_2005:
+        startAt:       <startMandateDateTime(2005)>
+        endAt:         <endMandateDateTime($startAt)>

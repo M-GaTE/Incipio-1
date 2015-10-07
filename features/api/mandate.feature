@@ -18,12 +18,11 @@ Feature: Mandates management
     Then the response status code should be 200
     And I should get a paged collection with the context "/api/contexts/Mandate"
 
-
   Scenario: Get a resource
     When I send a GET request to "/api/mandates/1"
     Then the response status code should be 200
     And the JSON node "jobs" should have 2 element
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node     | value                     | type  |
       | @context | /api/contexts/Mandate     |       |
       | @id      | /api/mandates/1           |       |
@@ -48,7 +47,7 @@ Feature: Mandates management
     """
     Then the response status code should be 201
     And the JSON node "jobs" should have 0 element
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node     | value                     | type    |
       | @context | /api/contexts/Mandate     |         |
       | @id      | /api/mandates/13          |         |
@@ -62,7 +61,7 @@ Feature: Mandates management
     When I send a GET request to "/api/mandates/13"
     Then the response status code should be 200
     And the JSON node "jobs" should have 0 element
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node     | value                     | type  |
       | @context | /api/contexts/Mandate     |       |
       | @id      | /api/mandates/1           |       |
@@ -93,7 +92,7 @@ Feature: Mandates management
     """
     Then the response status code should be 400
     And the JSON node "violations" should have 2 element
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node                        | value                                 | type   |
       | @context                    | /api/contexts/ConstraintViolationList |        |
       | @type                       | ConstraintViolationList               |        |

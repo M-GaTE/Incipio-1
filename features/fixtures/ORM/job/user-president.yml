@@ -1,0 +1,10 @@
+ApiBundle\Entity\User:
+    user_president:
+        username:          president.tendiserp
+        fullname:          Président TENDISERP
+        email:             president.tendiserp@incipio.fr
+        roles:             [ ROLE_ADMIN ]
+        plainPassword:     guest
+        enabled:           true
+        studentConvention: ~
+        types:             <userTypes('member')>

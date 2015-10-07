@@ -1,0 +1,12 @@
+ApiBundle\Entity\Job:
+    job (template):
+        title:        <jobTitle()>
+        abbreviation: <jobAbbreviation()>
+        #user:        Should be kept unset since because is set in the user entity
+        #mandate:     Should be kept unset since because is set in the mandate entity
+
+    job__{0..1} (extends job):
+        enabled: true
+
+    job__{10..11} (extends job):
+        enabled: false

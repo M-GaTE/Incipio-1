@@ -1,0 +1,35 @@
+ApiBundle\Entity\Job:
+    job (template):
+        title:        <jobTitle()>
+        abbreviation: <jobAbbreviation()>
+        enabled:      <boolean()>
+        #user:        Should be kept unset since because is set in the user entity
+        #mandate:     Should be kept unset since because is set in the mandate entity
+
+    job_president (extends job):
+        title:        President
+        abbreviation: PR
+        enabled:      true
+
+    job_pr (extends job):
+        abbreviation: PR
+
+    job__{1..9} (extends job): {}
+
+ApiBundle\Entity\Mandate:
+    mandate_2005:
+        startAt:       <startMandateDateTime(2005)>
+        endAt:         <endMandateDateTime($startAt)>
+        jobs (unique): <numberBetween(0, 3)>x @job*
+
+ApiBundle\Entity\User:
+    user_president:
+        username:          president.tendiserp
+        fullname:          Président TENDISERP
+        email:             president.tendiserp@incipio.fr
+        roles:             [ ROLE_ADMIN ]
+        plainPassword:     guest
+        enabled:           true
+        jobs:              [ @job_president ]
+        studentConvention: ~
+        types:             <userTypes('member')>

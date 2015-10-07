@@ -11,21 +11,21 @@ default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext
-                - Incipio\Test\Behat\Context\ApiContext:
+                - Behat\Context\ApiContext:
                       doctrine:       @doctrine
                       jwtManager:     @lexik_jwt_authentication.jwt_manager
                       userManager:    @fos_user.user_manager
                       encoderFactory: @security.encoder_factory
-                - Incipio\Test\Behat\Context\JsonContext:
+                - Behat\Context\JsonContext:
                       evaluationMode: javascript
-                - Incipio\Test\Behat\Context\JsonLdContext:
+                - Behat\Context\JsonLdContext:
                       evaluationMode: javascript
 
         front_features:
             paths:    [ %paths.base%/features/front ]
             contexts:
                 - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext
-                - Incipio\Test\Behat\Context\FrontContext
+                - Behat\Context\FrontContext
 
     extensions:
         Behat\MinkExtension:
