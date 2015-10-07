@@ -54,7 +54,7 @@
         "style:fix": "php bin/php-cs-fixer fix -vvv src && php bin/php-cs-fixer fix -vvv features",
         "test": "composer test:db && composer test:phpunit && composer test:behat && composer test:security",
         "test:db": "php app/console d:s:v --ansi",
-        "test:security": "php bin/security-checker security:check",
+        "test:security": "php bin/security-checker security:check --ansi",
         "test:phpunit": "php bin/phpunit -c phpunit_travis.xml --colors=always",
         "test:behat": "composer behat:api && composer behat:front",
         "test:behat:api": "php bin/behat --suite=api_features --strict --colors --tags ~@ignore",
