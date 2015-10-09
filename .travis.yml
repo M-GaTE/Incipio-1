@@ -15,8 +15,12 @@ env:
     - GITHUB_USER_NAME="TravisBot"
     - GITHUB_USER_EMAIL="travisbot@incipio.fr"
 
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
 cache:
   directories:
+    - $HOME/.cache/pip
     - $HOME/.composer/cache/files
 
 matrix:
