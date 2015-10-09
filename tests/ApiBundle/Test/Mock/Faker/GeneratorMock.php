@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Tests\Mocks\Faker;
+namespace ApiBundle\Test\Mock\Faker;
 
 use Faker\Generator;
 

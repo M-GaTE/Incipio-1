@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Tests\Mocks\EventListener;
+namespace ApiBundle\Test\Mock\EventListener;
 
 use Doctrine\Common\NotifyPropertyChanged;
 use Gedmo\Timestampable\TimestampableListener;
