@@ -72,7 +72,7 @@ class JobController extends BaseController
         }
 
         return [
-            'jobs'       => $jobs,
+            'jobs' => $jobs,
             'filter_form' => $filterForm->createView(),
         ];
     }
@@ -99,7 +99,7 @@ class JobController extends BaseController
                         'api_jobs_post_collection',
                         $request,
                         [
-                            'json' => $newForm->getData()
+                            'json' => $newForm->getData(),
                         ]
                     )
                 );
@@ -143,7 +143,7 @@ class JobController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'job'        => $job,
+                'job' => $job,
             ];
         } catch (ClientRequestException $exception) {
             if (null !== $exception->getResponse()
@@ -185,7 +185,7 @@ class JobController extends BaseController
             );
 
             return [
-                'job'       => $job,
+                'job' => $job,
                 'edit_form' => $this->createEditForm($job, $request)->createView(),
             ];
         } catch (ClientRequestException $exception) {
@@ -243,7 +243,7 @@ class JobController extends BaseController
                         $request,
                         [
                             'json' => $editForm->getData(),
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
@@ -264,7 +264,7 @@ class JobController extends BaseController
         }
 
         return [
-            'job'       => $job,
+            'job' => $job,
             'edit_form' => $this->createEditForm($job, $request)->createView(),
         ];
     }
@@ -294,7 +294,7 @@ class JobController extends BaseController
                         'api_jobs_delete_item',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
@@ -340,8 +340,7 @@ class JobController extends BaseController
     /**
      * Creates a form to edit a Job entity.
      *
-     * @param array   $job The normalized job.
-     *
+     * @param array   $job     The normalized job.
      * @param Request $request
      *
      * @return \Symfony\Component\Form\Form The form
@@ -386,7 +385,7 @@ class JobController extends BaseController
         return $this->createForm(new JobFilteringType($this->getMandates($request)),
             [
                 'action' => $this->generateUrl('jobs'),
-                'method' => 'POST'
+                'method' => 'POST',
             ])
             ->add('submit', 'submit', ['label' => 'Filtrer'])
         ;

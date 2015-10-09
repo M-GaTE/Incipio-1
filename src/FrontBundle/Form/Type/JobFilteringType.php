@@ -44,10 +44,10 @@ class JobFilteringType extends AbstractType
                 'mandate_id',
                 'choice',
                 [
-                    'choices'     => $this->mandates,
-                    'label'       => 'Mandat :',
+                    'choices' => $this->mandates,
+                    'label' => 'Mandat :',
                     'placeholder' => 'Tous',
-                    'required'    => false,
+                    'required' => false,
                 ]
             )
         ;

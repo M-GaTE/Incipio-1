@@ -25,13 +25,13 @@ class UserFilteringTypeTest extends TypeTestCase
     {
         $formData = [
             'mandate_id' => '/api/mandates/1',
-            'user_type'  => '0',
+            'user_type' => '0',
         ];
 
         // Check that the form compiles
         $type = new UserFilteringType([
             'Mandate 2014/2015' => '/api/mandates/1',
-            'Mandate 11 2013'   => '/api/mandates/2',
+            'Mandate 11 2013' => '/api/mandates/2',
         ]);
         $form = $this->factory->create($type);
 

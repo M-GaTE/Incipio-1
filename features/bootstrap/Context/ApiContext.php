@@ -20,7 +20,6 @@ use Behat\Symfony2Extension\Context\KernelDictionary;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use FOS\UserBundle\Doctrine\UserManager;
-use InvalidArgumentException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManagerInterface;
 use PHPUnit_Framework_Assert as PHPUnit;
 use Sanpi\Behatch\Json\Json;
@@ -172,7 +171,7 @@ class ApiContext extends RawMinkContext implements Context, SnippetAcceptingCont
             foreach ($user->jobs as $job) {
                 if (isset($job->mandate)) {
                     if ($iri === $accessor->getValue($job->mandate, '@id')) {
-                        $count++;
+                        ++$count;
                     }
                 }
             }

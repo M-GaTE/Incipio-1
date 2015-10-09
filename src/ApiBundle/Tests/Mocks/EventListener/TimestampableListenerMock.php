@@ -23,16 +23,16 @@ use Gedmo\Timestampable\TimestampableListener;
 class TimestampableListenerMock extends TimestampableListener
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getNamespace()
     {
         // Put original namespace as it is used to load other classes such as the mapping drive annotation
-        return "Gedmo\\Timestampable";
+        return 'Gedmo\\Timestampable';
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * createdAt value set at : 2015-01-01 00:00:00.000000
      * updatedAt value set at : 2015-06-10 00:00:00.000000

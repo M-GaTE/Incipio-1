@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Incipio package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ApiBundle\Tests\Doctrine\DBAL\Type;
 
 use ApiBundle\Doctrine\DBAL\Type\UTCDateTimeType;
@@ -36,7 +45,7 @@ class UTCDateTimeTypeTest extends \PHPUnit_Framework_TestCase
         $platform = $this->prophesize(AbstractPlatform::class);
         $platform->getDateTimeFormatString()->willReturn('e');
         $actual = $this->type->convertToDatabaseValue($date, $platform->reveal());
-        $expected = (null === $date)? null: 'UTC';
+        $expected = (null === $date) ? null : 'UTC';
 
         $this->assertEquals($expected, $actual);
     }
@@ -63,20 +72,20 @@ class UTCDateTimeTypeTest extends \PHPUnit_Framework_TestCase
     public function phpValueProvider()
     {
         return [
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('UTC')) ],
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Paris')) ],
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Zurich')) ],
-            [ null ]
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('UTC'))],
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Paris'))],
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Zurich'))],
+            [null],
         ];
     }
 
     public function databaseValueProvider()
     {
         return [
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('UTC')) ],
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Paris')) ],
-            [ \DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Zurich')) ],
-            [ null ]
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('UTC'))],
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Paris'))],
+            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Zurich'))],
+            [null],
         ];
     }
 }

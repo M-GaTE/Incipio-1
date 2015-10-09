@@ -35,6 +35,8 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
         new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor);
         new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor, null);
         new UserMandateFilter($managerRegistry, $iriConverter, $propertyAccessor, []);
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -85,8 +87,8 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
 
         $filter->apply($resource->reveal(), $queryBuilder, $request);
 
-        $actualDQL   = strtolower($queryBuilder->getQuery()->getDQL());
-        $expectedDQL = strtolower(sprintf('SELECT o FROM ApiBundle\Entity\User o%s', ('' === $expectedDQL)?$expectedDQL: " $expectedDQL"));
+        $actualDQL = strtolower($queryBuilder->getQuery()->getDQL());
+        $expectedDQL = strtolower(sprintf('SELECT o FROM ApiBundle\Entity\User o%s', ('' === $expectedDQL) ? $expectedDQL : " $expectedDQL"));
 
         $this->assertEquals($expectedDQL, $actualDQL);
         $this->assertEquals(count($expectedParameters), count($queryBuilder->getParameters()));
@@ -113,14 +115,14 @@ class UserMandateFilterTest extends \PHPUnit_Framework_TestCase
                 '/api/dummies?filter[where][mandate]=/api/mandates/5',
                 'LEFT JOIN o.jobs user_jobs_alias WHERE user_jobs_alias.mandate = :user_mandate_id',
                 [
-                    'user_mandate_id' => 5
+                    'user_mandate_id' => 5,
                 ],
             ],
             [
                 '/api/dummies?filter[where][mandate]=5',
                 'LEFT JOIN o.jobs user_jobs_alias WHERE user_jobs_alias.mandate = :user_mandate_id',
                 [
-                    'user_mandate_id' => 5
+                    'user_mandate_id' => 5,
                 ],
             ],
             [

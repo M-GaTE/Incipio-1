@@ -58,6 +58,7 @@ class UserProviderTest extends KernelTestCase
     {
         $userRoles = $this->prophesize(\ApiBundle\Utils\UserRoles::class);
         new UserProvider($userRoles->reveal());
+        $this->assertTrue(true);
     }
 
     /**

@@ -31,20 +31,20 @@ class StudentConventionType extends AbstractType
                 'reference',
                 'text',
                 [
-                    'attr'          => [
+                    'attr' => [
                         'placeholder' => 'Référence',
                     ],
-                    'disabled'      => true,
-                    'label'         => 'Référence :',
-                    'property_path' => '[@id]'
+                    'disabled' => true,
+                    'label' => 'Référence :',
+                    'property_path' => '[@id]',
                 ])
             ->add(
                 'dateOfSignature',
                 'date',
                 [
-                    'label'    => 'Date de signature :',
+                    'label' => 'Date de signature :',
                     'required' => false,
-                    'widget'   => 'single_text',
+                    'widget' => 'single_text',
                 ]
             )
         ;

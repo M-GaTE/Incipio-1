@@ -69,7 +69,6 @@ class JobTest extends AbstractEntityTestCase
         $this->doctrineManager->persist($mandate);
         $this->doctrineManager->flush();
 
-
         // Test classic setters
         $this->assertNotNull($job->getId());
         $this->assertEquals($data['title'], $job->getTitle());
@@ -79,7 +78,7 @@ class JobTest extends AbstractEntityTestCase
         // Test users relationship
         $this->assertEquals(count($data['users']), count($job->getUsers()));
         foreach ($data['users'] as $user) {
-            /** @var User $user */
+            /* @var User $user */
             $this->assertTrue($job->getUsers()->contains($user));
             $this->assertTrue($user->getJobs()->contains($job));
         }
@@ -102,7 +101,6 @@ class JobTest extends AbstractEntityTestCase
 
         $this->doctrineManager->flush();
 
-
         $this->assertNull($job->getTitle());
         $this->assertNull($job->getAbbreviation());
         $this->assertTrue($job->getEnabled());
@@ -110,7 +108,7 @@ class JobTest extends AbstractEntityTestCase
         // Test users relationship
         $this->assertEquals(0, count($job->getUsers()));
         foreach ($data['users'] as $user) {
-            /** @var User $user */
+            /* @var User $user */
             $this->assertFalse($user->getJobs()->contains($job));
         }
 
@@ -151,7 +149,7 @@ class JobTest extends AbstractEntityTestCase
         $this->doctrineManager->remove($job);
         $this->doctrineManager->flush();
         foreach ($data['users'] as $user) {
-            /** @var User $user */
+            /* @var User $user */
             $this->assertFalse(
                 $user->getJobs()->contains($job),
                 'Expected $user instance to no longer have a reference to the job.'
@@ -171,11 +169,11 @@ class JobTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'title'        => 'President',
+                    'title' => 'President',
                     'abbreviation' => 'Pres',
-                    'enabled'      => true,
-                    'users'        => new User(),
-                    'mandate'      => new Mandate(),
+                    'enabled' => true,
+                    'users' => new User(),
+                    'mandate' => new Mandate(),
                 ],
             ],
         ];
@@ -186,11 +184,11 @@ class JobTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'title'        => 'President',
+                    'title' => 'President',
                     'abbreviation' => 'Pres',
-                    'enabled'      => true,
-                    'users'        => [$this->getAUserInstance()],
-                    'mandate'      => $this->getAMandateInstance(),
+                    'enabled' => true,
+                    'users' => [$this->getAUserInstance()],
+                    'mandate' => $this->getAMandateInstance(),
                 ],
             ],
         ];

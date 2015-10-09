@@ -39,7 +39,7 @@ class AuthenticationSuccessHandlerTest extends \PHPUnit_Framework_TestCase
         $session = new Session(new MockArraySessionStorage(), new AttributeBag(), new FlashBag());
         $request = $this->prophesize(Request::class);
         $request->getSession()->willReturn($session);
-        $request->get("_target_path", null, true)->willReturn('/toto');
+        $request->get('_target_path', null, true)->willReturn('/toto');
 
         $httpUtils = $this->prophesize(HttpUtils::class);
         $httpUtils->createRedirectResponse($request->reveal(), '/toto')->willReturn(new RedirectResponse('/toto', 302));

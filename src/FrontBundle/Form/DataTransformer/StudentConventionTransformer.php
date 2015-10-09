@@ -33,7 +33,7 @@ class StudentConventionTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (null === $value) {
-            return null;
+            return;
         }
 
         if (isset($value['@id'])) {
@@ -55,7 +55,7 @@ class StudentConventionTransformer implements DataTransformerInterface
     public function reverseTransform($value)
     {
         if (null === $value) {
-            return null;
+            return;
         }
 
         if (isset($value['@id']) && false === empty($value['@id'])) {

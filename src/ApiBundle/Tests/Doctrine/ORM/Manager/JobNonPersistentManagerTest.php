@@ -24,6 +24,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         new JobNonPersistentManager();
+        $this->assertTrue(true);
     }
 
     /**
@@ -103,29 +104,29 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                 (new Job())
                     ->setAbbreviation('Abbreviation')
                 ,
-                'Abbreviation'
+                'Abbreviation',
             ],
             [
                 (new Job())
                     ->setTitle('President')
                 ,
-                'Pres'
+                'Pres',
             ],
             [
                 (new Job())
                     ->setTitle('Data Analysist')
                 ,
-                'DA'
+                'DA',
             ],
             [
                 (new Job())
                     ->setTitle('')
                 ,
-                null
+                null,
             ],
             [
                 new Job(),
-                null
+                null,
             ],
         ];
     }

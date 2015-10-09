@@ -34,6 +34,8 @@ class MenuBuilderTest extends \PHPUnit_Framework_TestCase
         $tokenStorage = $this->prophesize(TokenStorage::class);
 
         new MenuBuilder($factory->reveal(), $authorizationChecker->reveal(), $tokenStorage->reveal());
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -75,5 +77,6 @@ class MenuBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testUserMenuWithLoggedUser()
     {
+        $this->markTestSkipped('Cannot implement this test yet');
     }
 }

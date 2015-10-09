@@ -66,7 +66,7 @@ class UserController extends BaseController
                 $userRequest->setQuery($query);
             }
         }
-        
+
         // Retrieve users, since it's a paginated collection go through all available pages
         try {
             $users = $this->sendAndDecode($userRequest, true);
@@ -76,7 +76,7 @@ class UserController extends BaseController
         }
 
         return [
-            'users'       => $users,
+            'users' => $users,
             'filter_form' => $filterForm->createView(),
         ];
     }
@@ -112,7 +112,7 @@ class UserController extends BaseController
                         'api_users_post_collection',
                         $request,
                         [
-                            'json' => $formData
+                            'json' => $formData,
                         ]
                     )
                 );
@@ -156,7 +156,7 @@ class UserController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'user'        => $user,
+                'user' => $user,
             ];
         } catch (ClientRequestException $exception) {
             if (null !== $exception->getResponse()
@@ -199,7 +199,7 @@ class UserController extends BaseController
             );
 
             return [
-                'user'      => $user,
+                'user' => $user,
                 'edit_form' => $this->createEditForm($user)->createView(),
             ];
         } catch (ClientRequestException $exception) {
@@ -253,7 +253,7 @@ class UserController extends BaseController
                     $request,
                     [
                         'json' => $editForm->getData(),
-                        'parameters' => ['id' => $id]
+                        'parameters' => ['id' => $id],
                     ]
                 );
 
@@ -302,7 +302,7 @@ class UserController extends BaseController
                         'api_users_delete_item',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
@@ -405,7 +405,7 @@ class UserController extends BaseController
         return $this->createForm(new UserFilteringType($mandateFormValues),
             [
                 'action' => $this->generateUrl('users'),
-                'method' => 'POST'
+                'method' => 'POST',
             ])
             ->add('submit', 'submit', ['label' => 'Filtrer'])
         ;
