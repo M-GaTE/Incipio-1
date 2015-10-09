@@ -6,27 +6,29 @@
          backupGlobals="false"
          bootstrap="app/bootstrap.php.cache"
          colors="true"
-         convertErrorsToExceptions="false"
-         convertNoticesToExceptions="false"
-         convertWarningsToExceptions="false"
+         strict="true"
 >
     <php>
         <server name="KERNEL_DIR" value="app" />
     </php>
 
-    <logging>
-        <log type="testdox-text" target="php://stdout" />
-    </logging>
-
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="App">
             <directory>src/ApiBundle/Tests</directory>
             <directory>src/ApiBundle/Bundle/*Bundle/Tests</directory>
 
             <directory>src/FrontBundle/Tests</directory>
             <directory>src/FrontBundle/Bundle/*Bundle/Tests</directory>
+        </testsuite>
 
-            <directory>features/bootstrap/Tests</directory>
+        <testsuite name="ApiBundle">
+            <directory>src/ApiBundle/Tests</directory>
+            <directory>src/ApiBundle/Bundle/*Bundle/Tests</directory>
+        </testsuite>
+
+        <testsuite name="FrontBundle">
+            <directory>src/FrontBundle/Tests</directory>
+            <directory>src/FrontBundle/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 
