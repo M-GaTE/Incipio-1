@@ -8,12 +8,12 @@ php:
 env:
   global:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
-    # GH_TOKEN
-    - secure: cBXo6EWL5cGnTlDeroIE0C7nQQkXyB+kXE0vz4f8gP6XIH2KFWSDqt0VIo0mrNMAklr6vWBOYukCzDlt3svscM7/7c7nJpnlnfn01oMOt5gzK7iugEg66d1IjU1Hh1MIkAx+DHE/DF7nnM0PW5N5ATXJmk4G4QclMKCpfAb5AEU=
-    - GH_COMMIT_MESSAGE="Rebuild pages at $(git rev-parse --short HEAD)"
-    - GH_REMOTE="https://user:${GH_TOKEN}@github.com/in6pio/Incipio.git"
-    - GH_USER_NAME="TravisBot"
-    - GH_USER_EMAIL="travisbot@incipio.fr"
+    - GITHUB_PAGES_COMMIT_MESSAGE="Rebuild pages at $(git rev-parse --short HEAD)"
+    - if [[ -z "$GITHUB_PAGES_TOKEN" ]]; then
+        then GITHUB_PAGES_REMOTE="https://user:${GITHUB_PAGES_TOKEN}@github.com/in6pio/Incipio.git";
+      fi;
+    - GITHUB_USER_NAME="TravisBot"
+    - GITHUB_USER_EMAIL="travisbot@incipio.fr"
 
 cache:
   directories:
@@ -22,7 +22,7 @@ cache:
 matrix:
   include:
     - php: 5.6
-      env: GH_PAGES="true"
+      env: DEPLOY_BUILD=true
   allow_failures:
     - php: 7.0
     - php: nightly
@@ -34,19 +34,11 @@ before_install:
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
   - composer global require phpunit/phpunit --no-update
-  - if [ "true" = "$GH_PAGES" ] && ([ "false" != "$TRAVIS_PULL_REQUEST" ] || [ "master" != "$TRAVIS_BRANCH" ]); then
-      export GH_PAGES="false";
-    fi;
-  - if [ "true" = "$GH_PAGES" ]; then
-      git config --global user.name "${GH_USER_NAME}";
-      git config --global user.email "${GH_USER_EMAIL}";
-
-      pip install ghp-import --user;
-      pip install mkdocs --user;
-
-      composer global require halleck45/phpmetrics --no-update;
-      composer global require apigen/apigen --no-update;
-    fi;
+  - for file in scripts/*.sh; do
+      echo -en "\e[34mimports ${file}\e[0m\n";
+      source "$file";
+    done;
+  - configTravis
 
 install:
   - composer global update --prefer-dist
@@ -62,26 +54,4 @@ script:
   - composer test:behat:front
 
 after_success:
-  - if [ "true" = "$GH_PAGES" ]; then
-      echo -en "\n\e[34mGenerates PhpMetrics reports (x3)\e[0m\n";
-      phpmetrics --report-html=dist/reports/phpmetrics/app.html src;
-      phpmetrics --report-html=dist/reports/phpmetrics/api-bundle.html src/ApiBundle;
-      phpmetrics --report-html=dist/reports/phpmetrics/front-bundle.html src/FrontBundle;
-
-      echo -en "\n\e[34mGenerates PHPDoc\e[0m\n";
-      apigen generate --source src --destination dist/api-doc;
-
-      echo -en "\n\e[34mRetrieve GitHub Pages website\e[0m\n";
-      git clone ${GH_REMOTE}" gh-pages --branch=gh-pages --single-branch;
-
-      echo -en "\n\e[34mBuild GitHub Pages website\e[0m\n";
-      mkdocs build --clean;
-
-      echo -en "\n\e[34mPublish artefacts to GitHub Pages\e[0m\n";
-      mv -f dist/api-doc gh-pages;
-      mv -f dist/reports gh-pages;
-
-      ghp-import -m "${GH_COMMIT_MESSAGE}" -r "${GH_REMOTE}" -p gh-pages;
-
-      echo -en "\e[1;32mArtefacts published.\e[0m";
-    fi;
+  - publishToGithubPages
