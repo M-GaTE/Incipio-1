@@ -127,14 +127,14 @@ class ApiClientTest extends KernelTestCase
      */
     public function testOverriddenMethod($url, $token, $options, $expectedUrl)
     {
-        $tokenValue = (true === $token)? 'MyToken': null;
+        $tokenValue = (true === $token) ? 'MyToken' : null;
 
         $requests = [
-            'get'    => $this->service->createRequest('GET', $url, $tokenValue, $options),
-            'head'   => $this->service->createRequest('HEAD', $url, $tokenValue, $options),
+            'get' => $this->service->createRequest('GET', $url, $tokenValue, $options),
+            'head' => $this->service->createRequest('HEAD', $url, $tokenValue, $options),
             'delete' => $this->service->createRequest('DELETE', $url, $tokenValue, $options),
-            'put'    => $this->service->createRequest('PUT', $url, $tokenValue, $options),
-            'post'   => $this->service->createRequest('POST', $url, $tokenValue, $options),
+            'put' => $this->service->createRequest('PUT', $url, $tokenValue, $options),
+            'post' => $this->service->createRequest('POST', $url, $tokenValue, $options),
         ];
 
         foreach ($requests as $request) {
@@ -187,7 +187,7 @@ class ApiClientTest extends KernelTestCase
                 null,
                 false,
                 [
-                    'parameters' => ['id' => 14]
+                    'parameters' => ['id' => 14],
                 ],
                 '',
             ],
@@ -198,7 +198,7 @@ class ApiClientTest extends KernelTestCase
                 'api_users_get',
                 false,
                 [
-                    'parameters' => ['id' => 14]
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users/14',
             ],
@@ -218,7 +218,7 @@ class ApiClientTest extends KernelTestCase
                 'api_users_cget',
                 false,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?random=test',
@@ -230,7 +230,7 @@ class ApiClientTest extends KernelTestCase
                 'api_users_get',
                 true,
                 [
-                    'parameters' => ['id' => 14]
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users/14',
             ],
@@ -250,9 +250,9 @@ class ApiClientTest extends KernelTestCase
                 'api_users_get',
                 false,
                 [
-                    'query'      => ['random' => 'test'],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => ['random' => 'test'],
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users/14?random=test',
             ],
@@ -263,7 +263,7 @@ class ApiClientTest extends KernelTestCase
                 'api_users_cget',
                 true,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?random=test',
@@ -284,7 +284,7 @@ class ApiClientTest extends KernelTestCase
                 '/api/users',
                 false,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?random=test',
@@ -305,7 +305,7 @@ class ApiClientTest extends KernelTestCase
                 '/api/users',
                 true,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?random=test',
@@ -326,7 +326,7 @@ class ApiClientTest extends KernelTestCase
                 '/api/users?lol',
                 false,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?lol&random=test',
@@ -347,7 +347,7 @@ class ApiClientTest extends KernelTestCase
                 '/api/users?lol',
                 true,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?lol&random=test',
@@ -359,9 +359,9 @@ class ApiClientTest extends KernelTestCase
                 '/api/users?lol',
                 true,
                 [
-                    'query'      => ['random' => 'test'],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => ['random' => 'test'],
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&random=test',
             ],
@@ -372,7 +372,7 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'   => ['random' => 'test'],
+                    'query' => ['random' => 'test'],
                     'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
                 ],
                 '/api/users?lol&random=test',
@@ -384,9 +384,9 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'      => ['random' => 'test'],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => ['random' => 'test'],
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&random=test',
             ],
@@ -398,9 +398,9 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'      => ['id' => 14, 'filter' => ['order' => ['startAt' => 'desc']]],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => ['id' => 14, 'filter' => ['order' => ['startAt' => 'desc']]],
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&id=14&filter[order][startAt]=desc',
             ],
@@ -409,9 +409,9 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'      => ['id' => 14, 'filter[order][startAt]=desc' => null],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => ['id' => 14, 'filter[order][startAt]=desc' => null],
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&id=14&filter[order][startAt]=desc',
             ],
@@ -420,13 +420,13 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'      => [
-                        'id'                          => 14,
+                    'query' => [
+                        'id' => 14,
                         'filter[order][startAt]=desc' => null,
-                        'filter'                      => ['order' => ['endAt' => 'asc']]
+                        'filter' => ['order' => ['endAt' => 'asc']],
                     ],
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&id=14&filter[order][startAt]=desc&filter[order][endAt]=asc',
             ],
@@ -435,9 +435,9 @@ class ApiClientTest extends KernelTestCase
                 'http://localhost/api/users?lol',
                 true,
                 [
-                    'query'      => 'filter[order][startAt]=desc',
-                    'headers'    => ['Foo' => 'Bar', 'Baz' => 'Bam'],
-                    'parameters' => ['id' => 14]
+                    'query' => 'filter[order][startAt]=desc',
+                    'headers' => ['Foo' => 'Bar', 'Baz' => 'Bam'],
+                    'parameters' => ['id' => 14],
                 ],
                 '/api/users?lol&filter[order][startAt]=desc',
             ],

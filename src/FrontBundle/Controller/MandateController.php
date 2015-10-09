@@ -78,7 +78,7 @@ class MandateController extends BaseController
                         'api_mandates_post_collection',
                         $request,
                         [
-                            'json' => $formData
+                            'json' => $formData,
                         ]
                     )
                 );
@@ -122,7 +122,7 @@ class MandateController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'mandate'     => $mandate,
+                'mandate' => $mandate,
             ];
         } catch (ClientRequestException $exception) {
             if (null !== $exception->getResponse()
@@ -165,7 +165,7 @@ class MandateController extends BaseController
             );
 
             return [
-                'mandate'   => $mandate,
+                'mandate' => $mandate,
                 'edit_form' => $this->createEditForm($mandate)->createView(),
             ];
         } catch (ClientRequestException $exception) {
@@ -219,7 +219,7 @@ class MandateController extends BaseController
                     $request,
                     [
                         'json' => $editForm->getData(),
-                        'parameters' => ['id' => $id]
+                        'parameters' => ['id' => $id],
                     ]
                 );
 
@@ -241,7 +241,7 @@ class MandateController extends BaseController
         }
 
         return [
-            'mandate'   => $mandate,
+            'mandate' => $mandate,
             'edit_form' => $this->createEditForm($mandate)->createView(),
         ];
     }
@@ -271,7 +271,7 @@ class MandateController extends BaseController
                         'api_mandates_delete_item',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );

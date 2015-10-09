@@ -144,7 +144,6 @@ class Utils
         foreach ($explodedString as $index => $keyPart) {
             $indexPart = preg_grep('/a/', $keyPart);
 
-
             if (0 === $index) {
                 $tree[$keyPart] = null;
                 $currentArray = &$tree[$keyPart];

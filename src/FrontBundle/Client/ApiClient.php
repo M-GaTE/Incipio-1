@@ -101,12 +101,12 @@ class ApiClient implements ApiClientInterface
     }
 
     /**
-     * Expand a URI template and inherit from the base URL if it's relative
+     * Expand a URI template and inherit from the base URL if it's relative.
      *
-     * @param string|null $url       URL or an array of the URI template to expand
-     *                          followed by a hash of template varnames.
-     * @param array $parameters route name parameters. If $url parameter passed is not a route name, this parameter
-     *                          is ignored.
+     * @param string|null $url        URL or an array of the URI template to expand
+     *                                followed by a hash of template varnames.
+     * @param array       $parameters route name parameters. If $url parameter passed is not a route name, this parameter
+     *                                is ignored.
      *
      * @return string URL
      */

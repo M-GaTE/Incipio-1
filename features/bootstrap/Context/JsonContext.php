@@ -30,7 +30,7 @@ class JsonContext extends SampiJsonContext implements Context
     private $inspector;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct($evaluationMode = 'javascript', HttpCallResultPool $httpCallResultPool)
     {
@@ -156,7 +156,7 @@ class JsonContext extends SampiJsonContext implements Context
     {
         $count = 0;
         foreach ($table->getColumnsHash() as $row) {
-            $count++;
+            ++$count;
             $value = $row['value'];
 
             // Check for null value

@@ -44,23 +44,23 @@ class UserFilteringType extends AbstractType
                 'mandate_id',
                 'choice',
                 [
-                    'choices'     => $this->mandates,
-                    'label'       => 'Mandat :',
+                    'choices' => $this->mandates,
+                    'label' => 'Mandat :',
                     'placeholder' => 'Tous',
-                    'required'    => false,
+                    'required' => false,
                 ]
             )
             ->add(
                 'user_type',
                 'choice',
                 [
-                    'choices'     => [
-                        'TYPE_MEMBER'     => 'Membre',
+                    'choices' => [
+                        'TYPE_MEMBER' => 'Membre',
                         'TYPE_CONTRACTOR' => 'Intervenant',
                     ],
-                    'label'       => 'Type :',
+                    'label' => 'Type :',
                     'placeholder' => 'Tous',
-                    'required'    => false,
+                    'required' => false,
                 ]
             )
         ;

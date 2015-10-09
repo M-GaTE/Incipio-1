@@ -44,10 +44,10 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        /**
-         * @var $user UserInterface Note this will return a ApiBundle\Entity\User instance; this dependence to ApiBundle
-         *                          is due to the fact that this is the user class defined at the application
-         *                          configuration level worry here.
+        /*
+         * @var UserInterface Note this will return a ApiBundle\Entity\User instance; this dependence to ApiBundle
+         *                    is due to the fact that this is the user class defined at the application
+         *                    configuration level worry here.
          */
         $user = $token->getUser();
         $apiToken = $this->jwtManager->create($user);

@@ -60,7 +60,6 @@ class MandateTest extends AbstractEntityTestCase
         $this->doctrineManager->persist($mandate);
         $this->doctrineManager->flush();
 
-
         // Test classic setters
         $this->assertNotNull($mandate->getId());
         $this->assertEquals($data['name'], $mandate->getName());
@@ -70,11 +69,10 @@ class MandateTest extends AbstractEntityTestCase
         // Test job relationship
         $this->assertEquals(count($data['jobs']), count($mandate->getJobs()));
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertTrue($mandate->getJobs()->contains($job));
             $this->assertEquals($mandate, $job->getMandate());
         }
-
 
         // Test if properties and relations can be reset
         $mandate
@@ -92,7 +90,7 @@ class MandateTest extends AbstractEntityTestCase
         // Test job relationship
         $this->assertEquals(0, count($mandate->getJobs()));
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertNull($job->getMandate());
         }
     }
@@ -122,7 +120,7 @@ class MandateTest extends AbstractEntityTestCase
         $this->doctrineManager->remove($mandate);
         $this->doctrineManager->flush();
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertNull($job->getMandate(), 'Expected $job instance to no longer have a reference to the mandate.');
         }
     }
@@ -135,9 +133,9 @@ class MandateTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'endAt'   => new \DateTime('2016-03-02'),
-                    'jobs'    => $this->getAJobInstance(),
-                    'name'    => 'Dummy Mandate',
+                    'endAt' => new \DateTime('2016-03-02'),
+                    'jobs' => $this->getAJobInstance(),
+                    'name' => 'Dummy Mandate',
                     'startAt' => new \DateTime('2015-03-02'),
                 ],
             ],
@@ -149,9 +147,9 @@ class MandateTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'endAt'   => new \DateTime('2016-03-02'),
-                    'jobs'    => [$this->getAJobInstance()],
-                    'name'    => 'Dummy Mandate',
+                    'endAt' => new \DateTime('2016-03-02'),
+                    'jobs' => [$this->getAJobInstance()],
+                    'name' => 'Dummy Mandate',
                     'startAt' => new \DateTime('2015-03-02'),
                 ],
             ],

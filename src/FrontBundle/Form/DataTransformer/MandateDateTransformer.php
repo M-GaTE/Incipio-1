@@ -43,7 +43,6 @@ class MandateDateTransformer implements DataTransformerInterface
         $this->datetimeNormalizer = new DateTimeNormalizer();
     }
 
-
     /**
      * {@inheritdoc}
      */

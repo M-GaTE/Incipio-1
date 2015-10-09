@@ -26,6 +26,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         new MandateNonPersistentManager();
+        $this->assertTrue(true);
     }
 
     /**
@@ -157,9 +158,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     )
                 ,
                 [
-                    'value'   => 'Mandate 2000/2001',
+                    'value' => 'Mandate 2000/2001',
                     'message' => 'Expected a name with the mask \'Mandate startYear/endYear\'',
-                ]
+                ],
             ],
             [
                 (new Mandate())
@@ -173,9 +174,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     )
                 ,
                 [
-                    'value'   => 'Mandate 01 2000',
+                    'value' => 'Mandate 01 2000',
                     'message' => 'Expected a name with the mask \'Mandate startMonth Year\'',
-                ]
+                ],
             ],
 
             // Mandates with empty names
@@ -192,9 +193,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     ->setName('')
                 ,
                 [
-                    'value'   => 'Mandate 2000/2001',
+                    'value' => 'Mandate 2000/2001',
                     'message' => 'Expected a name with the mask \'Mandate startYear/endYear\'',
-                ]
+                ],
             ],
             [
                 (new Mandate())
@@ -209,9 +210,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     ->setName('')
                 ,
                 [
-                    'value'   => 'Mandate 01 2000',
+                    'value' => 'Mandate 01 2000',
                     'message' => 'Expected a name with the mask \'Mandate startMonth Year\'',
-                ]
+                ],
             ],
 
             // Mandates with names
@@ -228,9 +229,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     ->setName('Mandate 2000/2001')
                 ,
                 [
-                    'value'   => 'Mandate 2000/2001',
+                    'value' => 'Mandate 2000/2001',
                     'message' => 'Expected a name with the mask \'Mandate startYear/endYear\'',
-                ]
+                ],
             ],
             [
                 (new Mandate())
@@ -245,9 +246,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                     ->setName('Another dummy mandate')
                 ,
                 [
-                    'value'   => 'Another dummy mandate',
+                    'value' => 'Another dummy mandate',
                     'message' => 'Expected a name with the mask \'Mandate startMonth Year\'',
-                ]
+                ],
             ],
 
             // Empty mandate
@@ -255,9 +256,9 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
                 new Mandate()
                 ,
                 [
-                    'value'   => null,
+                    'value' => null,
                     'message' => 'Expected mandate not to have a name',
-                ]
+                ],
             ],
         ];
     }

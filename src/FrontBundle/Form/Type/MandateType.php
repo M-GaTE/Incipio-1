@@ -31,10 +31,10 @@ class MandateType extends AbstractType
                 'name',
                 'text',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => 'Mandat 2015/2016',
                     ],
-                    'label'    => 'Nom :',
+                    'label' => 'Nom :',
                     'required' => false,
                 ]
             )
@@ -42,28 +42,28 @@ class MandateType extends AbstractType
                 'startAt',
                 'datetime',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => '05/2015',
                     ],
-                    'format'   => 'MM/yyyy',
-                    'input'    => 'datetime',
-                    'label'    => 'Début de mandat :',
+                    'format' => 'MM/yyyy',
+                    'input' => 'datetime',
+                    'label' => 'Début de mandat :',
                     'required' => false,
-                    'widget'   => 'single_text'
+                    'widget' => 'single_text',
                 ]
             )
             ->add(
                 'endAt',
                 'datetime',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => '06/2016',
                     ],
-                    'format'   => 'MM/yyyy',
-                    'input'    => 'datetime',
-                    'label'    => 'Fin de mandat :',
+                    'format' => 'MM/yyyy',
+                    'input' => 'datetime',
+                    'label' => 'Fin de mandat :',
                     'required' => false,
-                    'widget'   => 'single_text'
+                    'widget' => 'single_text',
                 ]
             )
         ;

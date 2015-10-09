@@ -49,7 +49,6 @@ class BaseController extends SymfonyController implements ApiControllerInterface
         $this->serializer = $this->get('serializer');
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -177,7 +176,8 @@ class BaseController extends SymfonyController implements ApiControllerInterface
      * {@inheritdoc}
      *
      * @deprecated Should not have to use Doctrine.
-     * @throws     \LogicException If used.
+     *
+     * @throws \LogicException If used.
      */
     public function getDoctrine()
     {
@@ -188,8 +188,8 @@ class BaseController extends SymfonyController implements ApiControllerInterface
      * Helper to retrieve all resources from a paginated collection. If the decoded response is not a collection,
      * will return the decoded response.
      *
-     * @param array $decodedResponse
-     * @param Request|string|null  $token
+     * @param array               $decodedResponse
+     * @param Request|string|null $token
      *
      * @return array Decoded response or all entities of the paginated collection.
      */

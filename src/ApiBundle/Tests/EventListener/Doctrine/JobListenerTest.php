@@ -33,6 +33,8 @@ class JobListenerTest extends \PHPUnit_Framework_TestCase
         $manager->supports(Job::class)->willReturn(true);
 
         new JobListener($manager->reveal());
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -45,6 +47,8 @@ class JobListenerTest extends \PHPUnit_Framework_TestCase
         $manager->supports(Job::class)->willReturn(false);
 
         new JobListener($manager->reveal());
+
+        $this->assertTrue(true);
     }
 
     /**

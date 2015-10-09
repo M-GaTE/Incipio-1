@@ -33,7 +33,7 @@ class StudentConventionTransformerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider transformProvider
      *
      * @param array|null $transformData Data to be transformed
-     * @param array|null $expected Expected transformed data
+     * @param array|null $expected      Expected transformed data
      */
     public function testTransformer($transformData, $expected)
     {
@@ -56,37 +56,37 @@ class StudentConventionTransformerTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 [],
-                []
+                [],
             ],
             [
                 [
-                    '@id'             => '/api/student_conventions/REFADR20140104',
+                    '@id' => '/api/student_conventions/REFADR20140104',
                     'dateOfSignature' => '2008-02-02T05:36:42+00:00',
                 ],
                 [
-                    '@id'             => 'REFADR20140104',
+                    '@id' => 'REFADR20140104',
                     'dateOfSignature' => new \DateTime('2008-02-02T05:36:42+00:00'),
-                ]
+                ],
             ],
             [
                 [
-                    '@id'             => null,
+                    '@id' => null,
                     'dateOfSignature' => null,
                 ],
                 [
-                    '@id'             => null,
+                    '@id' => null,
                     'dateOfSignature' => null,
-                ]
+                ],
             ],
             [
                 [
-                    '@id'             => '',
+                    '@id' => '',
                     'dateOfSignature' => '',
                 ],
                 [
-                    '@id'             => null,
+                    '@id' => null,
                     'dateOfSignature' => null,
-                ]
+                ],
             ],
         ];
     }

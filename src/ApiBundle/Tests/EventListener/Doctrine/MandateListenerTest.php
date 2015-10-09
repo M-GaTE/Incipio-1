@@ -33,6 +33,8 @@ class MandateListenerTest extends \PHPUnit_Framework_TestCase
         $manager->supports(Mandate::class)->willReturn(true);
 
         new MandateListener($manager->reveal());
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -45,6 +47,8 @@ class MandateListenerTest extends \PHPUnit_Framework_TestCase
         $manager->supports(Mandate::class)->willReturn(false);
 
         new MandateListener($manager->reveal());
+
+        $this->assertTrue(true);
     }
 
     /**

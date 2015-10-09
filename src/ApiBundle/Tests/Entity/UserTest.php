@@ -85,7 +85,6 @@ class UserTest extends AbstractEntityTestCase
         $this->doctrineManager->persist($user);
         $this->doctrineManager->flush();
 
-
         // Test classic setters
         $this->assertEquals($data['username'], $user->getUsername());
         $this->assertEquals($data['fullname'], $user->getFullname());
@@ -98,29 +97,26 @@ class UserTest extends AbstractEntityTestCase
         $this->assertEquals($data['createdAt'], $user->getCreatedAt());
         $this->assertEquals($data['endingSchoolYear'], $user->getEndingSchoolYear());
 
-
         // Test job relationship
         $this->assertEquals(count($data['jobs']), count($user->getJobs()));
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertTrue($user->getJobs()->contains($job));
             $this->assertTrue($job->getUsers()->contains($user));
         }
-
 
         // Before any other reset/remove manipulation, count number of entities for collections
         // This is done to allow checking the removing removes only what is needed
         $counter = [
             'user' => [
-                'jobs' => count($user->getJobs())
+                'jobs' => count($user->getJobs()),
             ],
             'jobs' => [],
         ];
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $counter['jobs'][] = count($job->getUsers());
         }
-
 
         // Test if properties and relations can be reset
         $user
@@ -154,7 +150,7 @@ class UserTest extends AbstractEntityTestCase
         // Test job relationship
         $this->assertEquals($counter['user']['jobs'] - 1, count($user->getJobs()));
         foreach ($data['jobs'] as $index => $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertEquals($counter['jobs'][$index] - 1, count($job->getUsers()));
         }
     }
@@ -187,7 +183,7 @@ class UserTest extends AbstractEntityTestCase
         // Actual test
         $this->userManager->deleteUser($user);
         foreach ($data['jobs'] as $job) {
-            /** @var Job $job */
+            /* @var Job $job */
             $this->assertFalse($job->getUsers()->contains($user), 'Expected $job instance to no longer have a reference to $user.');
         }
     }
@@ -200,15 +196,15 @@ class UserTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'username'         => 'john.doe',
-                    'fullname'         => 'John Doe',
-                    'email'            => 'john.doe@incipio.fr',
-                    'roles'            => 'ROLE_SUPER_ADMIN',
-                    'plainPassword'    => 'password',
-                    'enabled'          => true,
-                    'jobs'             => $this->getAJobInstance(),
-                    'createdAt'        => new \DateTime(),
-                    'endingSchoolYear' => 2015
+                    'username' => 'john.doe',
+                    'fullname' => 'John Doe',
+                    'email' => 'john.doe@incipio.fr',
+                    'roles' => 'ROLE_SUPER_ADMIN',
+                    'plainPassword' => 'password',
+                    'enabled' => true,
+                    'jobs' => $this->getAJobInstance(),
+                    'createdAt' => new \DateTime(),
+                    'endingSchoolYear' => 2015,
                 ],
             ],
         ];
@@ -219,15 +215,15 @@ class UserTest extends AbstractEntityTestCase
         return [
             [
                 [
-                    'username'         => 'john.doe',
-                    'fullname'         => 'John Doe',
-                    'email'            => 'john.doe@incipio.fr',
-                    'roles'            => ['ROLE_SUPER_ADMIN'],
-                    'plainPassword'    => 'password',
-                    'enabled'          => true,
-                    'jobs'             => [$this->getAJobInstance()],
-                    'createdAt'        => new \DateTime(),
-                    'endingSchoolYear' => 2015
+                    'username' => 'john.doe',
+                    'fullname' => 'John Doe',
+                    'email' => 'john.doe@incipio.fr',
+                    'roles' => ['ROLE_SUPER_ADMIN'],
+                    'plainPassword' => 'password',
+                    'enabled' => true,
+                    'jobs' => [$this->getAJobInstance()],
+                    'createdAt' => new \DateTime(),
+                    'endingSchoolYear' => 2015,
                 ],
             ],
         ];

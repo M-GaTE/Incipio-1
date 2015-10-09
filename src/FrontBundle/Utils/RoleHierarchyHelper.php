@@ -23,8 +23,8 @@ class RoleHierarchyHelper
      */
     public static $roles = [
         'ROLE_SUPER_ADMIN' => null,
-        'ROLE_ADMIN'       => null,
-        'ROLE_USER'        => null,
+        'ROLE_ADMIN' => null,
+        'ROLE_USER' => null,
     ];
 
     /**
@@ -44,6 +44,6 @@ class RoleHierarchyHelper
             }
         }
 
-        return null;
+        return;
     }
 }

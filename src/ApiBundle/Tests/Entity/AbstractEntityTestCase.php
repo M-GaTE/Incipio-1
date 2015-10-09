@@ -105,7 +105,7 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     abstract public function testPropertyAccessors(array $data = []);
 
     /**
-     * Ensure that when the entity is deleted, the relations are properly unset
+     * Ensure that when the entity is deleted, the relations are properly unset.
      *
      * @coversNothing
      *

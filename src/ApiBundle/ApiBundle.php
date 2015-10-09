@@ -11,8 +11,6 @@
 
 namespace ApiBundle;
 
-use ApiBundle\DependencyInjection\Compiler\EntityManagerPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**

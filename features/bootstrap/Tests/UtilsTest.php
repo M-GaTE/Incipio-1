@@ -63,9 +63,9 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 [],
                 [
                     'a' => [
-                        'b' => 'value'
-                    ]
-                ]
+                        'b' => 'value',
+                    ],
+                ],
             ],
             [
                 '_',
@@ -73,15 +73,15 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 'value',
                 [
                     'a' => [
-                        'b' => 'bValue'
-                    ]
+                        'b' => 'bValue',
+                    ],
                 ],
                 [
                     'a' => [
                         'b' => 'bValue',
                         'c' => 'value',
-                    ]
-                ]
+                    ],
+                ],
             ],
             [
                 '_',
@@ -89,17 +89,17 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 'value',
                 [
                     'a' => [
-                        'b' => 'bValue'
-                    ]
+                        'b' => 'bValue',
+                    ],
                 ],
                 [
                     'a' => [
                         'b' => [
-                            0   => 'bValue',
+                            0 => 'bValue',
                             'c' => 'value',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             [
                 '_',
@@ -108,18 +108,18 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 [
                     'a' => [
                         'b' => [
-                            'd' => 'dValue'
-                        ]
-                    ]
+                            'd' => 'dValue',
+                        ],
+                    ],
                 ],
                 [
                     'a' => [
                         'b' => [
                             'd' => 'dValue',
                             'c' => 'value',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
         ];
     }
@@ -133,9 +133,9 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 'value',
                 [
                     'a' => [
-                        'b' => 'value'
-                    ]
-                ]
+                        'b' => 'value',
+                    ],
+                ],
             ],
             [
                 '_',
@@ -144,10 +144,10 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
                 [
                     'a' => [
                         'b' => [
-                            'c' => 'value'
-                        ]
-                    ]
-                ]
+                            'c' => 'value',
+                        ],
+                    ],
+                ],
             ],
         ];
     }

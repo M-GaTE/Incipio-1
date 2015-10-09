@@ -11,8 +11,6 @@
 
 namespace FrontBundle\Form\Type;
 
-use FrontBundle\Form\DataMapper\StudentConventionMapper;
-use FrontBundle\Form\DataTransformer\StudentConventionTransformer;
 use FrontBundle\Utils\IriHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,14 +28,14 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $types = (isset($options['data']['types']))? $options['data']['types']: [];
+        $types = (isset($options['data']['types'])) ? $options['data']['types'] : [];
 
         $builder
             ->add(
                 'fullname',
                 'text',
                 [
-                    'attr'  => [
+                    'attr' => [
                         'placeholder' => 'Prénom NOM',
                     ],
                     'label' => 'Nom complet :',
@@ -46,17 +44,17 @@ class UserType extends AbstractType
                 'username',
                 'text',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => 'prenom.nom',
                     ],
-                    'label'    => 'Nom d\'utilisateur :',
+                    'label' => 'Nom d\'utilisateur :',
                     'required' => false,
                 ])
             ->add(
                 'email',
                 'email',
                 [
-                    'attr'  => [
+                    'attr' => [
                         'placeholder' => 'email@example.com',
                     ],
                     'label' => 'Email :',
@@ -65,43 +63,43 @@ class UserType extends AbstractType
                 'organizationEmail',
                 'email',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => 'email@example.com',
                     ],
-                    'label'    => 'Email professionnel :',
+                    'label' => 'Email professionnel :',
                     'required' => false,
                 ])
             ->add(
                 'endingSchoolYear',
                 'integer',
                 [
-                    'attr'     => [
+                    'attr' => [
                         'placeholder' => 2015,
                     ],
-                    'label'    => 'Promotion :',
+                    'label' => 'Promotion :',
                     'required' => false,
-                    'scale'    => 0,
+                    'scale' => 0,
                 ])
             ->add(
                 'user_type',
                 'choice',
                 [
-                    'choices'  => [
-                        'TYPE_MEMBER'     => 'Membre',
+                    'choices' => [
+                        'TYPE_MEMBER' => 'Membre',
                         'TYPE_CONTRACTOR' => 'Intervenant',
                     ],
-                    'label'    => 'Type(s) :',
+                    'label' => 'Type(s) :',
                     'expanded' => true,
                     'multiple' => true,
-                    'data'     => $types
+                    'data' => $types,
                 ]
             )
             ->add(
                 'enabled',
                 'checkbox',
                 [
-                    'data'     => false,
-                    'label'    => 'Activé',
+                    'data' => false,
+                    'label' => 'Activé',
                     'required' => false,
                 ]
             )
@@ -109,7 +107,7 @@ class UserType extends AbstractType
                 'studentConvention',
                 new StudentConventionType(),
                 [
-                    'label' => 'Convention étudiante :'
+                    'label' => 'Convention étudiante :',
                 ]
             )
             // job

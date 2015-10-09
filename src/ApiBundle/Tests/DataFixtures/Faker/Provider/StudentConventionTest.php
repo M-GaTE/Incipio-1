@@ -14,7 +14,6 @@ namespace ApiBundle\Tests\DataFixtures\Faker\Provider;
 use ApiBundle\DataFixtures\Faker\Provider\StudentConventionProvider;
 use ApiBundle\Tests\Mocks\Faker\GeneratorMock;
 use Faker\Factory;
-use Faker\Generator;
 
 /**
  * @coversDefaultClass ApiBundle\DataFixtures\Faker\Provider\StudentConventionProvider
@@ -43,6 +42,7 @@ class StudentConventionTest extends \PHPUnit_Framework_TestCase
     {
         $fakerGenerator = Factory::create();
         new StudentConventionProvider($fakerGenerator);
+        $this->assertTrue(true);
     }
 
     /**

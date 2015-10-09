@@ -12,7 +12,6 @@
 namespace Incipio\Tests\Behat\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
@@ -38,6 +37,7 @@ class FrontContext extends MinkContext implements Context
 
     /**
      * @Given /^I should see a paginated table "(?P<element>[^"]*)" with the columns:$/
+     *
      * @param string    $element
      * @param TableNode $table
      *
@@ -89,7 +89,7 @@ class FrontContext extends MinkContext implements Context
             // At this point, we want to check that $rowNodeElements contains a rows matching $row
             $rowMatches = false;
             foreach ($rowNodeElements as $rowNodeElement) {
-                /** @var NodeElement $rowNodeElement */
+                /* @var NodeElement $rowNodeElement */
                 try {
                     // Get the row cells
                     $cellNodeElements = $rowNodeElement->findAll('css', 'td');
@@ -157,6 +157,7 @@ class FrontContext extends MinkContext implements Context
      * @param string        $columnText
      *
      * @return int
+     *
      * @throws \Exception If no index is found
      */
     private function findTableIndex(array $elements, $columnText)
@@ -214,8 +215,8 @@ class FrontContext extends MinkContext implements Context
      */
     private function assertNodeElementContainsText(NodeElement $element, $text)
     {
-        $actual  = $element->getText();
-        $regex   = '/'.preg_quote($text, '/').'/ui';
+        $actual = $element->getText();
+        $regex = '/'.preg_quote($text, '/').'/ui';
 
         $message = sprintf(
             'The text "%s" was not found in the text of the %s.',

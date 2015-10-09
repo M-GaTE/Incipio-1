@@ -54,7 +54,6 @@ class UserManager extends BaseUserManager implements NonPersistentEntityManagerI
         return $entity instanceof UserInterface;
     }
 
-
     /**
      * {@inheritdoc}
      */

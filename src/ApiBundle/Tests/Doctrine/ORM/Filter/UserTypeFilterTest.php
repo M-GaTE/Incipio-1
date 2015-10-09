@@ -35,6 +35,8 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
         new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor);
         new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor, null);
         new UserTypeFilter($managerRegistry, $iriConverter, $propertyAccessor, []);
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -72,8 +74,8 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
 
         $filter->apply($resource->reveal(), $queryBuilder, $request);
 
-        $actualDQL   = strtolower($queryBuilder->getQuery()->getDQL());
-        $expectedDQL = strtolower(sprintf('SELECT o FROM ApiBundle\Entity\User o%s', ('' === $expectedDQL)?$expectedDQL: " $expectedDQL"));
+        $actualDQL = strtolower($queryBuilder->getQuery()->getDQL());
+        $expectedDQL = strtolower(sprintf('SELECT o FROM ApiBundle\Entity\User o%s', ('' === $expectedDQL) ? $expectedDQL : " $expectedDQL"));
 
         $this->assertEquals($expectedDQL, $actualDQL);
         $this->assertEquals(count($expectedParameters), count($queryBuilder->getParameters()));
@@ -100,28 +102,28 @@ class UserTypeFilterTest extends \PHPUnit_Framework_TestCase
                 '/api/dummies?filter[where][type]=TYPE_CONTRACTOR',
                 'WHERE o.types LIKE :user_type',
                 [
-                    'user_type' => '%TYPE_CONTRACTOR%'
+                    'user_type' => '%TYPE_CONTRACTOR%',
                 ],
             ],
             [
                 '/api/dummies?filter[where][type]=contractor',
                 'WHERE o.types LIKE :user_type',
                 [
-                    'user_type' => '%TYPE_CONTRACTOR%'
+                    'user_type' => '%TYPE_CONTRACTOR%',
                 ],
             ],
             [
                 '/api/dummies?filter[where][type]=TYPE_MEMBER',
                 'WHERE o.types LIKE :user_type',
                 [
-                    'user_type' => '%TYPE_MEMBER%'
+                    'user_type' => '%TYPE_MEMBER%',
                 ],
             ],
             [
                 '/api/dummies?filter[where][type]=member',
                 'WHERE o.types LIKE :user_type',
                 [
-                    'user_type' => '%TYPE_MEMBER%'
+                    'user_type' => '%TYPE_MEMBER%',
                 ],
             ],
             [

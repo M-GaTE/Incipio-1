@@ -18,7 +18,6 @@ use Dunglas\ApiBundle\Api\ResourceInterface;
 use Dunglas\ApiBundle\Doctrine\Orm\Filter\FilterInterface;
 use Fidry\LoopBackApiBundle\Filter\FilterTrait;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
@@ -51,7 +50,7 @@ abstract class AbstractResourceSearchFilter implements FilterInterface
     ) {
         $this->iriConverter = $iriConverter;
         $this->propertyAccessor = $propertyAccessor;
-        $this->properties = (null === $properties)? $properties: array_flip($properties);
+        $this->properties = (null === $properties) ? $properties : array_flip($properties);
     }
 
     /**
@@ -78,8 +77,6 @@ abstract class AbstractResourceSearchFilter implements FilterInterface
      * @param ResourceInterface $resource
      * @param QueryBuilder      $queryBuilder
      * @param array             $queryValues
-     *
-     * @return void
      */
     abstract protected function applyFilter(
         ResourceInterface $resource,
