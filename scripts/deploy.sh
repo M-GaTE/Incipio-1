@@ -16,14 +16,19 @@ configTravis() {
   if [[ -z "$GITHUB_USER_NAME" ]] || [[ -z "$GITHUB_USER_EMAIL" ]]; then
     log "Could not configure Git user" --error
   else
-    GITHUB_USER_NAME="TravisBot"
-    GH_USER_EMAIL="travisbot@incipio.fr"
+    echo "    user: $GITHUB_USER_NAME"
+    echo "    temail: $GITHUB_USER_EMAIL"
+
+    git config --global user.name "$GITHUB_USER_NAME"
+    git config --global user.email "$GITHUB_USER_EMAIL"
   fi
 
   log "Install necessary packages";
-  pip install ghp-import --user
+  echo "install mkdocs --user"
   pip install mkdocs --user
+  echo "global require halleck45/phpmetrics --no-update"
   composer global require halleck45/phpmetrics --no-update
+  echo "composer global require apigen/apigen --no-update"
   composer global require apigen/apigen --no-update
 
   log "Deployment configuration read" --success
