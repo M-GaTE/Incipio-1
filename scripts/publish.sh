@@ -42,7 +42,7 @@ publishToGithubPages() {
 
   cd gh-pages
   git add --all
-  git commit -m "$GITHUB_PAGES_COMMIT_MESSAGE"
+  git commit --message --quiet "$GITHUB_PAGES_COMMIT_MESSAGE"
   git push --force origin gh-pages
 
   log "Artefacts published, head to https://in6pio.github.io/Incipio" --success
