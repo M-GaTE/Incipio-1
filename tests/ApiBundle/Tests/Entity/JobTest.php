@@ -57,8 +57,7 @@ class JobTest extends AbstractEntityTestCase
             ->setTitle($data['title'])
             ->setAbbreviation($data['abbreviation'])
             ->setEnabled($data['enabled'])
-            ->setMandate($mandate)
-        ;
+            ->setMandate($mandate);
         foreach ($data['users'] as $user) {
             // Is added two times to ensure the adder handles duplications and will add it only one time
             $job->addUser($user);
@@ -94,8 +93,7 @@ class JobTest extends AbstractEntityTestCase
             ->setTitle(null)
             ->setAbbreviation(null)
             ->setEnabled(true)
-            ->setMandate(null)
-        ;
+            ->setMandate(null);
         foreach ($data['users'] as $user) {
             $job->removeUser($user);
         }
@@ -133,8 +131,7 @@ class JobTest extends AbstractEntityTestCase
             ->setTitle($data['title'])
             ->setAbbreviation($data['abbreviation'])
             ->setEnabled($data['enabled'])
-            ->setMandate($mandate)
-        ;
+            ->setMandate($mandate);
         foreach ($data['users'] as $user) {
             // Is added two times to ensure the adder handles duplications and will add it only one time
             $job->addUser($user);
@@ -203,8 +200,7 @@ class JobTest extends AbstractEntityTestCase
         $user = (new User())
             ->setEmail('dummy@example.com')
             ->setPassword('dummyPassword')
-            ->setUsername('dummy.username')
-        ;
+            ->setUsername('dummy.username');
 
         return $user;
     }
@@ -216,9 +212,50 @@ class JobTest extends AbstractEntityTestCase
     {
         $mandate = (new Mandate())
             ->setName('Dummy Mandate')
-            ->setStartAt(new \DateTime())
-        ;
+            ->setStartAt(new \DateTime());
 
         return $mandate;
+    }
+
+    /**
+     * @coversNothing
+     * @dataProvider validDataProvider
+     */
+    public function testValidationConstraintsWithValidData($data, $groups = null)
+    {
+        $this->markTestSkipped('TODO, see ::validDataProvider');
+    }
+
+    /**
+     * @coversNothing
+     * @dataProvider invalidDataProvider
+     */
+    public function testValidationConstraintsWithInvalidData($data, $groups = null)
+    {
+        $this->markTestSkipped('TODO, see ::invalidDataProvider');
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @TODO
+     */
+    public function validDataProvider()
+    {
+        return [
+            ['tempo', 'tempo'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @TODO
+     */
+    public function invalidDataProvider()
+    {
+        return [
+            ['tempo', 'tempo'],
+        ];
     }
 }

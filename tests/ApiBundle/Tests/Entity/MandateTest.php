@@ -168,4 +168,46 @@ class MandateTest extends AbstractEntityTestCase
 
         return $job;
     }
+
+    /**
+     * @coversNothing
+     * @dataProvider validDataProvider
+     */
+    public function testValidationConstraintsWithValidData($data, $groups = null)
+    {
+        $this->markTestSkipped('TODO, see ::validDataProvider');
+    }
+
+    /**
+     * @coversNothing
+     * @dataProvider invalidDataProvider
+     */
+    public function testValidationConstraintsWithInvalidData($data, $groups = null)
+    {
+        $this->markTestSkipped('TODO, see ::invalidDataProvider');
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @TODO
+     */
+    public function validDataProvider()
+    {
+        return [
+            ['tempo', 'tempo'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @TODO
+     */
+    public function invalidDataProvider()
+    {
+        return [
+            ['tempo', 'tempo'],
+        ];
+    }
 }
