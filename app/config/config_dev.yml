@@ -7,10 +7,12 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
-web_profiler:
-    toolbar:             true
-    intercept_redirects: false
+# AliceBundle
+hautelook_alice:
+    locale:   %locale%
+    seed:     %seed%
 
+# Monolog
 monolog:
     handlers:
         main:
@@ -32,3 +34,8 @@ monolog:
                 VERBOSITY_VERY_VERBOSE: NOTICE
                 VERBOSITY_DEBUG:        DEBUG
             channels: [ doctrine ]
+
+# Web Profiler
+web_profiler:
+    toolbar:             true
+    intercept_redirects: false

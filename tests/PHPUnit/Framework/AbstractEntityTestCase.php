@@ -9,21 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Test\Entity;
+namespace PHPUnit\Framework;
 
-use ApiBundle\Test\FluentTestCaseInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\PropertyAccess\StringUtil;
 
 /**
- * Class EntityTestCase: test case for entities.
- *
- * @link   http://en.wikipedia.org/wiki/Fluent_interface
+ * Base class for entity tests.
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTestCaseInterface
+abstract class AbstractEntityTestCase extends KernelTestCase implements EntityTestCaseInterface
 {
     /**
      * @var \Doctrine\Bundle\DoctrineBundle\Registry
@@ -59,7 +56,7 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     }
 
     /**
-     * @return string Tested entity FQCN
+     * {@inheritdoc}
      */
     abstract public function getEntityClassName();
 
@@ -107,35 +104,17 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     }
 
     /**
-     * @testdox Test the entity property accessors (getters, setters, hassers, issers).
-     *
-     * @param array $data
-     */
-    abstract public function testPropertyAccessors(array $data = []);
-
-    /**
-     * Ensure that when the entity is deleted, the relations are properly unset.
-     *
-     * @coversNothing
-     *
-     * @param array $data
-     *
-     * @return
-     */
-    abstract public function testDeleteEntity(array $data = []);
-
-    /**
      * @return array Optimal set of data for generating a complete entity.
      */
     abstract public function fluentDataProvider();
 
     /**
-     * @testdox Test the model validation constraints with valid data.
+     * {@inheritdoc}
      *
      * @coversNothing
      * @dataProvider validDataProvider
      */
-    public function testValidationConstraintsWithValidData($data, $groups = null)
+    public function testValidationConstraintsWithValidData(array $data, $groups = null)
     {
         $reflClass = new \ReflectionClass($this->getEntityClassName());
         $entity = $reflClass->newInstanceArgs($data);
@@ -144,12 +123,12 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     }
 
     /**
-     * @testdox Test the model validation constraints with invalid data.
+     * {@inheritdoc}
      *
      * @coversNothing
      * @dataProvider invalidDataProvider
      */
-    public function testValidationConstraintsWithInvalidData($data, $groups = null)
+    public function testValidationConstraintsWithInvalidData(array $data, $groups = null)
     {
         $reflClass = new \ReflectionClass($this->getEntityClassName());
         $entity = $reflClass->newInstanceArgs($data);
@@ -170,7 +149,7 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     abstract public function invalidDataProvider();
 
     /**
-     * Camelizes a given string.
+     * Will camelize a given string.
      *
      * @see \Symfony\Component\PropertyAccessor::camelize()
      *

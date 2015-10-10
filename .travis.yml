@@ -10,7 +10,7 @@ env:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
     - GITHUB_PAGES_COMMIT_MESSAGE="Rebuild pages at $(git rev-parse --short HEAD)"
     - if [[ -z "$GITHUB_PAGES_TOKEN" ]]; then
-        then GITHUB_PAGES_REMOTE="https://user:${GITHUB_PAGES_TOKEN}@github.com/in6pio/Incipio.git";
+        GITHUB_PAGES_REMOTE="https://user:${GITHUB_PAGES_TOKEN}@github.com/in6pio/Incipio.git";
       fi;
     - GITHUB_USER_NAME="TravisBot"
     - GITHUB_USER_EMAIL="travisbot@incipio.fr"

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Test;
+namespace PHPUnit\Framework;
 
 /**
- * Interface FluentTestCaseInterface: test case to insure the tested class properly implements the fluent interface.
+ * Tests cases implementing this interface will ensure the tested elements will implements the fluent interface.
  *
  * @link   http://en.wikipedia.org/wiki/Fluent_interface
  *
@@ -21,11 +21,10 @@ namespace ApiBundle\Test;
 interface FluentTestCaseInterface
 {
     /**
+     * @coversNothing
      * @testdox Test if the class properly implements the fluent interface.
      *
      * @param array $data Set of data to hydrate the entity with.
-     *
-     * @return
      */
     public function testFluentImplementation(array $data = []);
 }

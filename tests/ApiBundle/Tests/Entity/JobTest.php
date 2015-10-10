@@ -14,7 +14,7 @@ namespace ApiBundle\Tests\Entity;
 use ApiBundle\Entity\Job;
 use ApiBundle\Entity\Mandate;
 use ApiBundle\Entity\User;
-use ApiBundle\Test\Entity\AbstractEntityTestCase;
+use PHPUnit\Framework\AbstractEntityTestCase;
 
 /**
  * @coversDefaultClass ApiBundle\Entity\Job
@@ -221,7 +221,7 @@ class JobTest extends AbstractEntityTestCase
      * @coversNothing
      * @dataProvider validDataProvider
      */
-    public function testValidationConstraintsWithValidData($data, $groups = null)
+    public function testValidationConstraintsWithValidData(array $data, $groups = null)
     {
         $this->markTestSkipped('TODO, see ::validDataProvider');
     }
@@ -230,7 +230,7 @@ class JobTest extends AbstractEntityTestCase
      * @coversNothing
      * @dataProvider invalidDataProvider
      */
-    public function testValidationConstraintsWithInvalidData($data, $groups = null)
+    public function testValidationConstraintsWithInvalidData(array $data, $groups = null)
     {
         $this->markTestSkipped('TODO, see ::invalidDataProvider');
     }
@@ -243,7 +243,7 @@ class JobTest extends AbstractEntityTestCase
     public function validDataProvider()
     {
         return [
-            ['tempo', 'tempo'],
+            [[], 'tempo'],
         ];
     }
 
@@ -255,7 +255,7 @@ class JobTest extends AbstractEntityTestCase
     public function invalidDataProvider()
     {
         return [
-            ['tempo', 'tempo'],
+            [[], 'tempo'],
         ];
     }
 }
