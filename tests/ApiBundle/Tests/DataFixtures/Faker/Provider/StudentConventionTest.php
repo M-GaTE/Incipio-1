@@ -12,7 +12,7 @@
 namespace ApiBundle\Tests\DataFixtures\Faker\Provider;
 
 use ApiBundle\DataFixtures\Faker\Provider\StudentConventionProvider;
-use ApiBundle\Tests\Mocks\Faker\GeneratorMock;
+use ApiBundle\Test\Mock\Faker\GeneratorMock;
 use Faker\Factory;
 
 /**

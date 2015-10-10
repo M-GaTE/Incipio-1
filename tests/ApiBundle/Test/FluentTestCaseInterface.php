@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Tests;
+namespace ApiBundle\Test;
 
 /**
  * Interface FluentTestCaseInterface: test case to insure the tested class properly implements the fluent interface.

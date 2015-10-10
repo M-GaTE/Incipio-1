@@ -14,6 +14,7 @@ namespace ApiBundle\Tests\Entity;
 use ApiBundle\Entity\Job;
 use ApiBundle\Entity\Mandate;
 use ApiBundle\Entity\User;
+use ApiBundle\Test\Entity\AbstractEntityTestCase;
 
 /**
  * @coversDefaultClass ApiBundle\Entity\Job

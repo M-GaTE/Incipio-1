@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7b61fdc3ecc1124ab766561551ad7702",
+    "hash": "7b2c7707f9f36d8c6721520482dfc57d",
     "content-hash": "9cf11d2efd999ce2fb3ed91b45c8bbf1",
     "packages": [
         {
@@ -4545,16 +4545,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "86e0dafb0e6c5165cce7b3b6892807d07504baa0"
+                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/86e0dafb0e6c5165cce7b3b6892807d07504baa0",
-                "reference": "86e0dafb0e6c5165cce7b3b6892807d07504baa0",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c84f05be256cd7c9d2340b26f7995b4afbf8787b",
+                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b",
                 "shasum": ""
             },
             "require": {
@@ -4603,7 +4603,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-01 06:48:20"
+            "time": "2015-10-06 15:51:05"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4785,16 +4785,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.0.3",
+            "version": "5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dfba490b017ca629940ed4301922ad8843f0abd0"
+                "reference": "6b3a71e90026801f6bcfd1d72cce4a06685c2637"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dfba490b017ca629940ed4301922ad8843f0abd0",
-                "reference": "dfba490b017ca629940ed4301922ad8843f0abd0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6b3a71e90026801f6bcfd1d72cce4a06685c2637",
+                "reference": "6b3a71e90026801f6bcfd1d72cce4a06685c2637",
                 "shasum": ""
             },
             "require": {
@@ -4855,7 +4855,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-02 12:56:15"
+            "time": "2015-10-07 10:45:35"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5147,16 +5147,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "c7428acdb62ece0a45e6306f1ae85e1c05b09c01"
+                "reference": "23af31f402993cfd94e99cbc4b782e9a78eb0e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/c7428acdb62ece0a45e6306f1ae85e1c05b09c01",
-                "reference": "c7428acdb62ece0a45e6306f1ae85e1c05b09c01",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/23af31f402993cfd94e99cbc4b782e9a78eb0e97",
+                "reference": "23af31f402993cfd94e99cbc4b782e9a78eb0e97",
                 "shasum": ""
             },
             "require": {
@@ -5194,7 +5194,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2014-10-06 09:23:50"
+            "time": "2015-06-21 15:11:22"
         },
         {
             "name": "sebastian/recursion-context",
@@ -5493,22 +5493,22 @@
         },
         {
             "name": "theofidry/alice-bundle-extension",
-            "version": "v1.0.0-beta.3",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theofidry/AliceBundleExtension.git",
-                "reference": "f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9"
+                "reference": "6c97cdeaa24ae97e8591a64ae8b05cc475d378a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/AliceBundleExtension/zipball/f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9",
-                "reference": "f6d511cc2e0c0e9fd5dd704c7a814e1517fa25e9",
+                "url": "https://api.github.com/repos/theofidry/AliceBundleExtension/zipball/6c97cdeaa24ae97e8591a64ae8b05cc475d378a0",
+                "reference": "6c97cdeaa24ae97e8591a64ae8b05cc475d378a0",
                 "shasum": ""
             },
             "require": {
                 "behat/behat": "~3.0",
                 "behat/symfony2-extension": "^2.0",
-                "hautelook/alice-bundle": "~1.0@beta",
+                "hautelook/alice-bundle": "~1.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -5551,7 +5551,7 @@
                 "orm",
                 "symfony"
             ],
-            "time": "2015-09-15 10:09:46"
+            "time": "2015-10-06 08:54:56"
         }
     ],
     "aliases": [],

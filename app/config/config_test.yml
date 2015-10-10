@@ -16,7 +16,7 @@ doctrine:
 stof_doctrine_extensions:
     class:
         # Overrides Timestampable listener to set fix values for createAt and updatedAt dates to ease the testing
-        timestampable:  ApiBundle\Tests\Mocks\EventListener\TimestampableListenerMock
+        timestampable:  ApiBundle\Test\Mock\EventListener\TimestampableListenerMock
     orm:
         default:
             timestampable: true

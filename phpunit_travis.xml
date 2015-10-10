@@ -20,21 +20,21 @@
 
     <testsuites>
         <testsuite name="App">
-            <directory>src/ApiBundle/Tests</directory>
-            <directory>src/ApiBundle/Bundle/*Bundle/Tests</directory>
+            <directory>tests/ApiBundle/Tests</directory>
+            <directory>tests/ApiBundle/Bundle/*Bundle/Tests</directory>
 
-            <directory>src/FrontBundle/Tests</directory>
-            <directory>src/FrontBundle/Bundle/*Bundle/Tests</directory>
+            <directory>tests/FrontBundle/Tests</directory>
+            <directory>tests/FrontBundle/Bundle/*Bundle/Tests</directory>
         </testsuite>
 
         <testsuite name="ApiBundle">
-            <directory>src/ApiBundle/Tests</directory>
-            <directory>src/ApiBundle/Bundle/*Bundle/Tests</directory>
+            <directory>tests/ApiBundle/Tests</directory>
+            <directory>tests/ApiBundle/Bundle/*Bundle/Tests</directory>
         </testsuite>
 
         <testsuite name="FrontBundle">
-            <directory>src/FrontBundle/Tests</directory>
-            <directory>src/FrontBundle/Bundle/*Bundle/Tests</directory>
+            <directory>tests/FrontBundle/Tests</directory>
+            <directory>tests/FrontBundle/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -44,13 +44,10 @@
             <directory>features/bootstrap</directory>
             <exclude>
                 <directory>src/*Bundle/Resources</directory>
-                <directory>src/*Bundle/Tests</directory>
                 <directory>src/*Bundle/DataFixtures/ORM</directory>
                 <directory>src/*/*Bundle/Resources</directory>
-                <directory>src/*/*Bundle/Tests</directory>
                 <directory>src/*/*Bundle/DataFixtures/ORM</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
-                <directory>src/*/Bundle/*Bundle/Tests</directory>
                 <directory>src/*/Bundle/*Bundle/DataFixtures/ORM</directory>
                 <directory>src/PHPUnit</directory>
                 <directory>features/bootstrap/Context</directory>
