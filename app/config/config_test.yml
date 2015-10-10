@@ -13,6 +13,7 @@ doctrine:
     dbal:
         dbname: %database_name%
 
+# Doctrine Extensions
 stof_doctrine_extensions:
     class:
         # Overrides Timestampable listener to set fix values for createAt and updatedAt dates to ease the testing
@@ -21,9 +22,11 @@ stof_doctrine_extensions:
         default:
             timestampable: true
 
+# SwiftMailer
 swiftmailer:
     disable_delivery: true
 
+# Web Profiler
 web_profiler:
     toolbar:             false
     intercept_redirects: false

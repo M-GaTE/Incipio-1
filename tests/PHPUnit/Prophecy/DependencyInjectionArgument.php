@@ -17,7 +17,7 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
- * Extends {@see \Prophecy\Argument}.
+ * Extends {@see \Prophecy\Argument} for providing helpers for testing dependency injection elements.
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */

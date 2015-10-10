@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
 
 framework:
-    #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
     secret:          %secret%
     router:
@@ -64,14 +63,8 @@ fos_user:
         user_manager: api.entity_manager.user_manager
     user_class:       ApiBundle\Entity\User
 
-# AliceBundle
-hautelook_alice:
-    locale:   %locale%
-    seed:     %seed%
-
 # KnpMenuBundle
 knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
         template: knp_menu.html.twig
     templating: false
@@ -114,7 +107,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
 
-# Swiftmailer
+# Swift Mailer
 swiftmailer:
     transport: %mailer_transport%
     host:      %mailer_host%

@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle(),
             new Dunglas\ApiBundle\DunglasApiBundle(),
             new Fidry\LoopBackApiBundle\LoopBackApiBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
@@ -41,10 +42,8 @@ class AppKernel extends Kernel
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
-            $bundles[] = new Csa\Bundle\GuzzleBundle\CsaGuzzleBundle();
             $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }

@@ -1,21 +1,25 @@
 imports:
     - { resource: config.yml }
 
+# TODO: active it once the cache will have been configured
 #framework:
 #    validation:
 #        cache: validator.mapping.cache.apc
 #    serializer:
 #        cache: serializer.mapping.cache.apc
 
+# TODO: active it once the cache will have been configured
 #dunglas_json_ld_api:
 #    cache: dunglas_json_ld_api.mapping.cache.apc
 
+# TODO: active it once the cache will have been configured
 #doctrine:
 #    orm:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc
 #        query_cache_driver: apc
 
+# Monolog
 monolog:
     handlers:
         main:
@@ -29,6 +33,7 @@ monolog:
         console:
             type:  console
 
-nelmio_api_doc:
-    cache:
-        enabled: true
+# TODO: active it once the issue with nelmio api doc and DunglasApiBundle has been resolved
+#nelmio_api_doc:
+#    cache:
+#        enabled: true
