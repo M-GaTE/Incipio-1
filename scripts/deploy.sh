@@ -2,7 +2,7 @@
 #
 # Functions for publishing and deploying artefacts
 
-configTravis() {
+setupDeployment() {
   isDeployBuild
   if [[ 0 = "$?" ]]; then
     log "No deployment scheduled for this build"

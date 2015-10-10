@@ -42,7 +42,8 @@ before_install:
       echo -en "\e[34mimports ${file}\e[0m\n";
       source "$file";
     done;
-  - configTravis
+  - setupCoverage
+  - setupDeployment
 
 install:
   - composer global update --prefer-dist
@@ -59,3 +60,6 @@ script:
 
 after_success:
   - publishToGithubPages
+
+after_script:
+  - sendCoverageData
