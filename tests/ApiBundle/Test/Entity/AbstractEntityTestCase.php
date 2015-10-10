@@ -36,6 +36,11 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     protected $doctrineManager;
 
     /**
+     * @var \Symfony\Component\Validator\Validator\ValidatorInterface
+     */
+    protected $validator;
+
+    /**
      * {@inheritdoc}
      */
     public function setUp()
@@ -44,6 +49,7 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
         static::$kernel->boot();
         $this->doctrine = static::$kernel->getContainer()->get('doctrine');
         $this->doctrineManager = $this->doctrine->getManager();
+        $this->validator = static::$kernel->getContainer()->get('validator');
 
         // Recreate a fresh database instance before each test case
         $metadata = $this->doctrineManager->getMetadataFactory()->getAllMetadata();
@@ -51,6 +57,11 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
         $schemaTool->dropSchema($metadata);
         $schemaTool->createSchema($metadata);
     }
+
+    /**
+     * @return string Tested entity FQCN
+     */
+    abstract public function getEntityClassName();
 
     /**
      * {@inheritdoc}
@@ -99,8 +110,6 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
      * @testdox Test the entity property accessors (getters, setters, hassers, issers).
      *
      * @param array $data
-     *
-     * @return
      */
     abstract public function testPropertyAccessors(array $data = []);
 
@@ -116,9 +125,49 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
     abstract public function testDeleteEntity(array $data = []);
 
     /**
-     * Provides an optimal set of data for generating a complete entity.
+     * @return array Optimal set of data for generating a complete entity.
      */
     abstract public function fluentDataProvider();
+
+    /**
+     * @testdox Test the model validation constraints with valid data.
+     *
+     * @coversNothing
+     * @dataProvider validDataProvider
+     */
+    public function testValidationConstraintsWithValidData($data, $groups = null)
+    {
+        $reflClass = new \ReflectionClass($this->getEntityClassName());
+        $entity = $reflClass->newInstanceArgs($data);
+
+        $this->assertCount(0, $this->validator->validate($entity, null, $groups));
+    }
+
+    /**
+     * @testdox Test the model validation constraints with invalid data.
+     *
+     * @coversNothing
+     * @dataProvider invalidDataProvider
+     */
+    public function testValidationConstraintsWithInvalidData($data, $groups = null)
+    {
+        $reflClass = new \ReflectionClass($this->getEntityClassName());
+        $entity = $reflClass->newInstanceArgs($data);
+
+        $this->assertNotCount(0, $this->validator->validate($entity, null, $groups));
+    }
+
+    /**
+     * @return array Set of data for generating an entity which should pass the validator validation without rising any
+     *               violation.
+     */
+    abstract public function validDataProvider();
+
+    /**
+     * @return array Set of data for generating an entity which should pass the validator validation without rising any
+     *               violation.
+     */
+    abstract public function invalidDataProvider();
 
     /**
      * Camelizes a given string.
@@ -186,9 +235,4 @@ abstract class AbstractEntityTestCase extends KernelTestCase implements FluentTe
 
         return false;
     }
-
-    /**
-     * @return string Tested entity FQCN
-     */
-    abstract public function getEntityClassName();
 }
