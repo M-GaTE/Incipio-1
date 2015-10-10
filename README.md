@@ -7,6 +7,8 @@
 [![Project Dependency Status](https://www.versioneye.com/user/projects/558a9292306662001d0003a4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/558a9292306662001d0003a4)
 [![License](https://img.shields.io/badge/Licence-GNU%20AGPL-red.svg?style=flat-square)](LICENSE)
 
+[![Join the chat at https://gitter.im/in6pio/Incipio](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/in6pio/Incipio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 *« Incipio : Prendre en main, se mettre à entreprendre, commencer »*
 
 Incipio est un projet qui vise à bâtir un [ERP](http://fr.wikipedia.org/wiki/Progiciel_de_gestion_int%C3%A9gr%C3%A9) communautaire et libre pour l’ensemble des structures de type Junior-Entreprise, faisant partie ou non de la [CNJE](http://www.junior-entreprises.com/).
