@@ -54,6 +54,7 @@ class Job
      * @ORM\Column(type="boolean")
      * @Assert\Type("bool")
      * @Assert\NotNull
+     * @Groups({"job", "user"})
      */
     private $enabled = true;
 
@@ -73,6 +74,7 @@ class Job
      * @ORM\Column(type="string", length=255)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
+     * @Assert\NotBlank
      * @Groups({"job", "user"})
      */
     private $title;

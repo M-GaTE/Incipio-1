@@ -1,0 +1,12 @@
+ApiBundle\Entity\Job:
+    job_0:
+        title: AAA
+        abbreviation: BBB
+
+    job_1:
+        title: AAb
+        abbreviation: BBc
+
+    job_2:
+        title: YYY
+        abbreviation: ZZZ

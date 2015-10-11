@@ -12,7 +12,7 @@
     "autoload-dev": {
         "psr-4": {
             "": "tests/",
-            "Incipio\\Test\\Behat\\": "features/bootstrap"
+            "Behat\\": "features/bootstrap"
         }
     },
     "require": {
@@ -58,7 +58,7 @@
         "style:check": "php bin/php-cs-fixer fix -n --dry-run --diff -v --ansi src && php bin/php-cs-fixer fix -n --dry-run --diff -v --ansi features ",
         "style:fix": "php bin/php-cs-fixer fix -v --diff --ansi src && php bin/php-cs-fixer fix -v --diff --ansi features",
         "test": "composer test:db && composer test:phpunit && composer test:behat && composer test:security",
-        "test:db": "php app/console d:s:v --ansi",
+        "test:db": "php app/console d:s:v --ansi --env=test",
         "test:security": "php bin/security-checker security:check --ansi",
         "test:phpunit": "php bin/phpunit -c phpunit_travis.xml --testsuite App --colors=always",
         "test:phpunit:api": "php bin/phpunit -c phpunit_travis.xml --testsuite ApiBundle --colors=always",

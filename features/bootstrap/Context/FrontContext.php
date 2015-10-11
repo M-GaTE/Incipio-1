@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Incipio\Test\Behat\Context;
+namespace Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
