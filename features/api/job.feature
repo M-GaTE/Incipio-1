@@ -201,6 +201,9 @@ Feature: Jobs management
     And the JSON should be equal to:
     """
     """
+    
+    When I send a DELETE request to "/api/jobs/1"
+    Then the response status code should be 404
 
     When I send a GET request to "/api/mandates/1"
     Then the JSON node "jobs" should have 0 element

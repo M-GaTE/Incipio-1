@@ -11,7 +11,7 @@
 
 namespace ApiBundle\DataFixtures\Faker\Provider;
 
-use Faker\Provider\DateTime as DateTimeProvider;
+use Faker\Provider\DateTime as FakerDateTimeProvider;
 
 /**
  * Faker provider for mandates.
@@ -20,7 +20,7 @@ use Faker\Provider\DateTime as DateTimeProvider;
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class MandateProvider extends DateTimeProvider
+class MandateProvider extends FakerDateTimeProvider
 {
     /**
      * Generate a datetime starting from the date given and on a period going from 3 month to 2 years.

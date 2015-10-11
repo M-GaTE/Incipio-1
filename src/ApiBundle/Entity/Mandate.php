@@ -111,17 +111,41 @@ class Mandate
     }
 
     /**
+     * @param Job[] $jobs
+     *
+     * @return $this
+     *
+     * @throws \InvalidArgumentException If jobs type is incorrect
+     */
+    public function setJobs($jobs)
+    {
+        $this->jobs = new ArrayCollection();
+        foreach ($jobs as $job) {
+            $this->addJob($job);
+        }
+
+        return $this;
+    }
+
+    /**
      * Adds Job. Will automatically update job's mandate too.
      *
      * @param Job $job
      *
      * @return $this
+     *
+     * @throws \InvalidArgumentException If job type is incorrect
      */
-    public function addJob(Job $job)
+    public function addJob($job)
     {
+        if (false === $job instanceof Job) {
+            throw new \InvalidArgumentException('Unexpected type.');
+        }
+
         // Check for duplication
         if (false === $this->jobs->contains($job)) {
             $this->jobs->add($job);
+            $this->jobs = new ArrayCollection(array_values($this->jobs->toArray()));
         }
 
         // Ensure the relation is bidirectional

@@ -12,6 +12,7 @@
 namespace ApiBundle\Doctrine\DBAL\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\DateTimeType;
 
 /**
@@ -40,10 +41,28 @@ class UTCDateTimeType extends DateTimeType
      */
     public function convertToPHPValue($databaseValue, AbstractPlatform $platform)
     {
-        $phpValue = parent::convertToPHPValue($databaseValue, $platform);
+        if (null === $databaseValue || $databaseValue instanceof \DateTime) {
+            return $databaseValue;
+        }
 
-        if ($phpValue instanceof \DateTime) {
-            $phpValue->setTimeZone(new \DateTimeZone('UTC'));
+        // The changed part is the following bloc where we put the DateTimeZone as the third argument rather than
+        // relying on the local timezone
+        $phpValue = \DateTime::createFromFormat(
+            $platform->getDateTimeFormatString(),
+            $databaseValue,
+            new \DateTimeZone('UTC')
+        );
+
+        if (false === $phpValue) {
+            $phpValue = date_create($databaseValue);
+        }
+
+        if (false === $phpValue) {
+            throw ConversionException::conversionFailedFormat(
+                $databaseValue,
+                $this->getName(),
+                $platform->getDateTimeFormatString()
+            );
         }
 
         return $phpValue;

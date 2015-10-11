@@ -1,0 +1,39 @@
+ApiBundle\Entity\Mandate:
+    mandate_2005:
+        startAt:       <dateTimeFromFormat(DateTime::ATOM, '2005-06-25T16:43:30+00:00')>
+        endAt:         <dateTimeFromFormat(DateTime::ATOM, '2006-04-17T09:38:34+00:00')>
+        jobs:          [ @job_president, @job_pr, @job__1 ]
+
+    mandate_2006:
+        startAt:       <startMandateDateTime(2006)>
+        endAt:         <endMandateDateTime($startAt)>
+
+ApiBundle\Entity\Job:
+    job (template):
+        title:        <jobTitle()>
+        abbreviation: <jobAbbreviation()>
+        enabled:      <boolean()>
+        #user:        Should be kept unset since because is set in the user entity
+        #mandate:     Should be kept unset since because is set in the mandate entity
+
+    job_president (extends job):
+        title:        President
+        abbreviation: PR
+        enabled:      true
+
+    job_pr (extends job):
+        abbreviation: PR
+
+    job__{1..9} (extends job): {}
+
+ApiBundle\Entity\User:
+    user_president:
+        username:          president.tendiserp
+        fullname:          Président TENDISERP
+        email:             president.tendiserp@incipio.fr
+        roles:             [ ROLE_ADMIN ]
+        plainPassword:     guest
+        enabled:           true
+        jobs:              [ @job_president ]
+        studentConvention: ~
+        types:             <userTypes('member')>
