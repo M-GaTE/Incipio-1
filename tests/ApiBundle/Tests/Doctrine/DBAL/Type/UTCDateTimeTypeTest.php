@@ -54,19 +54,18 @@ class UTCDateTimeTypeTest extends \PHPUnit_Framework_TestCase
      * @testbox Convert to PHP value
      *
      * @covers ::convertToPHPValue
-     * @dataProvider databaseValueProvider
      */
-    public function testConvertToPHPValue($databaseDate)
+    public function testConvertToPHPValue()
     {
         $platform = $this->prophesize(AbstractPlatform::class);
-        $platform->getDateTimeFormatString()->willReturn('e');
-        $actual = $this->type->convertToPHPValue($databaseDate, $platform->reveal());
+        $platform->getDateTimeFormatString()->willReturn('Y-m-d H:i:s');
 
-        if (null === $databaseDate) {
-            $this->assertNull($actual);
-        } else {
-            $this->assertEquals('UTC', $actual->format('e'));
-        }
+        $phpValue = $this->type->convertToPHPValue('2012-02-10 15:10:50', $platform->reveal());
+        $this->assertEquals('2012-02-10 15:10:50', $phpValue->format('Y-m-d H:i:s'));
+        $this->assertEquals('UTC', $phpValue->getTimezone()->getName());
+
+        $phpValue = $this->type->convertToPHPValue(null, $platform->reveal());
+        $this->assertNull($phpValue);
     }
 
     public function phpValueProvider()
@@ -82,9 +81,7 @@ class UTCDateTimeTypeTest extends \PHPUnit_Framework_TestCase
     public function databaseValueProvider()
     {
         return [
-            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('UTC'))],
-            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Paris'))],
-            [\DateTime::createFromFormat('Y-m-d H:i:s', '2012-02-10 15:10:50', new \DateTimeZone('Europe/Zurich'))],
+            ['2012-02-10 15:10:50'],
             [null],
         ];
     }

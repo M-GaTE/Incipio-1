@@ -31,6 +31,10 @@ services:
     #
     # Faker's providers
     #
+    faker.provider.datetime:
+        class:     ApiBundle\DataFixtures\Faker\Provider\DateTimeProvider
+        tags:      [ { name: hautelook_alice.faker.provider } ]
+
     faker.provider.job:
         class:     ApiBundle\DataFixtures\Faker\Provider\JobProvider
         tags:      [ { name: hautelook_alice.faker.provider } ]
