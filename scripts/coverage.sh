@@ -8,7 +8,7 @@ SCRUTINIZER_COVERAGE_REPORT="dist/reports/phpunit/coverage.xml"
 setupCoverage() {
   if [[ "5.6" = "$TRAVIS_PHP_VERSION" ]]; then
     if [[ -n "$CODACY_PROJECT_TOKEN" ]]; then
-      log "Setting coverage configuration for Codacy"
+      log "Setting up coverage configuration for Codacy"
       echo "global require codacy/coverage --no-update"
       composer global require codacy/coverage --no-update;
     fi;
