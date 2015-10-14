@@ -51,7 +51,7 @@ csa_guzzle:
     clients:
         local_api:
             config:
-                base_url: http://localhost
+                base_url: %front_base_url%
     profiler: %kernel.debug%
     logger:   %kernel.debug%
 

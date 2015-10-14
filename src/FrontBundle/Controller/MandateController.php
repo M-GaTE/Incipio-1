@@ -44,7 +44,7 @@ class MandateController extends BaseController
         $mandates = [];
         try {
             $mandates = $this->sendAndDecode(
-                $this->createRequest('GET', 'api_mandates_get_collection', $request),
+                $this->createRequest('GET', 'api_mandates_cget', $request),
                 true
             );
         } catch (ClientTransferException $exception) {
@@ -75,7 +75,7 @@ class MandateController extends BaseController
                 $mandate = $this->sendAndDecode(
                     $this->createRequest(
                         'POST',
-                        'api_mandates_post_collection',
+                        'api_mandates_cpost',
                         $request,
                         [
                             'json' => $formData,
@@ -114,7 +114,7 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -158,7 +158,7 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -203,7 +203,7 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                     $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -215,7 +215,7 @@ class MandateController extends BaseController
 
             if ($editForm->isValid()) {
                 $updateRequest = $this->createRequest('PUT',
-                    'api_mandates_put_item',
+                    'api_mandates_put',
                     $request,
                     [
                         'json' => $editForm->getData(),
@@ -268,7 +268,7 @@ class MandateController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'DELETE',
-                        'api_mandates_delete_item',
+                        'api_mandates_delete',
                         $request,
                         [
                             'parameters' => ['id' => $id],
