@@ -42,8 +42,9 @@ publishToGithubPages() {
 
   cd gh-pages
   git add --all
-  git commit --message "$GITHUB_PAGES_COMMIT_MESSAGE"
+  git commit --quiet --message "$GITHUB_PAGES_COMMIT_MESSAGE"
   git push --force origin gh-pages
+  cd ..
 
   log "Done" --success
 }

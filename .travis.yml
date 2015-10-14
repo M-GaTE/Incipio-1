@@ -38,6 +38,7 @@ before_install:
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
   - composer global require phpunit/phpunit --no-update
+  - cp phpunit_travis.xml phpunit.xml
   - for file in scripts/*.sh; do
       echo -en "\e[34mimports ${file}\e[0m\n";
       source "$file";

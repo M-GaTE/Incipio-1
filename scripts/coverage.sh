@@ -9,11 +9,13 @@ setupCoverage() {
   if [[ "5.6" = "$TRAVIS_PHP_VERSION" ]]; then
     if [[ -n "$CODACY_PROJECT_TOKEN" ]]; then
       log "Setting coverage configuration for Codacy"
+      echo "global require codacy/coverage --no-update"
       composer global require codacy/coverage --no-update;
     fi;
 
-    log "Setting coverage configuration for Scrutinizer"
-    wget https://scrutinizer-ci.com/ocular.phar;
+    log "Setting up coverage configuration for Scrutinizer"
+    echo "https://scrutinizer-ci.com/ocular.phar"
+    wget --quiet https://scrutinizer-ci.com/ocular.phar;
   fi;
 }
 
@@ -25,7 +27,7 @@ sendCoverageData() {
 }
 
 sendCodacyCoverageData() {
-  log "Sending Codacy coverage data"
+  log "Sending up Codacy coverage data"
 
   if [[ ! -n "$CODACY_PROJECT_TOKEN" ]]; then
     log "Codacy API token not defined. Aborting" --error

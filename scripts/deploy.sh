@@ -10,7 +10,7 @@ setupDeployment() {
     exit 0;
   fi
 
-  log "Prepare deployment for this build";
+  log "Setting up deployment configuration";
 
   log "Setting Git user configuration";
   if [[ -z "$GITHUB_USER_NAME" ]] || [[ -z "$GITHUB_USER_EMAIL" ]]; then
@@ -24,14 +24,14 @@ setupDeployment() {
   fi
 
   log "Installing necessary packages";
-  echo "install mkdocs --user"
+  echo "pip install mkdocs --user"
   pip install mkdocs --user
   echo "global require halleck45/phpmetrics --no-update"
   composer global require halleck45/phpmetrics --no-update
   echo "composer global require apigen/apigen --no-update"
   composer global require apigen/apigen --no-update
 
-  log "Deployment configuration read" --success
+  log "Done" --success
 }
 
 export -f configTravis
