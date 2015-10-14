@@ -43,7 +43,7 @@ class UserController extends BaseController
     public function indexAction(Request $request)
     {
         $filterForm = $this->createUserFilteringForm($request);
-        $userRequest = $this->createRequest('GET', 'api_users_get_collection', $request);
+        $userRequest = $this->createRequest('GET', 'api_users_cget', $request);
 
         // Check if a request has been made to filter the list of users
         if ('POST' === $request->getMethod()) {
@@ -109,7 +109,7 @@ class UserController extends BaseController
                 $createResponse = $this->client->send(
                     $this->createRequest(
                         'POST',
-                        'api_users_post_collection',
+                        'api_users_cpost',
                         $request,
                         [
                             'json' => $formData,
@@ -148,7 +148,7 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -192,7 +192,7 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -237,7 +237,7 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -249,7 +249,7 @@ class UserController extends BaseController
 
             if ($editForm->isValid()) {
                 $updateRequest = $this->createRequest('PUT',
-                    'api_users_put_item',
+                    'api_users_put',
                     $request,
                     [
                         'json' => $editForm->getData(),
@@ -299,7 +299,7 @@ class UserController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'DELETE',
-                        'api_users_delete_item',
+                        'api_users_delete',
                         $request,
                         [
                             'parameters' => ['id' => $id],
@@ -392,7 +392,7 @@ class UserController extends BaseController
         $mandateFormValues = [];
         $mandates = $this->requestAndDecode(
             'GET',
-            'api_mandates_get_collection',
+            'api_mandates_cget',
             $request,
             ['query' => 'filter[order][startAt]=desc'],
             true

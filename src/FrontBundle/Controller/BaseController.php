@@ -11,12 +11,12 @@
 
 namespace FrontBundle\Controller;
 
-use FrontBundle\Client\ApiClientInterface;
+use FrontBundle\Client\ClientInterface;
 use FrontBundle\Utils\IriHelper;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Message\RequestInterface;
+use Psr\Http\Message\RequestInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as SymfonyController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +32,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class BaseController extends SymfonyController implements ApiControllerInterface
 {
     /**
-     * @var ApiClientInterface
+     * @var ClientInterface
      */
     protected $client;
 

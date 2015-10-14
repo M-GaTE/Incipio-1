@@ -6,12 +6,20 @@ services:
         class: FrontBundle\Client\ApiClient
         arguments:
             -  @csa_guzzle.client.local_api
-            -  @router
+            -  @front.http.request_builder
 
     front.authentication.success_handler:
         class:     FrontBundle\Security\Http\Authentication\AuthenticationSuccessHandler
         arguments: [ @security.http_utils ]
         calls:     [ [ setJwtManager, [ @lexik_jwt_authentication.jwt_manager ] ] ]
+
+    front.http.request_builder:
+        class: FrontBundle\Services\Http\RequestBuilder
+        arguments: [ @front.http.url_builder, %front_base_url% ]
+
+    front.http.url_builder:
+        class:     FrontBundle\Services\Http\UrlBuilder
+        arguments: [ @router ]
 
     front.twig_extension:
         class:  FrontBundle\Twig\FrontExtension

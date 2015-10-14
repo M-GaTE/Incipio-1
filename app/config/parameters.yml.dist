@@ -14,7 +14,6 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-
     # Locale language
     locale: fr_FR
 
@@ -23,15 +22,15 @@ parameters:
 
     cors_allow_origin: http://localhost
 
-
     # JSON-LD API
     api_name:        'Incipio API'
     api_description: 'API for the ERP Incipio.'
 
+    # Client API Base URL
+    front_base_url:  'http://localhost'
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-
 
     # Passphrase to access to private certificate for JWT
     jwt_pass_phrase: incipio
