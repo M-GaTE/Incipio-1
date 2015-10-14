@@ -41,7 +41,7 @@ sendCodacyCoverageData() {
     exit 0
   fi;
 
-  codacycoverage clover dist/reports/phpunit/coverage.xml
+  codacycoverage clover "${CODACY_COVERAGE_REPORT}"
   log "Done" --success
 }
 
@@ -54,7 +54,7 @@ sendScrutinizerCoverageData() {
     exit 0
   fi;
 
-  php ocular.phar code-coverage:upload --format=php-clover dist/reports/phpunit/coverage.xml;
+  php ocular.phar code-coverage:upload --format=php-clover "${SCRUTINIZER_COVERAGE_REPORT}";
   log "Done" --success
 }
 
