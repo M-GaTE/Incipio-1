@@ -1,0 +1,23 @@
+---
+ecmaFeatures:
+  arrowFunctions: false
+
+env:
+  browser: true
+  jquery: true
+
+extends:
+  - airbnb
+
+rules:
+  func-names: 0
+  id-length: 0
+  indent: [2, 4]
+  new-cap: 1
+  prefer-const: 1
+  strict:
+    - 2
+    - global
+  yoda:
+    - 2
+    - always

@@ -1,3 +1,7 @@
+# Generated assets
+web/assets
+web/bundles
+
 # Cache file of PHP-CS Fixer
 .php_cs.cache
 

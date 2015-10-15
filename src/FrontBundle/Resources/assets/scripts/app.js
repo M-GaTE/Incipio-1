@@ -1,16 +1,14 @@
-'use strict';
+let datatablesOptions = require('./modules/datatables.js');
 
-var datatables_options = require('./modules/datatables.js');
-
-var dt_tables = [
+let dtTables = [
     require('./modules/datatables-mandates.js'),
     require('./modules/datatables-users.js'),
 ];
 
-$.extend($.fn.dataTable.defaults, datatables_options);
+$.extend($.fn.dataTable.defaults, datatablesOptions);
 
-dt_tables.forEach(
-    function(element, index, array) {
+dtTables.forEach(
+    function(element) {
         element.init();
     }
 );
