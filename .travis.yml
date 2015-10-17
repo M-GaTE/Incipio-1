@@ -1,3 +1,4 @@
+sudo: false
 language: php
 
 php:
@@ -22,11 +23,16 @@ cache:
   directories:
     - $HOME/.cache/pip
     - $HOME/.composer/cache/files
+    - $HOME/.gem/ruby
+    - $HOME/.gem/specs
 
 matrix:
   include:
     - php: 5.6
       env: DEPLOY_BUILD=true
+    - php: 5.6 # We don't really care here as it will be the build for front-end assets
+               # Travis has yet to support multiple languages in the matrix configuration
+      env: ASSETS_BUILD=true
   allow_failures:
     - php: 7.0
     - php: nightly
@@ -34,30 +40,20 @@ matrix:
   fast_finish: true
 
 before_install:
-  - pip install --upgrade pip --user
-  - composer self-update
-  - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - composer global require phpunit/phpunit --no-update
-  - cp phpunit_travis.xml phpunit.xml
   - for file in scripts/*.sh; do
-      echo -en "\e[34mimports ${file}\e[0m\n";
+      echo -en "\e[34mimporting ${file}\e[0m\n";
       source "$file";
-    done;
-  - setupCoverage
-  - setupDeployment
+    done
+  - appBeforeInstall
+  - assetsBeforeInstall
 
 install:
-  - composer global update --prefer-dist
-  - composer install --prefer-dist
-  - php app/console doctrine:database:create --env=test
-  - php app/console doctrine:schema:create --env=test
+  - appInstall
+  - assetsInstall
 
 script:
-  - composer test:db
-  - composer test:security
-  - composer test:phpunit
-  - composer test:behat:api
-  - composer test:behat:front
+  - appScript
+  - assetsScript
 
 after_success:
   - publishToGithubPages

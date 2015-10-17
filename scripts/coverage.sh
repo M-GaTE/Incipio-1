@@ -29,7 +29,7 @@ sendCoverageData() {
 sendCodacyCoverageData() {
   log "Sending up Codacy coverage data"
 
-  if [[ ! -n "$CODACY_PROJECT_TOKEN" ]]; then
+  if [[ -z "$CODACY_PROJECT_TOKEN" ]]; then
     log "Codacy API token not defined. Aborting" --error
 
     return 0

@@ -34,4 +34,4 @@ setupDeployment() {
   log "Done" --success
 }
 
-export -f configTravis
+export -f setupDeployment

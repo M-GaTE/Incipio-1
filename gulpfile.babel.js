@@ -23,7 +23,6 @@ if ('prod' === argv.env || 'production' === argv.env) {
 }
 
 gulp.task('lint:yaml', 'Lint YAML files', require('./gulp-tasks/yaml-lint')(gulp, config));
-gulp.task('lint:shell', 'Lint Bash shell files', require('./gulp-tasks/shell-lint')(gulp, config));
 
 gulp.task('css', 'Build the CSS assets', require('./gulp-tasks/sass')(gulp, config));
 gulp.task('check:css', 'Check CSS duplications', require('./gulp-tasks/css-check')(gulp, config));
