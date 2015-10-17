@@ -7,14 +7,14 @@ publishToGithubPages() {
   if [[ 0 = "$?" ]]; then
     log "Skipped"
 
-    exit 0
+    return 0
   fi
 
   log "Retrieving GitHub Pages website"
   if [[ -z "$GITHUB_PAGES_REMOTE" ]]; then
     log "Could not retrieve GitHub Pages website. Abort GitHub Pages deployment" --error
 
-    exit 1;
+    return 1;
   fi
   git clone "$GITHUB_PAGES_REMOTE" gh-pages --branch=gh-pages --single-branch
 

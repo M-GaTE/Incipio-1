@@ -7,7 +7,7 @@ setupDeployment() {
   if [[ 0 = "$?" ]]; then
     log "No deployment scheduled for this build"
 
-    exit 0;
+    return 0;
   fi
 
   log "Setting up deployment configuration";
