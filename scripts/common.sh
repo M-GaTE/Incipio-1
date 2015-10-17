@@ -7,6 +7,22 @@ export SUCCESS_COLOR="\e[1;32m"
 export ERROR_COLOR="\e[1;31m"
 export NO_COLOR="\e[0m"
 
+isAppBuild() {
+  if [[ -z "$ASSETS_BUILD" ]]; then
+    return 0;
+  fi
+
+  return 1;
+}
+
+isAssetsBuild() {
+  if [[ true = "$ASSETS_BUILD" ]]; then
+    return 0;
+  fi
+
+  return 1;
+}
+
 isDeployBuild() {
   if [[ -z "$DEPLOY_BUILD" ]] || [[ -z "$TRAVIS_PULL_REQUEST" ]] || [[ -z "$TRAVIS_BRANCH" ]]; then
     return 0;
@@ -44,5 +60,7 @@ log() {
   echo -en "${color}${message}${NO_COLOR}\n"
 }
 
+export -f isAppBuild
+export -f isAssetsBuild
 export -f isDeployBuild
 export -f log
