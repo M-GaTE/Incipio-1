@@ -32,13 +32,13 @@ sendCodacyCoverageData() {
   if [[ ! -n "$CODACY_PROJECT_TOKEN" ]]; then
     log "Codacy API token not defined. Aborting" --error
 
-    exit 0
+    return 0
   fi;
 
   if [[ ! -f "$CODACY_COVERAGE_REPORT" ]]; then
     log "Could not send data: file ${CODACY_COVERAGE_REPORT} not found" --error
 
-    exit 0
+    return 0
   fi;
 
   codacycoverage clover "${CODACY_COVERAGE_REPORT}"
@@ -51,7 +51,7 @@ sendScrutinizerCoverageData() {
   if [[ ! -f "$SCRUTINIZER_COVERAGE_REPORT" ]]; then
     log "Could not send data: file ${SCRUTINIZER_COVERAGE_REPORT} not found" --error
 
-    exit 0
+    return 0
   fi;
 
   php ocular.phar code-coverage:upload --format=php-clover "${SCRUTINIZER_COVERAGE_REPORT}";
