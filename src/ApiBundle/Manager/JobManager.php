@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Doctrine\ORM\Manager;
+namespace ApiBundle\Manager;
 
 use ApiBundle\Entity\Job;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobNonPersistentManager implements NonPersistentEntityManagerInterface
+class JobManager implements NonPersistentEntityManagerInterface
 {
     /**
      * {@inheritdoc}

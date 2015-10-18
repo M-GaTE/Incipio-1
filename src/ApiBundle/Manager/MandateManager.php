@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Doctrine\ORM\Manager;
+namespace ApiBundle\Manager;
 
 use ApiBundle\Entity\Mandate;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class MandateNonPersistentManager implements NonPersistentEntityManagerInterface
+class MandateManager implements NonPersistentEntityManagerInterface
 {
     /**
      * {@inheritdoc}

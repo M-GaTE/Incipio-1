@@ -11,21 +11,21 @@
 
 namespace ApiBundle\Tests\Doctrine\ORM;
 
-use ApiBundle\Doctrine\ORM\Manager\MandateNonPersistentManager;
 use ApiBundle\Entity\Job;
 use ApiBundle\Entity\Mandate;
+use ApiBundle\Manager\MandateManager;
 use Prophecy\Argument;
 
 /**
- * @coversDefaultClass ApiBundle\Doctrine\ORM\Manager\MandateNonPersistentManager
+ * @coversDefaultClass ApiBundle\Manager\MandateManager
  *
  * @author             Théo FIDRY <theo.fidry@gmail.com>
  */
-class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
+class MandateManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        new MandateNonPersistentManager();
+        new MandateManager();
         $this->assertTrue(true);
     }
 
@@ -34,7 +34,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDelete()
     {
-        $mandateManager = new MandateNonPersistentManager();
+        $mandateManager = new MandateManager();
 
         $mandateWithJobs = new Mandate();
 
@@ -62,7 +62,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdate(Mandate $mandate, $expected)
     {
-        $mandateManager = new MandateNonPersistentManager();
+        $mandateManager = new MandateManager();
         $mandateBefore = clone $mandate;
 
         $mandateManager->update($mandate);
@@ -77,7 +77,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $mandateBefore,
             $mandate,
-            'Expected MandateNonPersistentManager::updateName() to only update Job#abbreviation'
+            'Expected MandateManager::updateName() to only update Job#abbreviation'
         );
     }
 
@@ -90,7 +90,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $mandateProphecy->getName()->willReturn('Non empty name');
         $mandateProphecy->setName(Argument::any())->shouldNotBeCalled();
 
-        $mandateManager = new MandateNonPersistentManager();
+        $mandateManager = new MandateManager();
 
         $mandateManager->update($mandateProphecy->reveal());
     }
@@ -100,7 +100,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupports()
     {
-        $mandateManager = new MandateNonPersistentManager();
+        $mandateManager = new MandateManager();
 
         $this->assertTrue($mandateManager->supports(new Mandate()));
         $this->assertTrue($mandateManager->supports(Mandate::class));
@@ -115,7 +115,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateName(Mandate $mandate, $expected)
     {
-        $mandateManager = new MandateNonPersistentManager();
+        $mandateManager = new MandateManager();
         $mandateBefore = clone $mandate;
 
         $mandateManager->updateName($mandate);
@@ -138,7 +138,7 @@ class MandateNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $mandateBefore,
             $mandate,
-            'Expected MandateNonPersistentManager::updateName() to only update Mandate#name'
+            'Expected MandateManager::updateName() to only update Mandate#name'
         );
     }
 

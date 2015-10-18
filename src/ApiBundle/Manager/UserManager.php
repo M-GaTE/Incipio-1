@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Doctrine\ORM\Manager;
+namespace ApiBundle\Manager;
 
 use ApiBundle\Entity\User;
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
