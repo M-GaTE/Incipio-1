@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1566a56585721bb3caa5e2dacdc7f286",
+    "hash": "dd5330f722fb2b5adeec4548f5b7095b",
     "content-hash": "66e01e7045a38c3341c5217bdb73d5e9",
     "packages": [
         {
@@ -53,12 +53,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/csarrazi/CsaGuzzleBundle.git",
-                "reference": "93c7e882ae15c4782e953099e40ffd6d9b790476"
+                "reference": "2a154e388624bbf639033cd4a39055c5385069d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/csarrazi/CsaGuzzleBundle/zipball/93c7e882ae15c4782e953099e40ffd6d9b790476",
-                "reference": "93c7e882ae15c4782e953099e40ffd6d9b790476",
+                "url": "https://api.github.com/repos/csarrazi/CsaGuzzleBundle/zipball/2a154e388624bbf639033cd4a39055c5385069d2",
+                "reference": "2a154e388624bbf639033cd4a39055c5385069d2",
                 "shasum": ""
             },
             "require": {
@@ -104,7 +104,7 @@
                 }
             ],
             "description": "A bundle integrating GuzzleHttp >= 4.0",
-            "time": "2015-09-22 09:30:39"
+            "time": "2015-10-15 17:01:15"
         },
         {
             "name": "doctrine/annotations",
@@ -1451,16 +1451,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "97fe7210def29451ec74923b27e552238defd75a"
+                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/97fe7210def29451ec74923b27e552238defd75a",
-                "reference": "97fe7210def29451ec74923b27e552238defd75a",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/b1e1c0d55f8083c71eda2c28c12a228d708294ea",
+                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea",
                 "shasum": ""
             },
             "require": {
@@ -1498,7 +1498,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2015-08-15 19:37:21"
+            "time": "2015-10-15 22:28:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1904,16 +1904,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.1",
+            "version": "1.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "0524c87587ab85bc4c2d6f5b41253ccb930a5422"
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/0524c87587ab85bc4c2d6f5b41253ccb930a5422",
-                "reference": "0524c87587ab85bc4c2d6f5b41253ccb930a5422",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
                 "shasum": ""
             },
             "require": {
@@ -1927,10 +1927,11 @@
                 "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
+                "jakub-onderka/php-parallel-lint": "0.9",
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
-                "raven/raven": "~0.11",
+                "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
@@ -1976,7 +1977,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-31 09:17:37"
+            "time": "2015-10-14 12:51:02"
         },
         {
             "name": "namshi/jose",
@@ -3183,16 +3184,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.2",
+            "version": "v1.22.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
+                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
-                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ebfc36b7e77b0c1175afe30459cf943010245540",
+                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540",
                 "shasum": ""
             },
             "require": {
@@ -3240,7 +3241,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-22 13:59:32"
+            "time": "2015-10-13 07:07:02"
         },
         {
             "name": "zendframework/zend-code",
@@ -3398,16 +3399,16 @@
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "2.7.3",
+            "version": "2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "8ac0c77ff567fcf49b58689ee3bfa7595be102bc"
+                "reference": "cae029346a33663b998507f94962eb27de060683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/8ac0c77ff567fcf49b58689ee3bfa7595be102bc",
-                "reference": "8ac0c77ff567fcf49b58689ee3bfa7595be102bc",
+                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/cae029346a33663b998507f94962eb27de060683",
+                "reference": "cae029346a33663b998507f94962eb27de060683",
                 "shasum": ""
             },
             "require": {
@@ -3452,7 +3453,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2015-09-25 04:06:33"
+            "time": "2015-10-15 15:57:32"
         }
     ],
     "packages-dev": [
@@ -3893,7 +3894,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behatch/contexts/zipball/8651373334a5756449b62cd57842f3a60aa66f56",
+                "url": "https://api.github.com/repos/Behatch/contexts/zipball/9ed19d9d7b77360aa16cdb92f183881362a98be7",
                 "reference": "eef7ab39ca896796bf3ba25a0fa5a95f15276eb7",
                 "shasum": ""
             },
@@ -4751,16 +4752,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.0.5",
+            "version": "5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "65134b2c2e47f48a9afb54a28f67b4d46a2304d1"
+                "reference": "d2656ec378c88e036b3fc14fb4262ee1a25498c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/65134b2c2e47f48a9afb54a28f67b4d46a2304d1",
-                "reference": "65134b2c2e47f48a9afb54a28f67b4d46a2304d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d2656ec378c88e036b3fc14fb4262ee1a25498c9",
+                "reference": "d2656ec378c88e036b3fc14fb4262ee1a25498c9",
                 "shasum": ""
             },
             "require": {
@@ -4821,20 +4822,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-12 03:40:23"
+            "time": "2015-10-14 13:51:20"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.0.0",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "b66bfd55201aa33e8096d8c9bcb762361521c301"
+                "reference": "382c729a52b7ef682e94c73fd6868f5ee8116ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/b66bfd55201aa33e8096d8c9bcb762361521c301",
-                "reference": "b66bfd55201aa33e8096d8c9bcb762361521c301",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/382c729a52b7ef682e94c73fd6868f5ee8116ba7",
+                "reference": "382c729a52b7ef682e94c73fd6868f5ee8116ba7",
                 "shasum": ""
             },
             "require": {
@@ -4877,7 +4878,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-10-01 06:43:55"
+            "time": "2015-10-18 07:55:54"
         },
         {
             "name": "sebastian/comparator",
@@ -5294,16 +5295,16 @@
         },
         {
             "name": "sllh/php-cs-fixer-styleci-bridge",
-            "version": "v1.3.2",
+            "version": "v1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Soullivaneuh/php-cs-fixer-styleci-bridge.git",
-                "reference": "ca9a6bcc1d968c5b9fd792cc75a3db5800365f29"
+                "reference": "588489e5a75dd50d74ebb4fbd4543f8d21a6b9a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Soullivaneuh/php-cs-fixer-styleci-bridge/zipball/ca9a6bcc1d968c5b9fd792cc75a3db5800365f29",
-                "reference": "ca9a6bcc1d968c5b9fd792cc75a3db5800365f29",
+                "url": "https://api.github.com/repos/Soullivaneuh/php-cs-fixer-styleci-bridge/zipball/588489e5a75dd50d74ebb4fbd4543f8d21a6b9a8",
+                "reference": "588489e5a75dd50d74ebb4fbd4543f8d21a6b9a8",
                 "shasum": ""
             },
             "require": {
@@ -5355,7 +5356,7 @@
                 "psr",
                 "symfony"
             ],
-            "time": "2015-10-05 12:01:21"
+            "time": "2015-10-16 12:30:17"
         },
         {
             "name": "symfony/phpunit-bridge",
