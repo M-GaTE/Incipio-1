@@ -11,19 +11,19 @@
 
 namespace ApiBundle\Tests\Doctrine\ORM;
 
-use ApiBundle\Doctrine\ORM\Manager\JobNonPersistentManager;
 use ApiBundle\Entity\Job;
+use ApiBundle\Manager\JobManager;
 
 /**
- * @coversDefaultClass ApiBundle\Doctrine\ORM\Manager\JobNonPersistentManager
+ * @coversDefaultClass ApiBundle\Manager\JobManager
  *
  * @author             Théo FIDRY <theo.fidry@gmail.com>
  */
-class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
+class JobManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        new JobNonPersistentManager();
+        new JobManager();
         $this->assertTrue(true);
     }
 
@@ -33,7 +33,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDelete(Job $job)
     {
-        $jobManager = new JobNonPersistentManager();
+        $jobManager = new JobManager();
         $jobBefore = clone $job;
 
         $jobManager->remove($job);
@@ -47,7 +47,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdate(Job $job, $expected)
     {
-        $jobManager = new JobNonPersistentManager();
+        $jobManager = new JobManager();
         $jobBefore = clone $job;
 
         $jobManager->update($job);
@@ -58,7 +58,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $jobBefore,
             $job,
-            'Expected JobNonPersistentManager::updateAbbreviation() to only update Job#abbreviation'
+            'Expected JobManager::updateAbbreviation() to only update Job#abbreviation'
         );
     }
 
@@ -67,7 +67,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupports()
     {
-        $jobManager = new JobNonPersistentManager();
+        $jobManager = new JobManager();
 
         $this->assertTrue($jobManager->supports(new Job()));
         $this->assertTrue($jobManager->supports(Job::class));
@@ -82,7 +82,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateAbbreviation(Job $job, $expected)
     {
-        $jobManager = new JobNonPersistentManager();
+        $jobManager = new JobManager();
         $jobBefore = clone $job;
 
         $jobManager->updateAbbreviation($job);
@@ -93,7 +93,7 @@ class JobNonPersistentManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $jobBefore,
             $job,
-            'Expected JobNonPersistentManager::updateAbbreviation() to only update Job#abbreviation'
+            'Expected JobManager::updateAbbreviation() to only update Job#abbreviation'
         );
     }
 

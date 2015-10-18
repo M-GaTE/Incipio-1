@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiBundle\Doctrine\ORM\Manager;
+namespace ApiBundle\Manager;
 
 /**
  * Interface for custom entity managers. This interface is not responsible for methods relative to the persistence

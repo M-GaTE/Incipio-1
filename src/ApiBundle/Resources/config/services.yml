@@ -59,20 +59,19 @@ services:
     # Entity Managers
     #
     api.entity_manager.job_manager:
-        class:     ApiBundle\Doctrine\ORM\Manager\JobNonPersistentManager
+        class: ApiBundle\Manager\JobManager
 
     api.entity_manager.mandate_manager:
-        class:     ApiBundle\Doctrine\ORM\Manager\MandateNonPersistentManager
+        class: ApiBundle\Manager\MandateManager
 
     api.entity_manager.user_manager:
-        class: ApiBundle\Doctrine\ORM\Manager\UserManager
+        class: ApiBundle\Manager\UserManager
         arguments:
             -  @security.encoder_factory
             -  @fos_user.util.username_canonicalizer
             -  @fos_user.util.email_canonicalizer
             -  @fos_user.entity_manager
             -  %fos_user.model.user.class%
-        tags:  [ { name: api.entity_manager } ]
 
 
     #

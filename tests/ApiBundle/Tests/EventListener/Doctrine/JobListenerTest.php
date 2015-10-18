@@ -11,9 +11,9 @@
 
 namespace ApiBundle\Tests\EventListener\Doctrine;
 
-use ApiBundle\Doctrine\ORM\Manager\NonPersistentEntityManagerInterface;
 use ApiBundle\Entity\Job;
 use ApiBundle\EventListener\Doctrine\JobListener;
+use ApiBundle\Manager\NonPersistentEntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 

@@ -11,9 +11,9 @@
 
 namespace ApiBundle\Tests\EventListener\Doctrine;
 
-use ApiBundle\Doctrine\ORM\Manager\NonPersistentEntityManagerInterface;
 use ApiBundle\Entity\Mandate;
 use ApiBundle\EventListener\Doctrine\MandateListener;
+use ApiBundle\Manager\NonPersistentEntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 
