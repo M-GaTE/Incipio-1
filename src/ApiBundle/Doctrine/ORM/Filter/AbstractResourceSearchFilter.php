@@ -16,10 +16,8 @@ use Doctrine\ORM\QueryBuilder;
 use Dunglas\ApiBundle\Api\IriConverterInterface;
 use Dunglas\ApiBundle\Api\ResourceInterface;
 use Dunglas\ApiBundle\Doctrine\Orm\Filter\FilterInterface;
-use Dunglas\ApiBundle\Doctrine\Orm\Filter\SearchFilter as DunglasSearchFilter;
 use Fidry\LoopBackApiBundle\Filter\FilterTrait;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
@@ -30,11 +28,6 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 abstract class AbstractResourceSearchFilter implements FilterInterface
 {
     use FilterTrait;
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
 
     /**
      * @var IriConverterInterface
@@ -51,25 +44,21 @@ abstract class AbstractResourceSearchFilter implements FilterInterface
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
-        RequestStack $requestStack,
         IriConverterInterface $iriConverter,
         PropertyAccessorInterface $propertyAccessor,
         array $properties = null
     ) {
-        $this->requestStack = $requestStack;
         $this->iriConverter = $iriConverter;
         $this->propertyAccessor = $propertyAccessor;
-        $this->properties = (null === $properties)? $properties: array_flip($properties);
+        $this->properties = (null === $properties) ? $properties : array_flip($properties);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function apply(ResourceInterface $resource, QueryBuilder $queryBuilder)
+    public function apply(ResourceInterface $resource, QueryBuilder $queryBuilder, Request $request)
     {
-        if ($this->getResourceClass() === $resource->getEntityClass()
-            && null !== $request = $this->requestStack->getCurrentRequest()
-        ) {
+        if ($this->getResourceClass() === $resource->getEntityClass()) {
             $this->applyFilter($resource, $queryBuilder, $this->extractProperties($request));
         }
     }
@@ -88,8 +77,6 @@ abstract class AbstractResourceSearchFilter implements FilterInterface
      * @param ResourceInterface $resource
      * @param QueryBuilder      $queryBuilder
      * @param array             $queryValues
-     *
-     * @return void
      */
     abstract protected function applyFilter(
         ResourceInterface $resource,

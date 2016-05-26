@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table
  * @ORM\Entity
+ * @ORM\EntityListeners({"ApiBundle\EventListener\Doctrine\MandateListener"})
  * @UniqueEntity("name")
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
@@ -51,8 +52,6 @@ class Mandate
      * @var ArrayCollection|Job[] List of jobs attached to this mandate.
      *
      * @ORM\OneToMany(targetEntity="Job", mappedBy="mandate", cascade={"all"})
-     *
-     * TODO: validation: may have no jobs but a job requires at least one mandate
      */
     private $jobs;
 
@@ -96,7 +95,7 @@ class Mandate
      *
      * @return $this
      */
-    public function setEndAt(\DateTime $endAt)
+    public function setEndAt(\DateTime $endAt = null)
     {
         $this->endAt = $endAt;
 
@@ -112,17 +111,41 @@ class Mandate
     }
 
     /**
+     * @param Job[] $jobs
+     *
+     * @return $this
+     *
+     * @throws \InvalidArgumentException If jobs type is incorrect
+     */
+    public function setJobs($jobs)
+    {
+        $this->jobs = new ArrayCollection();
+        foreach ($jobs as $job) {
+            $this->addJob($job);
+        }
+
+        return $this;
+    }
+
+    /**
      * Adds Job. Will automatically update job's mandate too.
      *
      * @param Job $job
      *
      * @return $this
+     *
+     * @throws \InvalidArgumentException If job type is incorrect
      */
-    public function addJob(Job $job)
+    public function addJob($job)
     {
+        if (false === $job instanceof Job) {
+            throw new \InvalidArgumentException('Unexpected type.');
+        }
+
         // Check for duplication
         if (false === $this->jobs->contains($job)) {
             $this->jobs->add($job);
+            $this->jobs = new ArrayCollection(array_values($this->jobs->toArray()));
         }
 
         // Ensure the relation is bidirectional

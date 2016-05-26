@@ -11,11 +11,12 @@
 
 namespace FrontBundle\Controller;
 
-use FrontBundle\Client\ApiClientInterface;
+use FrontBundle\Client\ClientInterface;
 use FrontBundle\Utils\IriHelper;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Message\RequestInterface;
+use Psr\Http\Message\RequestInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as SymfonyController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class BaseController extends SymfonyController implements ApiControllerInterface
 {
     /**
-     * @var ApiClientInterface
+     * @var ClientInterface
      */
     protected $client;
 
@@ -47,7 +48,6 @@ class BaseController extends SymfonyController implements ApiControllerInterface
         $this->client = $this->get('api.client');
         $this->serializer = $this->get('serializer');
     }
-
 
     /**
      * {@inheritdoc}
@@ -120,39 +120,44 @@ class BaseController extends SymfonyController implements ApiControllerInterface
     {
         $message = null;
 
-        if ($exception instanceof RequestException) {
-            $response = $exception->getResponse();
+        switch (true) {
+            case $exception instanceof ConnectException:
+                // Get exception message
+                break;
 
-            switch ($response->getHeader('Content-Type')) {
+            case $exception instanceof RequestException:
+                $response = $exception->getResponse();
+                switch ($response->getHeader('Content-Type')) {
 
-                case 'application/ld+json':
-                    $body = $this->decode($response->getBody());
-                    $type = $body['@type'];
-                    switch ($type) {
-                        case 'Error':
-                            $message = sprintf(
-                                '%s: %s',
-                                $body['hydra:title'],
-                                $body['hydra:description']
-                            );
-                            break;
-
-                        case 'ConstraintViolationList':
-                            foreach ($body['violations'] as $violation) {
-                                $this->addFlash(
-                                    'error',
-                                    sprintf('%s: %s', $violation['propertyPath'], $violation['message'])
+                    case 'application/ld+json':
+                        $body = $this->decode($response->getBody());
+                        $type = $body['@type'];
+                        switch ($type) {
+                            case 'Error':
+                                $message = sprintf(
+                                    '%s: %s',
+                                    $body['hydra:title'],
+                                    $body['hydra:description']
                                 );
-                            }
+                                break;
 
-                            return;
-                    }
-                    break;
+                            case 'ConstraintViolationList':
+                                foreach ($body['violations'] as $violation) {
+                                    $this->addFlash(
+                                        'error',
+                                        sprintf('%s: %s', $violation['propertyPath'], $violation['message'])
+                                    );
+                                }
 
-                case 'application/json':
-                    $message = $this->decode($response->getBody());
-                    break;
-            }
+                                return;
+                        }
+                        break;
+
+                    case 'application/json':
+                        $message = $this->decode($response->getBody());
+                        break;
+                }
+                break;
         }
 
         // Other
@@ -171,7 +176,8 @@ class BaseController extends SymfonyController implements ApiControllerInterface
      * {@inheritdoc}
      *
      * @deprecated Should not have to use Doctrine.
-     * @throws     \LogicException If used.
+     *
+     * @throws \LogicException If used.
      */
     public function getDoctrine()
     {
@@ -182,8 +188,8 @@ class BaseController extends SymfonyController implements ApiControllerInterface
      * Helper to retrieve all resources from a paginated collection. If the decoded response is not a collection,
      * will return the decoded response.
      *
-     * @param array $decodedResponse
-     * @param Request|string|null  $token
+     * @param array               $decodedResponse
+     * @param Request|string|null $token
      *
      * @return array Decoded response or all entities of the paginated collection.
      */

@@ -1,0 +1,19 @@
+preset: symfony
+
+enabled:
+  - ordered_use
+  - php_unit_construct
+  - strict
+  - short_array_syntax
+
+
+finder:
+  exclude:
+    - app/cache
+    - app/logs
+  not-path:
+    - app/check.php
+    - app/autoload.php
+    - app/autoload.php.cache
+    - app/SymfonyRequirements.php
+    - web/config.php

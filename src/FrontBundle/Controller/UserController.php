@@ -43,7 +43,7 @@ class UserController extends BaseController
     public function indexAction(Request $request)
     {
         $filterForm = $this->createUserFilteringForm($request);
-        $userRequest = $this->createRequest('GET', 'api_users_get_collection', $request);
+        $userRequest = $this->createRequest('GET', 'api_users_cget', $request);
 
         // Check if a request has been made to filter the list of users
         if ('POST' === $request->getMethod()) {
@@ -66,7 +66,7 @@ class UserController extends BaseController
                 $userRequest->setQuery($query);
             }
         }
-        
+
         // Retrieve users, since it's a paginated collection go through all available pages
         try {
             $users = $this->sendAndDecode($userRequest, true);
@@ -76,7 +76,7 @@ class UserController extends BaseController
         }
 
         return [
-            'users'       => $users,
+            'users' => $users,
             'filter_form' => $filterForm->createView(),
         ];
     }
@@ -109,10 +109,10 @@ class UserController extends BaseController
                 $createResponse = $this->client->send(
                     $this->createRequest(
                         'POST',
-                        'api_users_post_collection',
+                        'api_users_cpost',
                         $request,
                         [
-                            'json' => $formData
+                            'json' => $formData,
                         ]
                     )
                 );
@@ -148,7 +148,7 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -156,10 +156,12 @@ class UserController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'user'        => $user,
+                'user' => $user,
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -190,18 +192,20 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
             );
 
             return [
-                'user'      => $user,
+                'user' => $user,
                 'edit_form' => $this->createEditForm($user)->createView(),
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -233,7 +237,7 @@ class UserController extends BaseController
             $user = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_users_get_item',
+                    'api_users_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -245,11 +249,11 @@ class UserController extends BaseController
 
             if ($editForm->isValid()) {
                 $updateRequest = $this->createRequest('PUT',
-                    'api_users_put_item',
+                    'api_users_put',
                     $request,
                     [
                         'json' => $editForm->getData(),
-                        'parameters' => ['id' => $id]
+                        'parameters' => ['id' => $id],
                     ]
                 );
 
@@ -259,7 +263,9 @@ class UserController extends BaseController
                 return $this->redirectToRoute('users_show', ['id' => $id]);
             }
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -293,16 +299,18 @@ class UserController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'DELETE',
-                        'api_users_delete_item',
+                        'api_users_delete',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
                 $this->addFlash('success', 'L\'utilisateur a bien été supprimé.');
             } catch (ClientRequestException $exception) {
-                if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+                if (null !== $exception->getResponse()
+                    && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+                ) {
                     throw $this->createNotFoundException('Unable to find User entity.');
                 }
 
@@ -384,7 +392,7 @@ class UserController extends BaseController
         $mandateFormValues = [];
         $mandates = $this->requestAndDecode(
             'GET',
-            'api_mandates_get_collection',
+            'api_mandates_cget',
             $request,
             ['query' => 'filter[order][startAt]=desc'],
             true
@@ -397,7 +405,7 @@ class UserController extends BaseController
         return $this->createForm(new UserFilteringType($mandateFormValues),
             [
                 'action' => $this->generateUrl('users'),
-                'method' => 'POST'
+                'method' => 'POST',
             ])
             ->add('submit', 'submit', ['label' => 'Filtrer'])
         ;

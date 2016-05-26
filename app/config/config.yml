@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
 
 framework:
-    #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
     secret:          %secret%
     router:
@@ -45,31 +44,27 @@ doctrine:
 dunglas_api:
     title:           %api_name%
     description:     %api_description%
-    enable_fos_user: true
+    enable_fos_user: false # Does not need the bridge as our own manager and listener already do the work
 
 # CsaGuzzleBundle
 csa_guzzle:
     clients:
         local_api:
             config:
-                base_url: http://localhost
+                base_url: %front_base_url%
     profiler: %kernel.debug%
     logger:   %kernel.debug%
 
 # FOSUserBundle
 fos_user:
-    db_driver:     orm
-    firewall_name: api
-    user_class:    ApiBundle\Entity\User
-
-# AliceBundle
-hautelook_alice:
-    locale:   %locale%
-    seed:     %seed%
+    db_driver:        orm
+    firewall_name:    api
+    service:
+        user_manager: api.entity_manager.user_manager
+    user_class:       ApiBundle\Entity\User
 
 # KnpMenuBundle
 knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
         template: knp_menu.html.twig
     templating: false
@@ -112,7 +107,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
 
-# Swiftmailer
+# Swift Mailer
 swiftmailer:
     transport: %mailer_transport%
     host:      %mailer_host%

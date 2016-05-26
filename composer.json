@@ -1,31 +1,30 @@
 {
-    "name": "in6pio/Incipio",
+    "name": "in6pio/incipio",
     "description": "ERP for Junior-Entreprises.",
-    "license": "GNU",
+    "license": "AGPL-3.0",
     "type": "project",
     "autoload": {
-        "psr-4": { "": "src/", "Incipio\\": "app/" }
+        "psr-4": {
+            "": "src/",
+            "Incipio\\": "app/"
+        }
     },
     "autoload-dev": {
-      "psr-4": { "Incipio\\Tests\\Behat\\": "features/bootstrap" }
-    },
-    "repositories": [
-        {
-          "type": "vcs",
-          "url": "https://github.com/theofidry/AliceBundle.git"
+        "psr-4": {
+            "": "tests/",
+            "Behat\\": "features/bootstrap"
         }
-    ],
+    },
     "require": {
         "php": ">=5.5.0",
         "symfony/symfony": "~2.7",
         "doctrine/dbal": "~2.5",
         "doctrine/doctrine-bundle": "~1.4",
         "doctrine/orm": "~2.5",
-        "dunglas/api-bundle": "dev-master",
-        "csa/guzzle-bundle": "~1.3",
+        "dunglas/api-bundle": "~1.0",
+        "csa/guzzle-bundle": "~2.0@dev",
         "friendsofsymfony/http-cache-bundle": "~1.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "hautelook/alice-bundle": "dev-master",
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-menu-bundle": "~2",
         "lexik/jwt-authentication-bundle": "~1.0",
@@ -36,46 +35,47 @@
         "stof/doctrine-extensions-bundle": "~1.1",
         "symfony/monolog-bundle": "~2.4",
         "symfony/swiftmailer-bundle": "~2.3",
-        "theofidry/loopback-api-bundle": "dev-master",
-        "twig/extensions": "~1.0",
-        "nelmio/alice": "2.0.x-dev"
+        "theofidry/loopback-api-bundle": "~0.3",
+        "twig/extensions": "~1.0"
     },
     "require-dev": {
         "behat/behat": "~3.0",
         "behat/mink": "~1.5",
         "behat/mink-browserkit-driver": "~1.1",
         "behat/mink-extension": "~2.0",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "behat/symfony2-extension": "~2.0@dev",
+        "behat/mink-goutte-driver": "~1.1",
+        "behat/symfony2-extension": "~2.0",
         "behatch/contexts": "dev-master#eef7ab39ca896796bf3ba25a0fa5a95f15276eb7",
         "bit3/faker-cli": "~1.3",
-        "doctrine/doctrine-fixtures-bundle": "~2.0",
-        "fabpot/php-cs-fixer": "dev-master",
-        "matthiasnoback/symfony-dependency-injection-test": "0.7.*",
-        "phpunit/phpunit": "~4.6",
-        "sensio/generator-bundle": "~2.3",
-        "symfony/phpunit-bridge": "2.7.x@beta",
-        "vipsoft/doctrine-data-fixtures-extension": "dev-master"
+        "doctrine/data-fixtures": "^1.1",
+        "hautelook/alice-bundle": "~1.0",
+        "phpunit/phpunit": "^5.0",
+        "sllh/php-cs-fixer-styleci-bridge": "^1.3",
+        "symfony/phpunit-bridge": "~2.7",
+        "theofidry/alice-bundle-extension": "~1.0"
     },
     "scripts": {
-        "style:check": "php bin/php-cs-fixer fix --no-interaction --dry-run --diff -vvv src && php bin/php-cs-fixer fix --no-interaction --dry-run --diff -vvv features",
-        "style:fix": "php bin/php-cs-fixer fix -vvv src && php bin/php-cs-fixer fix -vvv features",
+        "style:check": "php bin/php-cs-fixer fix -n --dry-run --diff -v --ansi src && php bin/php-cs-fixer fix -n --dry-run --diff -v --ansi features ",
+        "style:fix": "php bin/php-cs-fixer fix -v --diff --ansi src && php bin/php-cs-fixer fix -v --diff --ansi features",
         "test": "composer test:db && composer test:phpunit && composer test:behat && composer test:security",
-        "test:db": "php app/console doctrine:schema:validate --ansi",
-        "test:security": "php bin/security-checker security:check",
-        "test:phpunit": "php bin/phpunit -c app/phpunit_travis.xml --colors=always",
-        "test:behat": "php bin/behat --colors -vvv --strict",
+        "test:db": "php app/console d:s:v --ansi --env=test",
+        "test:security": "php bin/security-checker security:check --ansi",
+        "test:phpunit": "php bin/phpunit --testsuite App --colors=always",
+        "test:phpunit:api": "php bin/phpunit --testsuite ApiBundle --colors=always",
+        "test:phpunit:front": "php bin/phpunit --testsuite FrontBundle --colors=always",
+        "test:behat": "composer test:behat:api && composer test:behat:front",
+        "test:behat:api": "php bin/behat --suite=api_features --strict --colors --tags ~@ignore",
+        "test:behat:front": "php bin/behat --suite=front_features --strict --colors --tags ~@ignore",
         "db": "composer db:drop && composer db:create && composer db:seed",
-        "db:create": "php app/console doctrine:schema:create --ansi",
-        "db:drop": "php app/console doctrine:schema:drop --force --ansi",
+        "db:create": "php app/console d:s:c --ansi",
+        "db:drop": "php app/console d:s:d --force --ansi",
         "db:reload": "composer db:update && composer db:seed",
-        "db:seed": "php app/console doctrine:fixtures:load -n --ansi",
-        "db:update": "php app/console doctrine:schema:update --force --ansi",
+        "db:seed": "php app/console h:d:f:l -n --ansi",
+        "db:update": "php app/console d:s:u --force --ansi",
         "db:test": "composer db:test:drop && composer db:test:create && composer db:test:seed",
-        "db:test:create": "php app/console doctrine:schema:create --env=test --ansi",
-        "db:test:drop": "php app/console doctrine:schema:drop --env=test --force --ansi",
-        "db:test:seed": "php app/console doctrine:fixtures:load --env=test -n --ansi",
+        "db:test:create": "php app/console d:s:c --env=test --ansi",
+        "db:test:drop": "php app/console d:s:d --env=test --force --ansi",
+        "db:test:seed": "php app/console h:d:f:l --env=test -n --ansi",
         "post-root-package-install": [
             "SymfonyStandard\\Composer::hookRootPackageInstall"
         ],
@@ -107,9 +107,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.7-beta"
         }
     }
 }

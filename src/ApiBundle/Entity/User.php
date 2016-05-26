@@ -15,7 +15,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Dunglas\ApiBundle\Annotation\Iri;
 use FOS\UserBundle\Model\User as BaseUser;
-use FOS\UserBundle\Model\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -147,7 +146,7 @@ class User extends BaseUser
     protected $roles;
 
     /**
-     * Validated via {@se ::validate()}
+     * Validated via {@see ::validate()}.
      *
      * @var array
      *
@@ -202,7 +201,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
      *
      * @return $this
      */
@@ -410,7 +409,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      *
      * @return $this
      */
@@ -436,7 +435,7 @@ class User extends BaseUser
     {
         return [
             'contractor' => self::TYPE_CONTRACTOR,
-            'member'     => self::TYPE_MEMBER,
+            'member' => self::TYPE_MEMBER,
         ];
     }
 

@@ -43,7 +43,7 @@ class JobController extends BaseController
     public function indexAction(Request $request)
     {
         $filterForm = $this->createJobFilteringForm($request);
-        $jobRequest = $this->createRequest('GET', 'api_jobs_get_collection', $request);
+        $jobRequest = $this->createRequest('GET', 'api_jobs_cget', $request);
 
         // Check if a request has been made to filter the list of users
         if ('POST' === $request->getMethod()) {
@@ -72,7 +72,7 @@ class JobController extends BaseController
         }
 
         return [
-            'jobs'       => $jobs,
+            'jobs' => $jobs,
             'filter_form' => $filterForm->createView(),
         ];
     }
@@ -96,10 +96,10 @@ class JobController extends BaseController
                 $job = $this->sendAndDecode(
                     $this->createRequest(
                         'POST',
-                        'api_jobs_post_collection',
+                        'api_jobs_cpost',
                         $request,
                         [
-                            'json' => $newForm->getData()
+                            'json' => $newForm->getData(),
                         ]
                     )
                 );
@@ -135,7 +135,7 @@ class JobController extends BaseController
             $job = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_jobs_get_item',
+                    'api_jobs_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -143,10 +143,12 @@ class JobController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'job'        => $job,
+                'job' => $job,
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Job entity.');
             }
 
@@ -176,18 +178,20 @@ class JobController extends BaseController
             $job = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_jobs_get_item',
+                    'api_jobs_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
             );
 
             return [
-                'job'       => $job,
+                'job' => $job,
                 'edit_form' => $this->createEditForm($job, $request)->createView(),
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
 
@@ -221,7 +225,7 @@ class JobController extends BaseController
             $job = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_jobs_get_item',
+                    'api_jobs_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -235,11 +239,11 @@ class JobController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'PUT',
-                        'api_jobs_put_item',
+                        'api_jobs_put',
                         $request,
                         [
                             'json' => $editForm->getData(),
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
@@ -248,7 +252,9 @@ class JobController extends BaseController
                 return $this->redirectToRoute('jobs_show', ['id' => $id]);
             }
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Job entity.');
             }
 
@@ -258,7 +264,7 @@ class JobController extends BaseController
         }
 
         return [
-            'job'       => $job,
+            'job' => $job,
             'edit_form' => $this->createEditForm($job, $request)->createView(),
         ];
     }
@@ -285,16 +291,18 @@ class JobController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'DELETE',
-                        'api_jobs_delete_item',
+                        'api_jobs_delete',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
                 $this->addFlash('success', 'Le poste a bien été supprimé.');
             } catch (ClientRequestException $exception) {
-                if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+                if (null !== $exception->getResponse()
+                    && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+                ) {
                     throw $this->createNotFoundException('Unable to find Job entity.');
                 }
 
@@ -332,8 +340,7 @@ class JobController extends BaseController
     /**
      * Creates a form to edit a Job entity.
      *
-     * @param array   $job The normalized job.
-     *
+     * @param array   $job     The normalized job.
      * @param Request $request
      *
      * @return \Symfony\Component\Form\Form The form
@@ -378,7 +385,7 @@ class JobController extends BaseController
         return $this->createForm(new JobFilteringType($this->getMandates($request)),
             [
                 'action' => $this->generateUrl('jobs'),
-                'method' => 'POST'
+                'method' => 'POST',
             ])
             ->add('submit', 'submit', ['label' => 'Filtrer'])
         ;
@@ -394,7 +401,7 @@ class JobController extends BaseController
         $mandateFormValues = [];
         $mandates = $this->requestAndDecode(
             'GET',
-            'api_mandates_get_collection',
+            'api_mandates_cget',
             $request,
             ['query' => 'filter[order][startAt]=desc'],
             true

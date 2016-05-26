@@ -11,77 +11,64 @@
 
 namespace FrontBundle\Client;
 
+use FrontBundle\Services\Http\RequestBuilder;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Query;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Psr\Http\Message\RequestInterface;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
+use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 /**
- * PHP API client. For now is a Guzzle client which has been extended to allow to pass route names instead of just
+ * API client. For now is a Guzzle client which has been extended to allow to pass route names instead of just
  * the URI and easily pass the token.
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class ApiClient implements ApiClientInterface
+class ApiClient implements ClientInterface
 {
-    /**
-     * @var string Base URL used. Is guaranteed of not having an trailing slash unlike the client baseUrl (which is
-     *             not changeable after instantiation.
-     */
-    private $baseUrl;
-
     /**
      * @var GuzzleClientInterface
      */
     private $client;
 
     /**
-     * @var Router
+     * @var RequestBuilder
      */
-    private $router;
+    private $requestBuilder;
 
     /**
-     * @param GuzzleClientInterface $client Adapted service: guzzle client
-     * @param Router                $router Component used to generate URI from route names
+     * @param GuzzleClientInterface $client
+     * @param RequestBuilder        $requestBuilder
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __construct(GuzzleClientInterface $client, Router $router)
+    public function __construct(GuzzleClientInterface $client, RequestBuilder $requestBuilder)
     {
-        $this->client = $client;
-
-        // Check for base URL to remove trailing slash if present
-        $baseUrl = $this->client->getBaseUrl();
-        $lastCharacter = strlen($baseUrl) - 1;
-        if ('/' === $baseUrl[$lastCharacter]) {
-            $baseUrl = substr($baseUrl, 0, $lastCharacter);
+        if ($client->getConfig('base_url') !== $requestBuilder->getBaseUrl()) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Expected base url of client and request build to match. Got respectively "%s" and "%s" instead.',
+                    $client->getConfig('base_url'),
+                    $requestBuilder->getBaseUrl()
+                )
+            );
         }
-        $this->baseUrl = $baseUrl;
 
-        $this->router = $router;
+        $this->client = $client;
+        $this->requestBuilder = $requestBuilder;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @throws RouteNotFoundException              If the named route doesn't exist
+     * @throws MissingMandatoryParametersException When some parameters are missing that are mandatory for the route
+     * @throws InvalidParameterException           When a parameter value for a placeholder is not correct because it
+     *                                             does not match the requirement
      */
     public function createRequest($method, $url = null, $token = null, array $options = [])
     {
-        // Extract parameters
-        $parameters = [];
-        if (isset($options['parameters'])) {
-            $parameters = $options['parameters'];
-            unset($options['parameters']);
-        }
-
-        // Add authorization token
-        if (null !== $token) {
-            $options['headers']['authorization'] = sprintf('Bearer %s', $token);
-        }
-
-        // If Query is a string cast it
-        if (isset($options['query']) && is_string($options['query'])) {
-            $options['query'] = Query::fromString($options['query']);
-        }
-
-        return $this->client->createRequest($method, $this->buildUrl($url, $parameters), $options);
+        return $this->requestBuilder->createRequest($method, $url, $token, $options);
     }
 
     /**
@@ -98,35 +85,5 @@ class ApiClient implements ApiClientInterface
     public function send(RequestInterface $request)
     {
         return $this->client->send($request);
-    }
-
-    /**
-     * Expand a URI template and inherit from the base URL if it's relative
-     *
-     * @param string|null $url       URL or an array of the URI template to expand
-     *                          followed by a hash of template varnames.
-     * @param array $parameters route name parameters. If $url parameter passed is not a route name, this parameter
-     *                          is ignored.
-     *
-     * @return string URL
-     */
-    private function buildUrl($url = null, array $parameters = [])
-    {
-        if (null === $url || '' === $url) {
-            return $this->baseUrl;
-        }
-
-        // Is absolute URL, left unchanged
-        if (false !== strpos($url, '://')) {
-            return $url;
-        }
-
-        // Is URI
-        if (false !== strpos($url, '/')) {
-            return sprintf('%s%s', $this->baseUrl, $url);
-        }
-
-        // Is a route name
-        return $this->buildUrl($this->router->generate($url, $parameters));
     }
 }

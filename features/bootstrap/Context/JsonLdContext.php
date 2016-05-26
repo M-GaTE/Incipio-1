@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Incipio\Tests\Behat\Context;
+namespace Behat\Context;
 
 use Behat\Behat\Context\Context;
+use PHPUnit_Framework_Assert as PHPUnit;
 use Sanpi\Behatch\Context\RestContext;
 use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
@@ -42,12 +43,11 @@ class JsonLdContext extends RestContext implements Context
      */
     public function jsonLdResponse()
     {
-        $isJson = json_decode($this->getSession()->getDriver()->getContent());
-        if (!$isJson) {
-            throw new \Exception('Expected response content to be JSON.');
-        }
-
         $this->theHeaderShouldBeEqualTo('content-type', 'application/ld+json');
+        PHPUnit::assertNotNull(
+            json_decode($this->getSession()->getDriver()->getContent()),
+            'Expected response content to be JSON.'
+        );
     }
 
     /**

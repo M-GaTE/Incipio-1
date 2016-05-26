@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table
  * @ORM\Entity
+ * @ORM\EntityListeners({"ApiBundle\EventListener\Doctrine\JobListener"})
  * @UniqueEntity("title")
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
@@ -53,6 +54,7 @@ class Job
      * @ORM\Column(type="boolean")
      * @Assert\Type("bool")
      * @Assert\NotNull
+     * @Groups({"job", "user"})
      */
     private $enabled = true;
 
@@ -72,6 +74,7 @@ class Job
      * @ORM\Column(type="string", length=255)
      * @Assert\Type("string")
      * @Assert\Length(min=2, max=100)
+     * @Assert\NotBlank
      * @Groups({"job", "user"})
      */
     private $title;
@@ -85,7 +88,7 @@ class Job
      */
     private $users;
 
-    function __construct()
+    public function __construct()
     {
         $this->users = new ArrayCollection();
     }

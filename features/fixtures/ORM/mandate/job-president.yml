@@ -1,0 +1,5 @@
+ApiBundle\Entity\Job:
+    job_president:
+        title:        President
+        abbreviation: PR
+        enabled:      true

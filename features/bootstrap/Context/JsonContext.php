@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Incipio\Tests\Behat\Context;
+namespace Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_Assert as PHPUnit;
-use Sanpi\Behatch\Context\JsonContext as SampiJsonContext;
+use Sanpi\Behatch\Context\JsonContext as BehatchJsonContext;
 use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -22,7 +22,7 @@ use Sanpi\Behatch\Json\JsonInspector;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class JsonContext extends SampiJsonContext implements Context
+class JsonContext extends BehatchJsonContext implements Context
 {
     /**
      * @var JsonInspector
@@ -30,7 +30,7 @@ class JsonContext extends SampiJsonContext implements Context
     private $inspector;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct($evaluationMode = 'javascript', HttpCallResultPool $httpCallResultPool)
     {
@@ -118,7 +118,10 @@ class JsonContext extends SampiJsonContext implements Context
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
 
-        PHPUnit::assertNull($actual);
+        PHPUnit::assertNull(
+            $actual,
+            sprintf('Expected node %s to be not null, got %s instead.', $node, json_encode($actual))
+        );
     }
 
     /**
@@ -131,7 +134,10 @@ class JsonContext extends SampiJsonContext implements Context
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
 
-        PHPUnit::assertNotNull($actual);
+        PHPUnit::assertNotNull(
+            $actual,
+            sprintf('Expected node %s to be not null, got %s instead.', $node, $actual)
+        );
     }
 
     /**
@@ -148,7 +154,7 @@ class JsonContext extends SampiJsonContext implements Context
     }
 
     /**
-     * @Then the JSON response should should have the following nodes:
+     * @Then the JSON response should have the following nodes:
      *
      * @param TableNode $table
      */
@@ -156,13 +162,14 @@ class JsonContext extends SampiJsonContext implements Context
     {
         $count = 0;
         foreach ($table->getColumnsHash() as $row) {
-            $count++;
-            $value = $row['value'];
+            ++$count;
+            $expectedValue = $row['value'];
 
             // Check for null value
-            // The `~` is used to specify null value unless the type is explicitely set to string
-            if ('~' === $value
-                && (false === isset($row['type']) || 'string' !== $row['type'])
+            // The `~` is used to specify null value (like in YAML) unless the type is explicitly set to string
+            // in which case will be processed as the string '~'.
+            if ('~' === $expectedValue
+                && (false === array_key_exists('type', $row) || 'string' !== $row['type'])
             ) {
                 $this->theJsonNodeShouldBeNull($row['node']);
 
@@ -170,30 +177,30 @@ class JsonContext extends SampiJsonContext implements Context
             }
 
             // Default type is set to string
-            if (false === isset($row['type'])) {
-                $row['type'] = 'string';
+            $expectedValueType = 'string';
+            if (array_key_exists('type', $row)) {
+                // Trim the expected value type of all spaces before using its value
+                $_expectedValueType = str_replace(' ', '', $row['type']);
+                if (false === empty($_expectedValueType)) {
+                    $expectedValueType = $_expectedValueType;
+                }
+                unset($_expectedValueType);
             }
 
-            if ('bool' === $row['type'] || 'boolean' === $row['type']) {
-                if ('false' === $value) {
-                    $value = false;
-                } else {
-                    // if 'true' === $value will be true
-                    $value = (bool) $value;
-                }
-                PHPUnit::assertEquals($value, $this->inspector->evaluate($this->getJson(), $row['node']));
+            $expectedValue = $this->normalizeValue($row['value'], $expectedValueType);
+            if (true === is_bool($expectedValue) || true === is_int($expectedValue)) {
+                PHPUnit::assertEquals($expectedValue, $this->inspector->evaluate($this->getJson(), $row['node']));
 
                 continue;
-            } elseif ('int' === $row['type'] || 'integer' === $row['type']) {
-                $value = (int) $value;
-                PHPUnit::assertEquals($value, $this->inspector->evaluate($this->getJson(), $row['node']));
+            }
 
-                continue;
-            } elseif ('array' === $row['type']) {
+            if ('array' === $expectedValueType) {
                 $this->theJsonNodeShouldBeAnArray($row['node']);
 
                 continue;
-            } elseif ('object' === $row['type']) {
+            }
+
+            if ('object' === $expectedValueType) {
                 $this->theJsonNodeShouldBeAnObject($row['node']);
 
                 continue;
@@ -201,13 +208,19 @@ class JsonContext extends SampiJsonContext implements Context
 
             // If want to compare to an empty string, the value must be `""` in the table
             // Otherwise an empty string means no check on the value
-            if ('""' === $value) {
+            if ('""' === $expectedValue) {
                 $this->theJsonNodeShouldBeEqualTo($row['node'], '');
-            } elseif ('' === $value) {
-                $this->theJsonNodeShouldExist($row['node']);
-            } else {
-                $this->theJsonNodeShouldBeEqualTo($row['node'], $value);
+
+                continue;
             }
+
+            if ('' === $expectedValue) {
+                $this->theJsonNodeShouldExist($row['node']);
+
+                continue;
+            }
+
+            $this->theJsonNodeShouldBeEqualTo($row['node'], $expectedValue);
         }
 
         $nbrOfNodes = $this->getNumberOfNodes($this->getJson()->getContent());
@@ -217,20 +230,6 @@ class JsonContext extends SampiJsonContext implements Context
             sprintf('Expected to find %d nodes. Found %d instead', $nbrOfNodes, $count)
         );
     }
-
-    /*
-     * content => [
-     *  prop1
-     *  prop2
-     *  obj {
-     *      pr1
-     *      pr2
-     *  }
-     *  arr [
-     *      0 => {aze}
-     *  ]
-     * ]
-     */
 
     private function getNumberOfNodes($content)
     {
@@ -259,5 +258,30 @@ class JsonContext extends SampiJsonContext implements Context
     private function getJson()
     {
         return new Json($this->getSession()->getPage()->getContent());
+    }
+
+    /**
+     * Helper to cast the string value to its real value depending of its type.
+     *
+     * @param string $value
+     * @param string $type  May be 'bool', 'boolean', 'int', 'integer'
+     *
+     * @return string|bool|int
+     */
+    private function normalizeValue($value, $type)
+    {
+        if ('bool' === $type || 'boolean' === $type) {
+            if ('false' === $value) {
+                return false;
+            }
+
+            return (bool) $value;
+        }
+
+        if ('int' === $type || 'integer' === $type) {
+            return (int) $value;
+        }
+
+        return $value;
     }
 }

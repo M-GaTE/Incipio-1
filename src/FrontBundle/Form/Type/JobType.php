@@ -43,7 +43,7 @@ class JobType extends AbstractType
                 'title',
                 'text',
                 [
-                    'attr'  => [
+                    'attr' => [
                         'placeholder' => 'Nom du poste',
                     ],
                     'label' => 'Nom :',
@@ -52,21 +52,21 @@ class JobType extends AbstractType
                 'abbreviation',
                 'text',
                 [
-                    'attr'  => [
+                    'attr' => [
                         'placeholder' => 'Alias',
                     ],
-                    'label'    => 'Alias :',
+                    'label' => 'Alias :',
                     'required' => false,
                 ])
             ->add(
                 'mandate_id',
                 'choice',
                 [
-                    'choices'     => $this->mandates,
-                    'empty_data'  => null,
+                    'choices' => $this->mandates,
+                    'empty_data' => null,
                     'empty_value' => 'Aucun',
-                    'label'       => 'Mandat :',
-                    'required'    => false,
+                    'label' => 'Mandat :',
+                    'required' => false,
                 ]
             )
         ;

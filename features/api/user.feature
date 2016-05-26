@@ -1,4 +1,4 @@
-@user
+@user @ignore
 Feature: User management
   As an administrator, I should be able to manage users.
 
@@ -18,7 +18,7 @@ Feature: User management
     And the JSON node "jobs" should have 1 element
     And the JSON node "types" should have 1 element
     And the JSON node "roles" should have 2 elements
-    Then the JSON response should should have the following nodes:
+    Then the JSON response should have the following nodes:
       | node                               | value                                   | type    |
       | @context                           | /api/contexts/User                      |         |
       | @id                                | /api/users/1                            |         |
@@ -57,6 +57,7 @@ Feature: User management
     When I send a POST request to "/api/users" with body:
       | username |  |
 
+
   Scenario: Update a resource
 
 
@@ -75,10 +76,10 @@ Feature: User management
     And all the users should have a mandate with the value "/api/mandates/5"
 
   Scenario: Delete a resource
-  Delete a resource that has a Job
-  Delete a resource that has a student convention
+    # Delete a resource that has a Job
+    # Delete a resource that has a student convention
     When I send a DELETE request to "/api/users/1"
     Then the response status code should be 202
-  The method should be idempotent
+    # The method should be idempotent
     When I send a GET request to "/api/users/1"
     Then the response status code should be 404

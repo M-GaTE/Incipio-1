@@ -9,37 +9,113 @@ Feature: Mandates management
   New jobs are created for the current mandate.
   A user may have one or several mandate, with or without a job.
 
-#  Scenario: If one list all the mandates, there it at least one mandate: the current one.
-#    #TODO
-#
-#  Scenario: A mandate may have users.
-#    #TODO
-#
-#  Scenario: It should be possible to list all the mandates.
-#    #TODO
-#
-#  Scenario: It should be possible to list all the members of a given mandate.
-#    #TODO
-#
-#  Scenario: It should not be possible to create a mandate unless it starts at the current year. The ending date
-#  should then be during the next year and may be omitted.
-#    #TODO
-#
-#  Scenario: If not ending date is given for a mandate, it ends at the end of the next year.
-#    #TODO
-#
-#  Scenario: If no new mandate has be created, a new one is automatically created and keep all the admin users as if
-#  they have a new mandate.
-#    #TODO
-#
-#  Scenario: It should not be possible to delete a mandate.
-#    #TODO
-#
-#  Scenario: A new member can be added to a mandate even if the mandate already ended.
-#    #TODO
-#
-#  Scenario: A member may be deleted from a mandate even if the mandate already ended.
-#    #TODO
-#
-#  Scenario: Once a mandate created, the dates may change but must be of the same year.
-#    #TODO
+  Background:
+    Given the database is empty
+    Given the fixtures file "authentication.yml" is loaded
+    Given I authenticate myself as admin
+
+  @crud
+  Scenario: It should be possible to get all mandates
+    Given the fixtures file "mandate/collection.yml" is loaded
+    When I send a GET request to "/api/mandates"
+    Then the response status code should be 200
+    And the response should be in JSON-LD
+    And I should get a paged collection with the context "/api/contexts/Mandate"
+    And the JSON node "hydra:totalItems" should be equal to 2
+
+  @crud
+  Scenario: It should be possible to get a specific mandate
+    Given the fixtures file "mandate/collection.yml" is loaded
+    When I send a GET request to "/api/mandates/1"
+    Then the response status code should be 200
+    And the response should be in JSON-LD
+    And the JSON node "jobs" should have 3 element
+    Then the JSON response should have the following nodes:
+      | node     | value                     | type  |
+      | @context | /api/contexts/Mandate     |       |
+      | @id      | /api/mandates/1           |       |
+      | @type    | Mandate                   |       |
+      | endAt    | 2006-04-17T09:38:34+00:00 |       |
+      | jobs     |                           | array |
+      | jobs[0]  | /api/jobs/1               |       |
+      | jobs[1]  | /api/jobs/2               |       |
+      | jobs[2]  | /api/jobs/3               |       |
+      | name     | Mandate 2005/2006         |       |
+      | startAt  | 2005-06-25T16:43:30+00:00 |       |
+
+  @crud
+  Scenario: It should be possible to create a new mandate
+    Given the fixtures file "mandate/job-president.yml" is loaded
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+      "name": "My Mandate",
+      "startAt": "2005-08-15T15:52:01+00:00",
+      "endAt": "2005-12-15T15:52:01+00:00",
+      "jobs": [ "/api/jobs/1" ]
+    }
+    """
+    And the response status code should be 201
+    And the response should be in JSON-LD
+    And the JSON node "jobs" should have 1 element
+    And the JSON response should have the following nodes:
+      | node     | value                     | type    |
+      | @context | /api/contexts/Mandate     |         |
+      | @id      | /api/mandates/1           |         |
+      | @type    | Mandate                   |         |
+      | name     | My Mandate                |         |
+      | startAt  | 2005-08-15T15:52:01+00:00 | string  |
+      | endAt    | 2005-12-15T15:52:01+00:00 | string  |
+      | jobs     |                           | array   |
+      | jobs[0]  | /api/jobs/1               | array   |
+
+    When I send a GET request to "/api/mandates/1"
+    Then the response status code should be 200
+    And the response should be in JSON-LD
+    And the JSON node "jobs" should have 1 element
+    Then the JSON response should have the following nodes:
+      | node     | value                     | type    |
+      | @context | /api/contexts/Mandate     |         |
+      | @id      | /api/mandates/1           |         |
+      | @type    | Mandate                   |         |
+      | name     | My Mandate                |         |
+      | startAt  | 2005-08-15T15:52:01+00:00 | string  |
+      | endAt    | 2005-12-15T15:52:01+00:00 | string  |
+      | jobs     |                           | array   |
+      | jobs[0]  | /api/jobs/1               | array   |
+
+  @crud
+  Scenario: A mandate name is automatically picked up if none is given when creating a new mandate
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+      "endAt": "2051-01-21",
+      "startAt": "2050-01-26"
+    }
+    """
+    Then the response status code should be 201
+    And I should get a resource page with the context "/api/contexts/Mandate"
+    And the JSON node "name" should be equal to "Mandate 2050/2051"
+
+  @crud
+  Scenario: Data send for creating a mandate should be validated
+    When I send a POST request to "/api/mandates" with body:
+    """
+    {
+    }
+    """
+    Then the response status code should be 400
+    And the JSON node "violations" should have 2 element
+    Then the JSON response should have the following nodes:
+      | node                        | value                                 | type   |
+      | @context                    | /api/contexts/ConstraintViolationList |        |
+      | @type                       | ConstraintViolationList               |        |
+      | hydra:title                 |                                       |        |
+      | hydra:description           |                                       | array  |
+      | violations                  |                                       | array  |
+      | violations[0]               |                                       | object |
+      | violations[0]->propertyPath | endAt                                 |        |
+      | violations[0]->message      | Cette valeur ne doit pas être nulle.  |        |
+      | violations[1]               |                                       | object |
+      | violations[1]->propertyPath | startAt                               |        |
+      | violations[1]->message      | Cette valeur ne doit pas être nulle.  |        |

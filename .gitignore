@@ -1,10 +1,23 @@
+# Generated assets
+web/assets
+web/bundles
+
 # Cache file of PHP-CS Fixer
 .php_cs.cache
+
+# Artefacts folder
+/dist/
+
+# GitHub Pages website
+/gh-pages/
 
 # Created by https://www.gitignore.io
 
 ### Vagrant ###
 .vagrant
+
+### Mkdocs ###
+/site/*
 
 ### Symfony ###
 # Cache and logs (Symfony2)

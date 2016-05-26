@@ -38,11 +38,10 @@ class MandateDateTransformer implements DataTransformerInterface
         'startAt',
     ];
 
-    function __construct()
+    public function __construct()
     {
         $this->datetimeNormalizer = new DateTimeNormalizer();
     }
-
 
     /**
      * {@inheritdoc}

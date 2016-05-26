@@ -9,20 +9,23 @@ default:
         api_features:
             paths:    [ %paths.base%/features/api ]
             contexts:
-                - Incipio\Tests\Behat\Context\ApiContext:
+                - Behat\MinkExtension\Context\MinkContext
+                - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext
+                - Behat\Context\ApiContext:
                       doctrine:       @doctrine
                       jwtManager:     @lexik_jwt_authentication.jwt_manager
                       userManager:    @fos_user.user_manager
                       encoderFactory: @security.encoder_factory
-                - Behat\MinkExtension\Context\MinkContext
-                - Incipio\Tests\Behat\Context\JsonContext:
+                - Behat\Context\JsonContext:
                       evaluationMode: javascript
-                - Incipio\Tests\Behat\Context\JsonLdContext:
+                - Behat\Context\JsonLdContext:
                       evaluationMode: javascript
 
         front_features:
             paths:    [ %paths.base%/features/front ]
-            contexts: [ Incipio\Tests\Behat\Context\FrontContext ]
+            contexts:
+                - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext
+                - Behat\Context\FrontContext
 
     extensions:
         Behat\MinkExtension:
@@ -34,41 +37,5 @@ default:
             kernel:
                 env:   test
                 debug: true
-        Sanpi\Behatch\Extension: ~
-        VIPSoft\DoctrineDataFixturesExtension\Extension:
-            lifetime:    feature
-            autoload:    true
-            directories: ~
-            fixtures:    ~
-
-tests:
-    calls:
-        error_reporting: 16383 # E_ALL & ~E_USER_DREPRECATED
-
-    formatters:
-        pretty: true
-
-    suites:
-        api_features:
-            paths:    [ %paths.base%/features/api ]
-            contexts:
-                - Incipio\Tests\Behat\Context\ApiContext:
-                      doctrine:       @doctrine
-                      jwtManager:     @lexik_jwt_authentication.jwt_manager
-                      userManager:    @fos_user.user_manager
-                      encoderFactory: @security.encoder_factory
-                - Behat\MinkExtension\Context\MinkContext
-                - Incipio\Tests\Behat\Context\JsonContext:
-                      evaluationMode: javascript
-                - Incipio\Tests\Behat\Context\JsonLdContext:
-                      evaluationMode: javascript
-
-        front_features:
-            paths:    [ %paths.base%/features/front ]
-            contexts: [ Incipio\Tests\Behat\Context\FrontContext ]
-
-    extensions:
-        Behat\MinkExtension:
-            base_url:   http://localhost:8080
-            files_path: bootstrap/Tests/Fixtures
+        Fidry\AliceBundleExtension\Extension: ~
         Sanpi\Behatch\Extension: ~

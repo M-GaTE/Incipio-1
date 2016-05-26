@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     language: {
         sProcessing: 'Traitement en cours...',
@@ -16,12 +14,12 @@ module.exports = {
             sFirst: 'Premier',
             sPrevious: 'Pr&eacute;c&eacute;dent',
             sNext: 'Suivant',
-            sLast: 'Dernier'
+            sLast: 'Dernier',
         },
         oAria: {
             sSortAscending: ': activer pour trier la colonne par ordre croissant',
-            sSortDescending: ': activer pour trier la colonne par ordre d&eacute;croissant'
-        }
-    }
+            sSortDescending: ': activer pour trier la colonne par ordre d&eacute;croissant',
+        },
+    },
 };
 

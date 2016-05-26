@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Incipio package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -27,6 +36,7 @@ class StudentConvention
      * @ORM\GeneratedValue(strategy="NONE")
      * @Groups({"user"})
      * TODO: remove the group as the reference is the ID it should be unneeded; See ticket on DunglasApiBundle for solving this bug
+     *
      * @link https://github.com/dunglas/DunglasApiBundle/issues/187
      */
     private $reference;

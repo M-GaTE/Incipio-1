@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Incipio package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ApiBundle\Entity;
 
 /**
@@ -8,7 +17,7 @@ namespace ApiBundle\Entity;
 class Address
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,7 +44,7 @@ class Address
     private $complementaryLocation;
 
     /**
-     * Street number + bis, ter... + kind of street + street name
+     * Street number + bis, ter... + kind of street + street name.
      *
      * @var string
      *
@@ -80,9 +89,9 @@ class Address
     private $country;
 
     /**
-     * Get ID
+     * Get ID.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getId()
     {
@@ -90,7 +99,7 @@ class Address
     }
 
     /**
-     * Set complementaryHome
+     * Set complementaryHome.
      *
      * @param string $complementaryHome
      *
@@ -104,7 +113,7 @@ class Address
     }
 
     /**
-     * Get complementaryHome
+     * Get complementaryHome.
      *
      * @return string|null
      */
@@ -124,7 +133,7 @@ class Address
     }
 
     /**
-     * Set complementaryLocation
+     * Set complementaryLocation.
      *
      * @param string $complementaryLocation
      *
@@ -138,7 +147,7 @@ class Address
     }
 
     /**
-     * Get complementaryLocation
+     * Get complementaryLocation.
      *
      * @return string|null
      */
@@ -158,7 +167,7 @@ class Address
     }
 
     /**
-     * Set street
+     * Set street.
      *
      * @param string $street
      *
@@ -172,7 +181,7 @@ class Address
     }
 
     /**
-     * Get street
+     * Get street.
      *
      * @return string|null
      */
@@ -182,7 +191,7 @@ class Address
     }
 
     /**
-     * Set complementaryStreet
+     * Set complementaryStreet.
      *
      * @param string $complementaryStreet
      *
@@ -196,7 +205,7 @@ class Address
     }
 
     /**
-     * Get complementaryStreet
+     * Get complementaryStreet.
      *
      * @return string|null
      */
@@ -216,9 +225,9 @@ class Address
     }
 
     /**
-     * Set postal
+     * Set postal.
      *
-     * @param integer $postal
+     * @param int $postal
      *
      * @return Address
      */
@@ -230,9 +239,9 @@ class Address
     }
 
     /**
-     * Get postal
+     * Get postal.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getPostal()
     {
@@ -240,7 +249,7 @@ class Address
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      *
@@ -254,7 +263,7 @@ class Address
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string|null
      */

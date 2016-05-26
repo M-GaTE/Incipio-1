@@ -44,7 +44,7 @@ class MandateController extends BaseController
         $mandates = [];
         try {
             $mandates = $this->sendAndDecode(
-                $this->createRequest('GET', 'api_mandates_get_collection', $request),
+                $this->createRequest('GET', 'api_mandates_cget', $request),
                 true
             );
         } catch (ClientTransferException $exception) {
@@ -75,10 +75,10 @@ class MandateController extends BaseController
                 $mandate = $this->sendAndDecode(
                     $this->createRequest(
                         'POST',
-                        'api_mandates_post_collection',
+                        'api_mandates_cpost',
                         $request,
                         [
-                            'json' => $formData
+                            'json' => $formData,
                         ]
                     )
                 );
@@ -114,7 +114,7 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -122,10 +122,12 @@ class MandateController extends BaseController
 
             return [
                 'delete_form' => $this->createDeleteForm($id)->createView(),
-                'mandate'     => $mandate,
+                'mandate' => $mandate,
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -156,18 +158,20 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                 $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
             );
 
             return [
-                'mandate'   => $mandate,
+                'mandate' => $mandate,
                 'edit_form' => $this->createEditForm($mandate)->createView(),
             ];
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -199,7 +203,7 @@ class MandateController extends BaseController
             $mandate = $this->sendAndDecode(
                     $this->createRequest(
                     'GET',
-                    'api_mandates_get_item',
+                    'api_mandates_get',
                     $request,
                     ['parameters' => ['id' => $id]]
                 )
@@ -211,11 +215,11 @@ class MandateController extends BaseController
 
             if ($editForm->isValid()) {
                 $updateRequest = $this->createRequest('PUT',
-                    'api_mandates_put_item',
+                    'api_mandates_put',
                     $request,
                     [
                         'json' => $editForm->getData(),
-                        'parameters' => ['id' => $id]
+                        'parameters' => ['id' => $id],
                     ]
                 );
 
@@ -225,7 +229,9 @@ class MandateController extends BaseController
                 return $this->redirectToRoute('mandates_show', ['id' => $id]);
             }
         } catch (ClientRequestException $exception) {
-            if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+            if (null !== $exception->getResponse()
+                && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+            ) {
                 throw $this->createNotFoundException('Unable to find Mandate entity.');
             }
 
@@ -235,7 +241,7 @@ class MandateController extends BaseController
         }
 
         return [
-            'mandate'   => $mandate,
+            'mandate' => $mandate,
             'edit_form' => $this->createEditForm($mandate)->createView(),
         ];
     }
@@ -262,16 +268,18 @@ class MandateController extends BaseController
                 $this->client->send(
                     $this->createRequest(
                         'DELETE',
-                        'api_mandates_delete_item',
+                        'api_mandates_delete',
                         $request,
                         [
-                            'parameters' => ['id' => $id]
+                            'parameters' => ['id' => $id],
                         ]
                     )
                 );
                 $this->addFlash('success', 'Le mandat a bien été supprimé.');
             } catch (ClientRequestException $exception) {
-                if (Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()) {
+                if (null !== $exception->getResponse()
+                    && Response::HTTP_NOT_FOUND === $exception->getResponse()->getStatusCode()
+                ) {
                     throw $this->createNotFoundException('Unable to find Mandate entity.');
                 }
 

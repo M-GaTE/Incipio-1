@@ -1,32 +1,62 @@
+sudo: false
 language: php
 
 php:
-  - 5.5
-  - 5.6
-  - 5.6
   - 7.0
+  - nightly
   - hhvm
 
+env:
+  global:
+    - PATH="$HOME/.composer/vendor/bin:$PATH"
+    - GITHUB_PAGES_COMMIT_MESSAGE="Rebuild pages at $(git rev-parse --short HEAD)"
+    - if [[ -z "$GITHUB_PAGES_TOKEN" ]]; then
+        GITHUB_PAGES_REMOTE="https://user:${GITHUB_PAGES_TOKEN}@github.com/in6pio/Incipio.git";
+      fi;
+    - GITHUB_USER_NAME="TravisBot"
+    - GITHUB_USER_EMAIL="travisbot@incipio.fr"
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/.composer/cache/files
+    - $HOME/.gem/ruby
+    - $HOME/.gem/specs
+
 matrix:
+  include:
+    - php: 5.6
+      env: DEPLOY_BUILD=true
+    - php: 5.6 # We don't really care here as it will be the build for front-end assets
+               # Travis has yet to support multiple languages in the matrix configuration
+      env: ASSETS_BUILD=true
   allow_failures:
     - php: 7.0
+    - php: nightly
     - php: hhvm
   fast_finish: true
 
 before_install:
-  - composer self-update
+  - for file in scripts/*.sh; do
+      echo -en "\e[34mimporting ${file}\e[0m\n";
+      source "$file";
+    done
+  - appBeforeInstall
+  - assetsBeforeInstall
 
 install:
-  - composer install
-  - php app/console doctrine:database:create --env=test
-  - php app/console doctrine:schema:create --env=test
-  - php app/console doctrine:fixtures:load -n --env=test
+  - appInstall
+  - assetsInstall
 
 script:
-  - composer test:db
-  - composer test:security
-  - composer test:phpunit
-  - bin/behat --suite=api_features --strict --colors
-  - bin/behat --suite=front_features --strict --colors
-  - php bin/php-cs-fixer fix --no-interaction --dry-run --diff src
-  - php bin/php-cs-fixer fix --no-interaction --dry-run --diff features
+  - appScript
+  - assetsScript
+
+after_success:
+  - publishToGithubPages
+
+after_script:
+  - sendCoverageData

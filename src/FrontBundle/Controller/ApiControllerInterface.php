@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Incipio package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FrontBundle\Controller;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Message\RequestInterface;
+use Psr\Http\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
@@ -80,7 +89,7 @@ interface ApiControllerInterface
      *
      * @return array
      *
-     * @throws \LogicException When the handler does not populate a response
+     * @throws \LogicException  When the handler does not populate a response
      * @throws RequestException When an error is encountered
      */
     public function requestAndDecode($method, $url = null, $token = null, $options = [], $wholeCollection = false);
@@ -99,16 +108,15 @@ interface ApiControllerInterface
      *
      * @return array
      *
-     * @throws \LogicException When the handler does not populate a response
-     * @throws RequestException When an error is encountered
+     * @throws \LogicException          When the handler does not populate a response
+     * @throws RequestException         When an error is encountered
      * @throws UnexpectedValueException
      */
     public function sendAndDecode(RequestInterface $request, $wholeCollection = false);
 
     /**
      * Handle Guzzle exceptions. Assumes the exception was thrown while sending a request to the API. For more
-     * information regarding Guzzle exceptions, refer to {@link
-     * http://guzzle.readthedocs.org/en/latest/quickstart.html#exceptions}.
+     * information regarding Guzzle exceptions, refer to {@link * http://guzzle.readthedocs.org/en/latest/quickstart.html#exceptions}.
      *
      * @param TransferException $exception
      */

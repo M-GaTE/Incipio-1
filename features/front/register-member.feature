@@ -1,3 +1,4 @@
+@ignore
 Feature: As an administrator
   I must be able to register a new member or contractor
 

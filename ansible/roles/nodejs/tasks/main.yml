@@ -1,0 +1,8 @@
+---
+- name: Download nodejs source
+  sudo: yes
+  command: curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+- name: Refresh APT repositories
+  sudo: yes
+  apt:  pkg=nodejs state=latest
