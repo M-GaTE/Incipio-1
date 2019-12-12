@@ -238,7 +238,6 @@ $RECYCLE.BIN/
 *.lnk
 
 var/sessions/*
-var/documents/*
 var/key_value_store/stats.json
 config.json.dist
 docker-compose.yml
